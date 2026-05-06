@@ -230,15 +230,13 @@ Proceed to Payment
 </div>
 
 <script>
-// ALL EXISTING FUNCTIONS SAME...
-
-// ✅ ONLY UPDATED FUNCTION
 function submitOrder(){
     let name = document.getElementById("c_name").value;
     let phone = document.getElementById("c_phone").value;
     let address = document.getElementById("c_address").value;
+    let email = document.getElementById("c_email").value;
 
-    if(!name || !phone || !address){
+    if(!name || !phone || !address || !email){
         alert("Please fill all details");
         return;
     }
@@ -246,21 +244,22 @@ function submitOrder(){
     localStorage.setItem("order_name", name);
     localStorage.setItem("order_phone", phone);
     localStorage.setItem("order_address", address);
+    localStorage.setItem("order_email", email);
     localStorage.setItem("order_product", selectedProduct);
     localStorage.setItem("order_price", selectedPrice);
     localStorage.setItem("order_qty", selectedQty);
 
-    fetch("YOUR_WEB_APP_URL_HERE", {
+    fetch("https://script.google.com/macros/s/AKfycbwFdxE7YMdG-klIXb-InfKoABO7uBlLs75plQU0OlFJCBeU7xdPHELR1i22K0PqYtQ8/exec", {
         method: "POST",
         body: JSON.stringify({
-            name, phone, address,
-            product: selectedProduct,
-            price: selectedPrice,
-            qty: selectedQty
+            name: name,
+            address: address,
+            phone: phone,
+            email: email
         })
     })
-    .then(()=> window.location.href="payment.html")
-    .catch(()=> alert("Error saving order"));
+    .then(() => window.location.href="payment.html")
+    .catch(() => alert("Error saving order"));
 }
 </script>
 
