@@ -343,7 +343,11 @@ style="padding:10px;width:90%;max-width:400px;border-radius:8px;border:1px solid
   <div style="background:white;padding:20px;border-radius:10px;width:90%;max-width:400px;text-align:left;">
 
     <h3>Enter Details</h3>
-
+      
+    <b>Product:</b> <span id="popup_product_name"></span><br>
+      
+    <b>Qty:</b> <span id="popup_qty"></span>
+      
     <input id="c_name" placeholder="Full Name" style="width:100%;padding:8px;margin:5px 0;">
 
     <input id="c_phone" placeholder="Phone Number" style="width:100%;padding:8px;margin:5px 0;">
@@ -406,9 +410,14 @@ let selectedProduct="", selectedPrice="", selectedQty="";
 
 function openCheckout(btn){
     let card = btn.closest(".card");
+
     selectedProduct = card.querySelector("h3").innerText;
     selectedPrice = card.querySelector(".price").innerText;
     selectedQty = card.querySelector(".qty").innerText;
+
+    // ✅ fill popup fields
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
 
     document.getElementById("checkoutBox").style.display = "flex";
 }
@@ -436,7 +445,7 @@ function submitOrder(){
     localStorage.setItem("order_price", selectedPrice);
     localStorage.setItem("order_qty", selectedQty);
 
-    fetch("https://script.google.com/macros/s/AKfycbyifxIGTH96tth0KfVfd4FPzYVR_ZCdpxcMBlk1ktZnqyB80Mro9hwb9AdfE_J7Xt0g/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzfH-aSrCPGM4vxKiAaAExgMHhLDtdD1R6hIasi-6sVqHC4GBrMtJqouQKAUZQc02vn/exec", {
         method: "POST",
         body: JSON.stringify({
             name: name,
