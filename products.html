@@ -436,7 +436,7 @@ function submitOrder(){
     localStorage.setItem("order_price", selectedPrice);
     localStorage.setItem("order_qty", selectedQty);
 
-    fetch("https://script.google.com/macros/s/AKfycbwFdxE7YMdG-klIXb-InfKoABO7uBlLs75plQU0OlFJCBeU7xdPHELR1i22K0PqYtQ8/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyifxIGTH96tth0KfVfd4FPzYVR_ZCdpxcMBlk1ktZnqyB80Mro9hwb9AdfE_J7Xt0g/exec", {
         method: "POST",
         body: JSON.stringify({
             name: name,
