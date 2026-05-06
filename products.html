@@ -445,13 +445,18 @@ function submitOrder(){
     localStorage.setItem("order_price", selectedPrice);
     localStorage.setItem("order_qty", selectedQty);
 
-    fetch("https://script.google.com/macros/s/AKfycbzfH-aSrCPGM4vxKiAaAExgMHhLDtdD1R6hIasi-6sVqHC4GBrMtJqouQKAUZQc02vn/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             name: name,
-            address: address,
             phone: phone,
-            email: email
+            address: address,
+            email: email,
+            product: selectedProduct,
+            qty: selectedQty
         })
     })
     .then(() => window.location.href="payment.html")
