@@ -446,27 +446,25 @@ function submitOrder(){
     localStorage.setItem("order_qty", selectedQty);
 
     fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: name,
-            phone: phone,
-            address: address,
-            email: email,
-            product: selectedProduct,
-            qty: selectedQty
-        })
+    method: "POST",
+    body: new URLSearchParams({
+        name: name,
+        phone: phone,
+        email: email,
+        address: address,
+        product: selectedProduct,
+        qty: selectedQty
     })
-    .then(res => res.text())
-    .then(() => {
-        window.location.href = "payment.html";
-    })
-    .catch(() => {
-        alert("Error saving order");
-    });
-}
+})
+.then(res => res.text())
+.then(data => {
+    console.log("Response:", data);
+    window.location.href = "payment.html";
+})
+.catch(err => {
+    console.error("Fetch error:", err);
+    alert("Error saving order");
+});
 </script>
 
 </body>
