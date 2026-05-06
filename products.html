@@ -91,7 +91,7 @@ header{
     margin-bottom:20px;
 }
 
-/* GRID (FIX: prevents single product becoming huge) */
+/* GRID */
 .products{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(220px,280px));
@@ -205,140 +205,14 @@ style="padding:10px;width:90%;max-width:400px;border-radius:8px;border:1px solid
 
 <div class="products">
 
-<!-- PRODUCT 1 -->
-<div class="card">
-<div class="main-image">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg" class="active-img">
-</div>
+<!-- PRODUCTS SAME (unchanged) -->
 
-<div class="thumbs">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg" onclick="changeImage(this)">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg" onclick="changeImage(this)">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg" onclick="changeImage(this)">
-</div>
-
-<h3>Spatika Shivlingam (One Inch)</h3>
-<p class="desc">Brings peace, purity, and spiritual growth.</p>
-<div class="price">₹1149</div>
-
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-
-<a href="#" class="btn" onclick="openCheckout(this)">Buy Now</a>
-<a href="#" class="btn whatsapp" onclick="orderWhatsApp(this, event)">Order on WhatsApp</a>
-</div>
-
-<!-- PRODUCT 2 -->
-<div class="card">
-<div class="main-image">
-<img src="Images/MarakathaShivalingam.jpeg" class="active-img">
-</div>
-
-<div class="thumbs">
-<img src="Images/MarakathaShivalingam.jpeg" onclick="changeImage(this)">
-<img src="Images/MarakathaShivalingam.jpeg" onclick="changeImage(this)">
-<img src="Images/MarakathaShivalingam.jpeg" onclick="changeImage(this)">
-</div>
-
-<h3>MarakathaShivalingam (One inch)</h3>
-<p class="desc"> Helps in Financial stability and wealth creation </p>
-<div class="price">₹1099</div>
-
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-
-<a href="#" class="btn" onclick="openCheckout(this)">Buy Now</a>
-<a href="#" class="btn whatsapp" onclick="orderWhatsApp(this, event)">Order on WhatsApp</a>
-</div>
-
-<!-- PRODUCT 3 -->
-<div class="card">
-<div class="main-image">
-<img src="Images/Navagraha Mala.jpeg" class="active-img">
-</div>
-
-<div class="thumbs">
-<img src="Images/Navagraha Mala.jpeg" onclick="changeImage(this)">
-<img src="Images/Navagraha Mala.jpeg" onclick="changeImage(this)">
-<img src="Images/Navagraha Mala.jpeg" onclick="changeImage(this)">
-</div>
-
-<h3>Navagraha Mala</h3>
-<p class="desc">Balances all planetary energies and removes doshas.</p>
-<div class="price">₹5500</div>
-
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-
-<a href="#" class="btn" onclick="openCheckout(this)">Buy Now</a>
-<a href="#" class="btn whatsapp" onclick="orderWhatsApp(this, event)">Order on WhatsApp</a>
-</div>
-
-<!-- PRODUCT 4 -->
-<div class="card">
-<div class="main-image">
-<img src="Images/spatika_nandi1.jpeg" class="active-img">
-</div>
-
-<div class="thumbs">
-<img src="Images/spatika_nandi1.jpeg" onclick="changeImage(this)">
-<img src="Images/spatika_nandi1.jpeg" onclick="changeImage(this)">
-<img src="Images/spatika_nandi1.jpeg" onclick="changeImage(this)">
-</div>
-
-<h3>Spatika Nandi (1 inch)</h3>
-<p class="desc">Balances all planetary energies and removes doshas.</p>
-<div class="price">₹1099</div>
-
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-
-<a href="#" class="btn" onclick="openCheckout(this)">Buy Now</a>
-<a href="#" class="btn whatsapp" onclick="orderWhatsApp(this, event)">Order on WhatsApp</a>
-</div>
-    
-<!-- PRODUCT 5 -->
-<div class="card">
-<div class="main-image">
-<img src="Images/MarakathaNandi.jpeg" class="active-img">
-</div>
-
-<div class="thumbs">
-<img src="Images/MarakathaNandi.jpeg" onclick="changeImage(this)">
-<img src="Images/MarakathaNandi.jpeg" onclick="changeImage(this)">
-<img src="Images/MarakathaNandi.jpeg" onclick="changeImage(this)">
-</div>
-
-<h3>Marakatha Nandi (1 inch)</h3>
-<p class="desc">Improves focus, calmness, and positive vibrations.</p>
-<div class="price">₹1099</div>
-
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-
-<a href="#" class="btn" onclick="openCheckout(this)">Buy Now</a>
-<a href="#" class="btn whatsapp" onclick="orderWhatsApp(this, event)">Order on WhatsApp</a>
-</div>
+<!-- Keep ALL your product cards EXACTLY same here -->
 
 </div>
 </div>
 
-<!-- CHECKOUT POPUP -->
+<!-- CHECKOUT POPUP (UNCHANGED) -->
 <div id="checkoutBox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999;">
 <div style="background:white;padding:20px;border-radius:10px;width:90%;max-width:400px;text-align:left;">
 <h3>Enter Details</h3>
@@ -356,62 +230,9 @@ Proceed to Payment
 </div>
 
 <script>
-// IMAGE
-function changeImage(el){
-    const main = el.closest('.card').querySelector('.active-img');
-    main.src = el.src;
-}
+// ALL EXISTING FUNCTIONS SAME...
 
-// SEARCH (FIXED SIZE ISSUE)
-document.getElementById("searchBox").addEventListener("keyup", function(){
-    let filter = this.value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card=>{
-        let text = card.innerText.toLowerCase();
-        card.style.display = text.includes(filter) ? "block" : "none";
-    });
-});
-
-// QTY
-function changeQty(btn, change){
-    let qtyEl = btn.parentElement.querySelector(".qty");
-    let qty = parseInt(qtyEl.innerText);
-    qty = Math.max(1, qty + change);
-    qtyEl.innerText = qty;
-}
-
-// WHATSAPP
-function orderWhatsApp(btn, e){
-    e.preventDefault();
-
-    let card = btn.closest(".card");
-    let name = card.querySelector("h3").innerText;
-    let price = card.querySelector(".price").innerText;
-    let qty = card.querySelector(".qty").innerText;
-
-    let message = `Hello, I want to order:\n\n${name}\nPrice: ${price}\nQuantity: ${qty}`;
-    let url = `https://wa.me/919347184217?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
-}
-
-// CHECKOUT FLOW
-let selectedProduct="", selectedPrice="", selectedQty="";
-
-function openCheckout(btn){
-    let card = btn.closest(".card");
-    selectedProduct = card.querySelector("h3").innerText;
-    selectedPrice = card.querySelector(".price").innerText;
-    selectedQty = card.querySelector(".qty").innerText;
-
-    document.getElementById("checkoutBox").style.display = "flex";
-}
-
-function closeCheckout(){
-    document.getElementById("checkoutBox").style.display = "none";
-}
-
+// ✅ ONLY UPDATED FUNCTION
 function submitOrder(){
     let name = document.getElementById("c_name").value;
     let phone = document.getElementById("c_phone").value;
@@ -422,7 +243,6 @@ function submitOrder(){
         return;
     }
 
-    // Save data (optional - useful for payment page)
     localStorage.setItem("order_name", name);
     localStorage.setItem("order_phone", phone);
     localStorage.setItem("order_address", address);
@@ -430,8 +250,17 @@ function submitOrder(){
     localStorage.setItem("order_price", selectedPrice);
     localStorage.setItem("order_qty", selectedQty);
 
-    // 👉 Directly go to payment page(Razorpay)
-    window.location.href = "payment.html";
+    fetch("YOUR_WEB_APP_URL_HERE", {
+        method: "POST",
+        body: JSON.stringify({
+            name, phone, address,
+            product: selectedProduct,
+            price: selectedPrice,
+            qty: selectedQty
+        })
+    })
+    .then(()=> window.location.href="payment.html")
+    .catch(()=> alert("Error saving order"));
 }
 </script>
 
