@@ -721,9 +721,16 @@ function submitMuhurtha(){
 
 localStorage.setItem("temp_type", "muhurtham");
 
-localStorage.setItem("temp_muhurtham_type", selectedMuhurtham);
-localStorage.setItem("temp_price", selectedPrice);
+localStorage.setItem(
+    "temp_muhurtham_type",
+    muhurthaService
+);
 
+localStorage.setItem(
+    "temp_price",
+    muhurthaPrice
+);
+    
 localStorage.setItem("temp_name1", name1);
 localStorage.setItem("temp_nak1", nak1);
 
