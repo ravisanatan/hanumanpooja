@@ -413,10 +413,15 @@ function openCheckout(btn){
     let card = btn.closest(".card");
 
     selectedProduct = card.querySelector("h3").innerText;
-    selectedPrice =
-    card.querySelector(".price")
-    .innerText
-    .replace("₹","");
+    let basePrice =
+parseInt(
+card.querySelector(".price")
+.innerText
+.replace("₹","")
+);
+
+selectedPrice =
+basePrice * parseInt(selectedQty);
     selectedQty = card.querySelector(".qty").innerText;
 
     document.getElementById("popup_product_name").innerText = selectedProduct;
