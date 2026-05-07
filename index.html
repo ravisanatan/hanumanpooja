@@ -524,15 +524,11 @@ function submitPoojaBooking(){
     }
 
     fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
-
+    
         method: "POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
+    
         body: JSON.stringify(data)
-
+    
     })
 
     .then(res => res.json())
