@@ -386,42 +386,338 @@ header{
 
 <div class="slider">
 
+<!-- SINGLE -->
 <div class="service-card">
 <div class="card-content">
 <h3>Individual Muhurthas</h3>
 <p class="desc">Auspicious timing for events.</p>
 <div class="price">₹1116</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/zxWXOE" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openMuhurthaPopup('single','Individual Muhurthas','1116')">
+Book
+</button>
+
 </div>
 </div>
 
+<!-- MARRIAGE -->
 <div class="service-card">
 <div class="card-content">
 <h3>Marriage Muhurthas</h3>
 <p class="desc">Best wedding dates selection.</p>
 <div class="price">₹1501</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/44PX5X" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openMuhurthaPopup('couple','Marriage Muhurthas','1501')">
+Book
+</button>
+
 </div>
 </div>
 
 </div>
 </div>
 </div>
+</div>
 
 </div>
 
+
+<!-- MUHURTHA POPUP -->
+
+<div id="muhurthaPopup"
+
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+z-index:999;
+">
+
+<div style="
+background:white;
+padding:20px;
+border-radius:10px;
+width:90%;
+max-width:420px;
+max-height:90vh;
+overflow:auto;
+text-align:left;
+">
+
+<h3>Muhurtha Booking</h3>
+
+<label><b>Full Name</b></label>
+
+<input id="m_name1"
+placeholder="Enter Full Name"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<label><b>Nakshatram</b></label>
+
+<input id="m_nak1"
+placeholder="Enter Nakshatram"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<!-- SECOND PERSON -->
+
+<div id="muhurthaSecondPerson" style="display:none;">
+
+<label><b>Second Person Full Name</b></label>
+
+<input id="m_name2"
+placeholder="Enter Full Name"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<label><b>Second Person Nakshatram</b></label>
+
+<input id="m_nak2"
+placeholder="Enter Nakshatram"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+</div>
+
+<label><b>Event</b></label>
+
+<input id="m_event"
+placeholder="Example: House Warming, Marriage"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<label><b>Any Requirement?</b></label>
+
+<textarea id="m_requirement"
+placeholder="Optional"
+style="width:100%;padding:12px;margin:5px 0 12px 0;"></textarea>
+
+<label><b>Phone Number</b></label>
+
+<input id="m_phone"
+placeholder="Phone Number"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<label><b>Email ID</b></label>
+
+<input id="m_email"
+placeholder="Email ID"
+style="width:100%;padding:12px;margin:5px 0 12px 0;">
+
+<button
+onclick="submitMuhurtha()"
+style="
+width:100%;
+padding:12px;
+background:#ff6600;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:10px;
+">
+Proceed to Payment
+</button>
+
+<button
+onclick="closeMuhurthaPopup()"
+style="
+width:100%;
+padding:10px;
+margin-top:10px;
+">
+Cancel
+</button>
+
+</div>
+</div>
+
+    
 <script>
+
 function scrollSlider(btn, dir){
+
     const wrapper = btn.parentElement;
+
     const slider = wrapper.querySelector('.slider');
-    slider.scrollBy({ left: dir * 300, behavior: 'smooth' });
+
+    slider.scrollBy({
+        left: dir * 300,
+        behavior: 'smooth'
+    });
 }
+
+// ================= MUHURTHA =================
+
+let muhurthaType = "";
+let muhurthaService = "";
+let muhurthaPrice = "";
+
+function openMuhurthaPopup(type, service, price){
+
+    muhurthaType = type;
+
+    muhurthaService = service;
+
+    muhurthaPrice = price;
+
+    document.getElementById("muhurthaPopup").style.display = "flex";
+
+    document.getElementById("muhurthaSecondPerson").style.display = "none";
+
+    if(type == "couple"){
+
+        document.getElementById("muhurthaSecondPerson").style.display = "block";
+
+    }
+}
+
+function closeMuhurthaPopup(){
+
+    document.getElementById("muhurthaPopup").style.display = "none";
+
+}
+
+function submitMuhurtha(){
+
+    let name1 =
+    document.getElementById("m_name1").value.trim();
+
+    let nak1 =
+    document.getElementById("m_nak1").value.trim();
+
+    let name2 =
+    document.getElementById("m_name2").value.trim();
+
+    let nak2 =
+    document.getElementById("m_nak2").value.trim();
+
+    let eventName =
+    document.getElementById("m_event").value.trim();
+
+    let requirement =
+    document.getElementById("m_requirement").value.trim();
+
+    let phone =
+    document.getElementById("m_phone").value.trim();
+
+    let email =
+    document.getElementById("m_email").value.trim();
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!name1 || !nak1 || !eventName || !phone || !email){
+
+        alert("Please fill all required fields");
+
+        return;
+    }
+
+    if(!nameRegex.test(name1)){
+
+        alert("Invalid name");
+
+        return;
+    }
+
+    if(!phoneRegex.test(phone)){
+
+        alert("Invalid phone number");
+
+        return;
+    }
+
+    if(!emailRegex.test(email)){
+
+        alert("Invalid email");
+
+        return;
+    }
+
+    if(muhurthaType == "couple"){
+
+        if(!name2 || !nak2){
+
+            alert("Please fill second person details");
+
+            return;
+        }
+    }
+
+    fetch(
+    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+
+    {
+
+        method:"POST",
+
+        body:JSON.stringify({
+
+            type:"muhurtha",
+
+            service:muhurthaService,
+
+            price:muhurthaPrice,
+
+            name1:name1,
+
+            nak1:nak1,
+
+            name2:name2,
+
+            nak2:nak2,
+
+            event:eventName,
+
+            requirement:requirement,
+
+            phone:phone,
+
+            email:email
+
+        })
+
+    })
+
+    .then(res => res.json())
+
+    .then(response => {
+
+        localStorage.setItem(
+            "bookingId",
+            response.bookingId
+        );
+
+        window.location.href =
+        "payment.html";
+
+    })
+
+    .catch(err => {
+
+        console.error(err);
+
+        alert("Error submitting booking");
+
+    });
+
+}
+
 </script>
 
 </body>
