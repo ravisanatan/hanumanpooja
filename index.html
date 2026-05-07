@@ -366,7 +366,7 @@ placeholder="Email ID"
 style="width:100%;padding:8px;margin:6px 0;">
 
 <button class="btn" onclick="submitPoojaBooking()">
-Proceed
+Proceed to Payment
 </button>
 
 <button class="btn"
@@ -535,10 +535,7 @@ function submitPoojaBooking(){
 
     .then(response => {
 
-        alert(
-            "Booking Submitted Successfully!\n\nBooking ID: "
-            + response.bookingId
-        );
+
 
         // PAYMENT LINK
         window.location.href =
