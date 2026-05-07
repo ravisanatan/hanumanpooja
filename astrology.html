@@ -783,69 +783,95 @@ function submitAstrology(){
         }
     }
 
-    fetch(
-    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+    // fetch(
+    // "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
 
-    {
+    // {
 
-        method:"POST",
+    //     method:"POST",
 
-        body:JSON.stringify({
+    //     body:JSON.stringify({
 
-            type:"astrology",
+    //         type:"astrology",
 
-            service:astroService,
+    //         service:astroService,
 
-            price:astroPrice,
+    //         price:astroPrice,
 
-            name1:name1,
+    //         name1:name1,
 
-            dob1:dob1,
+    //         dob1:dob1,
 
-            tob1:tob1,
+    //         tob1:tob1,
 
-            pob1:pob1,
+    //         pob1:pob1,
 
-            name2:name2,
+    //         name2:name2,
 
-            dob2:dob2,
+    //         dob2:dob2,
 
-            tob2:tob2,
+    //         tob2:tob2,
 
-            pob2:pob2,
+    //         pob2:pob2,
 
-            reason:reason,
+    //         reason:reason,
 
-            phone:phone,
+    //         phone:phone,
 
-            email:email
+    //         email:email
 
-        })
+    //     })
 
-    })
+    // })
 
-    .then(res => res.json())
+    // .then(res => res.json())
 
-    .then(response => {
+    // .then(response => {
 
-        localStorage.setItem(
-            "bookingId",
-            response.bookingId
-        );
+    //     localStorage.setItem(
+    //         "bookingId",
+    //         response.bookingId
+    //     );
 
-        window.location.href =
-        "payment.html";
+    //     window.location.href =
+    //     "payment.html";
 
-    })
+    // })
 
-    .catch(err => {
+    // .catch(err => {
 
-        console.error(err);
+    //     console.error(err);
 
-        alert("Error submitting booking");
+    //     alert("Error submitting booking");
 
-    });
+    // });
 
+// SAVE TEMP DATA
+
+localStorage.setItem("temp_type", "astrology");
+
+localStorage.setItem("temp_service", astroService);
+localStorage.setItem("temp_price", astroPrice);
+
+localStorage.setItem("temp_name1", name1);
+localStorage.setItem("temp_dob1", dob1);
+localStorage.setItem("temp_tob1", tob1);
+localStorage.setItem("temp_pob1", pob1);
+
+localStorage.setItem("temp_name2", name2);
+localStorage.setItem("temp_dob2", dob2);
+localStorage.setItem("temp_tob2", tob2);
+localStorage.setItem("temp_pob2", pob2);
+
+localStorage.setItem("temp_reason", reason);
+
+localStorage.setItem("temp_phone", phone);
+localStorage.setItem("temp_email", email);
+
+// REDIRECT
+
+window.location.href = "payment.html";
+    
 }
 
 </script>
