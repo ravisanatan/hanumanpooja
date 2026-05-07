@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#fff5e6;
+    text-align:center;
+    padding:20px;
+}
+
+.box{
+    background:white;
+    max-width:420px;
+    margin:auto;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.12);
+}
+
+img{
+    width:250px;
+    max-width:100%;
+    border-radius:10px;
+}
+
+.amount{
+    color:#cc0000;
+    font-size:28px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#ff6600;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Complete Payment</h2>
+
+<p>Please scan QR code and complete payment</p>
+
+<img src="upi-qr-1.jpeg">
+
+<div class="amount">
+₹ <span id="amount"></span>
+</div>
+
+<p>
+After payment click below button
+</p>
+
+<button onclick="paymentDone()">
+I Have Paid
+</button>
+
+</div>
+
+<script>
+
+document.getElementById("amount").innerText =
+localStorage.getItem("learning_price") || "";
+
+function paymentDone(){
+
+    fetch(
+    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+    {
+
+        method:"POST",
+
+        body:JSON.stringify({
+
+            type:"learning",
+
+            course:
+            localStorage.getItem("learning_course"),
+
+            price:
+            localStorage.getItem("learning_price"),
+
+            name:
+            localStorage.getItem("learning_name"),
+
+            phone:
+            localStorage.getItem("learning_phone"),
+
+            email:
+            localStorage.getItem("learning_email"),
+
+            city:
+            localStorage.getItem("learning_city"),
+
+            age:
+            localStorage.getItem("learning_age"),
+
+            notes:
+            localStorage.getItem("learning_notes")
+
+        })
+
+    })
+
+    .then(res => res.json())
+
+    .then(response => {
+
+        alert(
+        "Registration Successful!\nBooking ID: "
+        + response.bookingId
+        );
+
+        localStorage.clear();
+
+        window.location.href = "learnings.html";
+
+    })
+
+    .catch(err => {
+
+        console.error(err);
+
+        alert("Error saving registration");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
