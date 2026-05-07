@@ -660,62 +660,85 @@ function submitMuhurtha(){
         }
     }
 
-    fetch(
-    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+    // fetch(
+    // "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
 
-    {
+    // {
 
-        method:"POST",
+    //     method:"POST",
 
-        body:JSON.stringify({
+    //     body:JSON.stringify({
 
-            type:"muhurtha",
+    //         type:"muhurtha",
 
-            service:muhurthaService,
+    //         service:muhurthaService,
 
-            price:muhurthaPrice,
+    //         price:muhurthaPrice,
 
-            name1:name1,
+    //         name1:name1,
 
-            nak1:nak1,
+    //         nak1:nak1,
 
-            name2:name2,
+    //         name2:name2,
 
-            nak2:nak2,
+    //         nak2:nak2,
 
-            event:eventName,
+    //         event:eventName,
 
-            requirement:requirement,
+    //         requirement:requirement,
 
-            phone:phone,
+    //         phone:phone,
 
-            email:email
+    //         email:email
 
-        })
+    //     })
 
-    })
+    // })
 
-    .then(res => res.json())
+    // .then(res => res.json())
 
-    .then(response => {
+    // .then(response => {
 
-        localStorage.setItem(
-            "bookingId",
-            response.bookingId
-        );
+    //     localStorage.setItem(
+    //         "bookingId",
+    //         response.bookingId
+    //     );
 
-        window.location.href =
-        "payment.html";
+    //     window.location.href =
+    //     "payment.html";
 
-    })
+    // })
 
-    .catch(err => {
+    // .catch(err => {
 
-        console.error(err);
+    //     console.error(err);
 
-        alert("Error submitting booking");
+    //     alert("Error submitting booking");
 
-    });
+    // });
+
+    // SAVE TEMP DATA
+
+localStorage.setItem("temp_type", "muhurtham");
+
+localStorage.setItem("temp_muhurtham_type", selectedMuhurtham);
+localStorage.setItem("temp_price", selectedPrice);
+
+localStorage.setItem("temp_name1", name1);
+localStorage.setItem("temp_nak1", nak1);
+
+localStorage.setItem("temp_name2", name2);
+localStorage.setItem("temp_nak2", nak2);
+
+localStorage.setItem("temp_event", eventName);
+localStorage.setItem("temp_requirement", requirement);
+
+localStorage.setItem("temp_phone", phone);
+localStorage.setItem("temp_email", email);
+
+// REDIRECT
+
+window.location.href = "payment.html";
 
 }
 
