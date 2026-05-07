@@ -410,24 +410,40 @@ function orderWhatsApp(btn, e){
 let selectedProduct="", selectedPrice="", selectedQty="";
 
 function openCheckout(btn){
+
     let card = btn.closest(".card");
 
-    selectedProduct = card.querySelector("h3").innerText;
+    selectedProduct =
+    card.querySelector("h3").innerText;
+
+    selectedQty =
+    parseInt(
+        card.querySelector(".qty").innerText
+    );
+
     let basePrice =
-parseInt(
-card.querySelector(".price")
-.innerText
-.replace("₹","")
-);
+    parseInt(
+        card.querySelector(".price")
+        .innerText
+        .replace("₹","")
+    );
 
-selectedPrice =
-basePrice * parseInt(selectedQty);
-    selectedQty = card.querySelector(".qty").innerText;
+    // TOTAL PRICE
 
-    document.getElementById("popup_product_name").innerText = selectedProduct;
-    document.getElementById("popup_qty").innerText = selectedQty;
+    selectedPrice =
+    basePrice * selectedQty;
 
-    document.getElementById("checkoutBox").style.display = "flex";
+    document.getElementById(
+        "popup_product_name"
+    ).innerText = selectedProduct;
+
+    document.getElementById(
+        "popup_qty"
+    ).innerText = selectedQty;
+
+    document.getElementById(
+        "checkoutBox"
+    ).style.display = "flex";
 }
 
 function closeCheckout(){
