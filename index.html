@@ -552,29 +552,64 @@ function submitPoojaBooking(){
 
     // });
 
-   // SAVE TEMP DATA
+  // SAVE TEMP DATA
 
 localStorage.setItem("temp_type", "pooja");
 
-localStorage.setItem("temp_pooja_type", data.poojaType);
+localStorage.setItem(
+    "temp_pooja",
+    selectedPoojaName
+);
 
-localStorage.setItem("temp_pooja", data.product);
+localStorage.setItem(
+    "temp_price",
+    selectedPrice
+);
 
-localStorage.setItem("temp_price", selectedPrice);
+localStorage.setItem(
+    "temp_gothram",
+    data.gothram
+);
 
-localStorage.setItem("temp_gothram", data.gothram);
+localStorage.setItem(
+    "temp_name1",
+    data.name1
+);
 
-localStorage.setItem("temp_name1", data.name1);
-localStorage.setItem("temp_name2", data.name2);
-localStorage.setItem("temp_name3", data.name3);
-localStorage.setItem("temp_name4", data.name4);
-localStorage.setItem("temp_name5", data.name5);
+localStorage.setItem(
+    "temp_name2",
+    data.name2
+);
 
-localStorage.setItem("temp_wish", data.wish);
+localStorage.setItem(
+    "temp_name3",
+    data.name3
+);
 
-localStorage.setItem("temp_phone", data.phone);
+localStorage.setItem(
+    "temp_name4",
+    data.name4
+);
 
-localStorage.setItem("temp_email", data.email);
+localStorage.setItem(
+    "temp_name5",
+    data.name5
+);
+
+localStorage.setItem(
+    "temp_wish",
+    data.wish
+);
+
+localStorage.setItem(
+    "temp_phone",
+    data.phone
+);
+
+localStorage.setItem(
+    "temp_email",
+    data.email
+);
 
 // REDIRECT
 
