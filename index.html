@@ -278,7 +278,10 @@ header{
 </div>
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/2Ebp5j" class="btn" target="_blank">Book</a>
+<button class="btn"
+onclick="openPoojaPopup('Single','Maha Nakshatra Homam','1601')">
+Book
+</button>
 </div>
 </div>
 
@@ -292,7 +295,10 @@ header{
 </div>
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/2EOEEV" class="btn" target="_blank">Book</a>
+<button class="btn"
+onclick="openPoojaPopup('Single','Maha Nakshatra Homam','1601')">
+Book
+</button>
 </div>
 </div>
 
@@ -306,7 +312,10 @@ header{
 </div>
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/81j1NA" class="btn" target="_blank">Book</a>
+<button class="btn"
+onclick="openPoojaPopup('Single','Maha Nakshatra Homam','1601')">
+Book
+</button>
 </div>
 </div>
 
@@ -314,114 +323,243 @@ header{
 </div>
 </div>
 
-<!-- ================= ASTROLOGY ================= -->
-<!-- <div id="astrology" class="section-card">
-<h2 class="section-title">Astrology Services</h2>
+<!-- POOJA POPUP -->
 
-<div class="slider-wrapper">
-<button class="arrow left" onclick="scrollSlider(this, -1)">&#10094;</button>
-<button class="arrow right" onclick="scrollSlider(this, 1)">&#10095;</button>
+<div id="poojaPopup"
+style="display:none;position:fixed;top:0;left:0;
+width:100%;height:100%;background:rgba(0,0,0,0.6);
+justify-content:center;align-items:center;z-index:999;">
 
-<div class="slider">
+<div style="background:white;padding:20px;border-radius:10px;
+width:90%;max-width:420px;max-height:90vh;overflow:auto;">
 
-<div class="service-card">
-<div class="card-content">
-<h3>Horoscope Analysis</h3>
-<p class="desc">Complete horoscope analysis with predictions and dosha analysis.</p>
-<div class="price">₹1000</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/81j1RO" class="btn" target="_blank">Book</a>
-</div>
-</div>
+<h3 id="popupTitle">Book Pooja</h3>
 
-<div class="service-card">
-<div class="card-content">
-<h3>Marriage Matching</h3>
-<p class="desc">Guna matching and compatibility analysis.</p>
-<div class="price">₹1800</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/dWQq4V" class="btn" target="_blank">Book</a>
-</div>
-</div>
+<input id="gothram" placeholder="Gothram"
+style="width:100%;padding:8px;margin:6px 0;">
 
-<div class="service-card">
-<div class="card-content">
-<h3>Personal Consultation</h3>
-<p class="desc">Career, health, finance guidance.</p>
-<div class="price">₹2500</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/XxOlAP" class="btn" target="_blank">Book</a>
-</div>
-</div>
+<input id="name1" placeholder="Name 1"
+style="width:100%;padding:8px;margin:6px 0;">
 
-<div class="service-card">
-<div class="card-content">
-<h3>Couple Consultation</h3>
-<p class="desc">Relationship analysis and remedies.</p>
-<div class="price">₹3500</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/eq9ZOx" class="btn" target="_blank">Book</a>
-</div>
-</div>
+<input id="name2" placeholder="Name 2 (Optional)"
+style="width:100%;padding:8px;margin:6px 0;display:none;">
+
+<input id="name3" placeholder="Name 3 (Optional)"
+style="width:100%;padding:8px;margin:6px 0;display:none;">
+
+<input id="name4" placeholder="Name 4 (Optional)"
+style="width:100%;padding:8px;margin:6px 0;display:none;">
+
+<input id="name5" placeholder="Name 5 (Optional)"
+style="width:100%;padding:8px;margin:6px 0;display:none;">
+
+<textarea id="wish"
+placeholder="Your Wish / Sankalpam"
+style="width:100%;padding:8px;margin:6px 0;"></textarea>
+
+<input id="phone"
+placeholder="Phone Number"
+style="width:100%;padding:8px;margin:6px 0;">
+
+<input id="email"
+placeholder="Email ID"
+style="width:100%;padding:8px;margin:6px 0;">
+
+<button class="btn" onclick="submitPoojaBooking()">
+Proceed
+</button>
+
+<button class="btn"
+style="background:#777;margin-top:10px;"
+onclick="closePoojaPopup()">
+Cancel
+</button>
 
 </div>
 </div>
-</div>
-
-<!-- ================= MUHURTHAS ================= -->
-<!--<div id="muhurthas" class="section-card">
-<h2 class="section-title">Muhurtha Services</h2>
-
-<div class="slider-wrapper">
-<button class="arrow left" onclick="scrollSlider(this, -1)">&#10094;</button>
-<button class="arrow right" onclick="scrollSlider(this, 1)">&#10095;</button>
-
-<div class="slider">
-
-<div class="service-card">
-<div class="card-content">
-<h3>Individual Muhurthas</h3>
-<p class="desc">Auspicious timing for events.</p>
-<div class="price">₹1116</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/zxWXOE" class="btn" target="_blank">Book</a>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Marriage Muhurthas</h3>
-<p class="desc">Best wedding dates selection.</p>
-<div class="price">₹1501</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/44PX5X" class="btn" target="_blank">Book</a>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-</div> -->
-
+    
 <script>
+
 function scrollSlider(btn, dir){
     const wrapper = btn.parentElement;
     const slider = wrapper.querySelector('.slider');
     slider.scrollBy({ left: dir * 300, behavior: 'smooth' });
 }
+
+let selectedPoojaType = "";
+let selectedPoojaName = "";
+let selectedPrice = "";
+
+function openPoojaPopup(type, poojaName, price){
+
+    selectedPoojaType = type;
+    selectedPoojaName = poojaName;
+    selectedPrice = price;
+
+    document.getElementById("popupTitle").innerText =
+        poojaName + " - " + type;
+
+    // Hide optional fields first
+    document.getElementById("name2").style.display = "none";
+    document.getElementById("name3").style.display = "none";
+    document.getElementById("name4").style.display = "none";
+    document.getElementById("name5").style.display = "none";
+
+    // Couple
+    if(type == "Couple"){
+        document.getElementById("name2").style.display = "block";
+    }
+
+    // Family
+    if(type == "Family"){
+        document.getElementById("name2").style.display = "block";
+        document.getElementById("name3").style.display = "block";
+        document.getElementById("name4").style.display = "block";
+        document.getElementById("name5").style.display = "block";
+    }
+
+    document.getElementById("poojaPopup").style.display = "flex";
+}
+
+function closePoojaPopup(){
+
+    document.getElementById("poojaPopup").style.display = "none";
+
+}
+
+function submitPoojaBooking(){
+
+    let data = {
+
+        type: "pooja",
+
+        poojaType: selectedPoojaType,
+
+        product: selectedPoojaName,
+
+        gothram: document.getElementById("gothram").value.trim(),
+
+        name1: document.getElementById("name1").value.trim(),
+        name2: document.getElementById("name2").value.trim(),
+        name3: document.getElementById("name3").value.trim(),
+        name4: document.getElementById("name4").value.trim(),
+        name5: document.getElementById("name5").value.trim(),
+
+        wish: document.getElementById("wish").value.trim(),
+
+        phone: document.getElementById("phone").value.trim(),
+
+        email: document.getElementById("email").value.trim()
+    };
+
+    // VALIDATIONS
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!data.gothram || !data.name1 || !data.phone || !data.email){
+
+        alert("Please fill all required details");
+
+        return;
+    }
+
+    if(!nameRegex.test(data.name1)){
+
+        alert("Name should contain only letters");
+
+        return;
+    }
+
+    if(data.name2 && !nameRegex.test(data.name2)){
+
+        alert("Name 2 invalid");
+
+        return;
+    }
+
+    if(data.name3 && !nameRegex.test(data.name3)){
+
+        alert("Name 3 invalid");
+
+        return;
+    }
+
+    if(data.name4 && !nameRegex.test(data.name4)){
+
+        alert("Name 4 invalid");
+
+        return;
+    }
+
+    if(data.name5 && !nameRegex.test(data.name5)){
+
+        alert("Name 5 invalid");
+
+        return;
+    }
+
+    if(!nameRegex.test(data.gothram)){
+
+        alert("Gothram invalid");
+
+        return;
+    }
+
+    if(!phoneRegex.test(data.phone)){
+
+        alert("Please enter valid phone number");
+
+        return;
+    }
+
+    if(!emailRegex.test(data.email)){
+
+        alert("Please enter valid email");
+
+        return;
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
+
+        method: "POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body: JSON.stringify(data)
+
+    })
+
+    .then(res => res.json())
+
+    .then(response => {
+
+        alert(
+            "Booking Submitted Successfully!\n\nBooking ID: "
+            + response.bookingId
+        );
+
+        // PAYMENT LINK
+        window.location.href =
+        "https://rzp.io/rzp/YOURPAYMENTLINK";
+
+    })
+
+    .catch(err => {
+
+        console.log(err);
+
+        alert("Error submitting booking");
+
+    });
+
+}
+
 </script>
 
 </body>
