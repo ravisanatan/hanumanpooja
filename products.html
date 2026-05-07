@@ -457,7 +457,7 @@ function submitOrder(){
         })
     })
     .then(res => res.text())
-.then(data => {
+    .then(data => {
     let response = JSON.parse(data);
 
     localStorage.setItem("order_id", response.orderId);
