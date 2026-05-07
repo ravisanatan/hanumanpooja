@@ -493,46 +493,55 @@ function submitLearning(){
 
     // SAVE TEMP DATA
 
+// CLEAR OLD DATA
+localStorage.clear();
+
+// SAVE TEMP DATA
+
 localStorage.setItem(
-"learning_course",
+"temp_type",
+"learning"
+);
+
+localStorage.setItem(
+"temp_course",
 selectedCourse
 );
 
 localStorage.setItem(
-"learning_price",
+"temp_price",
 selectedPrice
 );
 
 localStorage.setItem(
-"learning_name",
+"temp_name",
 name
 );
 
 localStorage.setItem(
-"learning_phone",
+"temp_phone",
 phone
 );
 
 localStorage.setItem(
-"learning_email",
+"temp_email",
 email
 );
 
 localStorage.setItem(
-"learning_city",
+"temp_city",
 city
 );
 
 localStorage.setItem(
-"learning_age",
+"temp_age",
 age
 );
 
 localStorage.setItem(
-"learning_notes",
+"temp_notes",
 notes
-);
-
+);x
 // OPEN PAYMENT PAGE
 
 window.location.href =
