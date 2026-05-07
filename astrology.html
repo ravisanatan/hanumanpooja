@@ -258,62 +258,6 @@ header{
 
 <div class="container">
 
-<!-- ================= POOJAS ================= -->
-<!-- <div id="poojas" class="section-card">
-<h2 class="section-title">Pooja Services</h2>
-
-<div class="slider-wrapper">
-<button class="arrow left" onclick="scrollSlider(this, -1)">&#10094;</button>
-<button class="arrow right" onclick="scrollSlider(this, 1)">&#10095;</button>
-
-<div class="slider">
-
-<div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam</h3>
-<p class="desc">Nakshatra & Navagraha Homam with Durga Pooja balances planetary influences and aligns your birth star, removing doshas and obstacles. It brings protection, peace, prosperity, and success in life.”</p>
-<p class="desc"><b>Location:</b> Draksharamam Temple</p>
-<p class="desc"><b>Date:</b> 08/05/2026</p>
-<div class="price">₹1601</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/2Ebp5j" class="btn" target="_blank">Book</a>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam (Couple)</h3>
-<p class="desc">Nakshatra & Navagraha Homam with Durga Pooja balances planetary influences and aligns your birth star, removing doshas and obstacles. It brings protection, peace, prosperity, and success in life.”</p>
-<p class="desc"><b>Location:</b> Draksharamam Temple</p>
-<p class="desc"><b>Date:</b> 08/05/2026</p>
-<div class="price">₹2116</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/2EOEEV" class="btn" target="_blank">Book</a>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam (Family)</h3>
-<p class="desc">Nakshatra & Navagraha Homam with Durga Pooja balances planetary influences and aligns your birth star, removing doshas and obstacles. It brings protection, peace, prosperity, and success in life.”</p>
-<p class="desc"><b>Location:</b> Draksharamam Temple</p>
-<p class="desc"><b>Date:</b> 08/05/2026</p>
-<div class="price">₹3116</div>
-</div>
-<div class="card-footer">
-<img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/81j1NA" class="btn" target="_blank">Book</a>
-</div>
-</div>
-
-</div>
-</div>
-</div> -->
-
 <!-- ================= ASTROLOGY ================= -->
 <div id="astrology" class="section-card">
 <h2 class="section-title">Astrology Services</h2>
@@ -324,58 +268,91 @@ header{
 
 <div class="slider">
 
+<!-- SINGLE -->
 <div class="service-card">
 <div class="card-content">
 <h3>Horoscope Analysis</h3>
-<p class="desc">Complete horoscope analysis with predictions and dosha analysis.</p>
+<p class="desc">
+Complete horoscope analysis with predictions and dosha analysis.
+</p>
 <div class="price">₹1000</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/81j1RO" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openAstrologyPopup('single','Horoscope Analysis','1000')">
+Book
+</button>
+
 </div>
 </div>
 
+<!-- MARRIAGE -->
 <div class="service-card">
 <div class="card-content">
 <h3>Marriage Matching</h3>
-<p class="desc">Guna matching and compatibility analysis.</p>
+<p class="desc">
+Guna matching and compatibility analysis.
+</p>
 <div class="price">₹1800</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/dWQq4V" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openAstrologyPopup('couple','Marriage Matching','1800')">
+Book
+</button>
+
 </div>
 </div>
 
+<!-- PERSONAL -->
 <div class="service-card">
 <div class="card-content">
 <h3>Personal Consultation</h3>
-<p class="desc">Career, health, finance guidance.</p>
+<p class="desc">
+Career, health, finance guidance.
+</p>
 <div class="price">₹2500</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/XxOlAP" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openAstrologyPopup('single','Personal Consultation','2500')">
+Book
+</button>
+
 </div>
 </div>
 
+<!-- COUPLE -->
 <div class="service-card">
 <div class="card-content">
 <h3>Couple Consultation</h3>
-<p class="desc">Relationship analysis and remedies.</p>
+<p class="desc">
+Relationship analysis and remedies.
+</p>
 <div class="price">₹3500</div>
 </div>
+
 <div class="card-footer">
 <img src="upi-qr-1.jpeg">
-<a href="https://tally.so/r/eq9ZOx" class="btn" target="_blank">Book</a>
+
+<button class="btn"
+onclick="openAstrologyPopup('couple','Couple Consultation','3500')">
+Book
+</button>
+
 </div>
 </div>
 
 </div>
-</div>
-</div>
-
 <!-- ================= MUHURTHAS ================= -->
 <!-- <div id="muhurthas" class="section-card">
 <h2 class="section-title">Muhurtha Services</h2>
@@ -416,12 +393,309 @@ header{
 
 </div>
 
+<!-- ASTROLOGY POPUP -->
+
+<div id="astroPopup"
+
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+z-index:999;
+">
+
+<div style="
+background:white;
+padding:20px;
+border-radius:10px;
+width:90%;
+max-width:420px;
+max-height:90vh;
+overflow:auto;
+text-align:left;
+">
+
+<h3>Astrology Booking</h3>
+
+<input id="astro_name1"
+placeholder="Full Name"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_dob1"
+type="date"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_tob1"
+type="time"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_pob1"
+placeholder="Place of Birth"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<!-- SECOND PERSON -->
+
+<div id="secondPersonAstro" style="display:none;">
+
+<input id="astro_name2"
+placeholder="Second Person Full Name"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_dob2"
+type="date"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_tob2"
+type="time"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_pob2"
+placeholder="Second Person Place of Birth"
+style="width:100%;padding:10px;margin:5px 0;">
+
+</div>
+
+<textarea id="astro_reason"
+placeholder="Reason / Problem"
+style="width:100%;padding:10px;margin:5px 0;"></textarea>
+
+<input id="astro_phone"
+placeholder="Phone Number"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<input id="astro_email"
+placeholder="Email ID"
+style="width:100%;padding:10px;margin:5px 0;">
+
+<button
+onclick="submitAstrology()"
+style="
+width:100%;
+padding:12px;
+background:#ff6600;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:10px;
+">
+Proceed to Payment
+</button>
+
+<button
+onclick="closeAstrologyPopup()"
+style="
+width:100%;
+padding:10px;
+margin-top:10px;
+">
+Cancel
+</button>
+
+</div>
+</div>
+
+    
 <script>
+
 function scrollSlider(btn, dir){
+
     const wrapper = btn.parentElement;
+
     const slider = wrapper.querySelector('.slider');
-    slider.scrollBy({ left: dir * 300, behavior: 'smooth' });
+
+    slider.scrollBy({
+        left: dir * 300,
+        behavior: 'smooth'
+    });
 }
+
+// ================= ASTROLOGY =================
+
+let astroType = "";
+let astroService = "";
+let astroPrice = "";
+
+function openAstrologyPopup(type, service, price){
+
+    astroType = type;
+
+    astroService = service;
+
+    astroPrice = price;
+
+    document.getElementById("astroPopup").style.display = "flex";
+
+    // HIDE SECOND PERSON
+    document.getElementById("secondPersonAstro").style.display = "none";
+
+    // SHOW FOR COUPLE
+    if(type == "couple"){
+
+        document.getElementById("secondPersonAstro").style.display = "block";
+
+    }
+}
+
+function closeAstrologyPopup(){
+
+    document.getElementById("astroPopup").style.display = "none";
+
+}
+
+function submitAstrology(){
+
+    let name1 =
+    document.getElementById("astro_name1").value.trim();
+
+    let dob1 =
+    document.getElementById("astro_dob1").value;
+
+    let tob1 =
+    document.getElementById("astro_tob1").value;
+
+    let pob1 =
+    document.getElementById("astro_pob1").value.trim();
+
+    let name2 =
+    document.getElementById("astro_name2").value.trim();
+
+    let dob2 =
+    document.getElementById("astro_dob2").value;
+
+    let tob2 =
+    document.getElementById("astro_tob2").value;
+
+    let pob2 =
+    document.getElementById("astro_pob2").value.trim();
+
+    let reason =
+    document.getElementById("astro_reason").value.trim();
+
+    let phone =
+    document.getElementById("astro_phone").value.trim();
+
+    let email =
+    document.getElementById("astro_email").value.trim();
+
+    // VALIDATION
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!name1 || !dob1 || !tob1 || !pob1 ||
+       !reason || !phone || !email){
+
+        alert("Please fill all required fields");
+
+        return;
+    }
+
+    if(!nameRegex.test(name1)){
+
+        alert("Invalid name");
+
+        return;
+    }
+
+    if(!phoneRegex.test(phone)){
+
+        alert("Invalid phone number");
+
+        return;
+    }
+
+    if(!emailRegex.test(email)){
+
+        alert("Invalid email");
+
+        return;
+    }
+
+    // COUPLE VALIDATION
+    if(astroType == "couple"){
+
+        if(!name2 || !dob2 || !tob2 || !pob2){
+
+            alert("Please fill second person details");
+
+            return;
+        }
+    }
+
+    fetch(
+    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+
+    {
+
+        method:"POST",
+
+        body:JSON.stringify({
+
+            type:"astrology",
+
+            service:astroService,
+
+            price:astroPrice,
+
+            name1:name1,
+
+            dob1:dob1,
+
+            tob1:tob1,
+
+            pob1:pob1,
+
+            name2:name2,
+
+            dob2:dob2,
+
+            tob2:tob2,
+
+            pob2:pob2,
+
+            reason:reason,
+
+            phone:phone,
+
+            email:email
+
+        })
+
+    })
+
+    .then(res => res.json())
+
+    .then(response => {
+
+        localStorage.setItem(
+            "bookingId",
+            response.bookingId
+        );
+
+        window.location.href =
+        "payment.html";
+
+    })
+
+    .catch(err => {
+
+        console.error(err);
+
+        alert("Error submitting booking");
+
+    });
+
+}
+
 </script>
 
 </body>
