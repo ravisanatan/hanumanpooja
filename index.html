@@ -411,16 +411,23 @@ let selectedPoojaType = "";
 let selectedPoojaName = "";
 let selectedPrice = "";
 
-function openPoojaPopup(type, poojaName, price){
+function openPoojaPopup(btn, type, poojaName){
 
     selectedPoojaType = type;
     selectedPoojaName = poojaName;
-    selectedPrice = price;
+
+    // AUTO GET PRICE FROM CARD
+    selectedPrice = btn
+        .closest('.service-card')
+        .querySelector('.price')
+        .innerText
+        .replace('₹','')
+        .trim();
 
     document.getElementById("popupTitle").innerText =
         poojaName + " - " + type;
 
-    // Hide optional fields first
+    // Hide optional fields
     document.getElementById("name2").style.display = "none";
     document.getElementById("name3").style.display = "none";
     document.getElementById("name4").style.display = "none";
@@ -441,7 +448,6 @@ function openPoojaPopup(type, poojaName, price){
 
     document.getElementById("poojaPopup").style.display = "flex";
 }
-
 function closePoojaPopup(){
 
     document.getElementById("poojaPopup").style.display = "none";
