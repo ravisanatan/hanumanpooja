@@ -84,7 +84,7 @@ style="margin-top:10px;">
 After payment click below button
 </p>
 
-<button onclick="paymentDone()">
+<button id="payBtn" onclick="paymentDone()">
 I Have Paid
 </button>
 
@@ -106,7 +106,15 @@ localStorage.getItem("learning_price") ||
 
 function paymentDone(){
 
-        let fileInput =
+    let btn =
+    document.getElementById("payBtn");
+
+    // STOP DOUBLE CLICK
+    btn.disabled = true;
+
+    btn.innerText = "Processing...";
+
+    let fileInput =
     document.getElementById("paymentSlip");
 
     let file = fileInput.files[0];
@@ -115,9 +123,12 @@ function paymentDone(){
 
         alert("Please upload payment screenshot");
 
+        btn.disabled = false;
+
+        btn.innerText = "I Have Paid";
+
         return;
     }
-
     let type =
 
     localStorage.getItem("temp_type");
