@@ -106,6 +106,18 @@ localStorage.getItem("learning_price") ||
 
 function paymentDone(){
 
+        let fileInput =
+    document.getElementById("paymentSlip");
+
+    let file = fileInput.files[0];
+
+    if(!file){
+
+        alert("Please upload payment screenshot");
+
+        return;
+    }
+
     let type =
 
     localStorage.getItem("temp_type");
