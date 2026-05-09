@@ -363,45 +363,35 @@ function paymentDone(){
 
     // API CALL
 
-    fetch(
-"https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
-{
-    method: "POST",
-    body: JSON.stringify(payload)
-}
-)
-.then(res => res.text())
-.then(text => {
-
-    let response = JSON.parse(text);
-
-    let id = response.bookingId || response.orderId;
-
-    alert(
-    "Jai Shree Ram 🙏\n\n" +
-    "Booking Successful\n" +
-    "ID: " + id + "\n\n" +
-    "Thank you for choosing Pendyala Divine Services.\n\n" +
-    "Har Har Mahadev 🔱"
-    );
-
-    localStorage.clear();
-
-    window.location.href = "index.html";
-
-})
-.catch(err => {
-
-    console.error(err);
-
-    alert("Error saving booking. Please try again.");
-
-    btn.disabled = false;
-    btn.innerText = "I Have Paid";
-
+    fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
+        method: "POST",
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())   // ✅ CHANGE HERE
+    .then(response => {
+    
+        let id = response.bookingId || response.orderId;
+    
+        alert(
+        "Jai Shree Ram 🙏\n\n" +
+        "Booking Successful\n" +
+        "ID: " + id + "\n\n" +
+        "Thank you for choosing Pendyala Divine Services.\n\n" +
+        "Har Har Mahadev 🔱"
+        );
+    
+        localStorage.clear();
+        window.location.href = "index.html";
+    
+    })
+    .catch(err => {
+    
+        console.error(err);
+        alert("Error saving booking. Please try again.");
+    
+        btn.disabled = false;
+        btn.innerText = "I Have Paid";
 });
-}
-
 </script>
 
 </body>
