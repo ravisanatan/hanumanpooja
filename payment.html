@@ -364,57 +364,36 @@ function paymentDone(){
     // API CALL
 
     fetch(
-    "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
-    {
+"https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
+{
+    method: "POST",
+    body: JSON.stringify(payload)
+}
+)
+.then(res => res.text())
+.then(text => {
 
-        method:"POST",
+    let response = JSON.parse(text);
 
-        body:JSON.stringify(payload)
+    let id = response.bookingId || response.orderId;
 
-    })
+    alert("Booking Successful!\nID: " + id);
 
-    .then(res => res.text())
-    
-    .then(text => {
-    
-        console.log("RAW RESPONSE:", text);
-    
-        let response = JSON.parse(text);
-    
-        alert(
-        "Booking Successful!\nBooking ID: "
-        + response.bookingId
-        );
-    
-        localStorage.clear();
-    
-        window.location.href = "index.html";
-    
-    })
+    localStorage.clear();
 
-        alert(
-        "Booking Successful!\nBooking ID: "
-        + response.bookingId
-        );
+    window.location.href = "index.html";
 
-        localStorage.clear();
-
-        window.location.href = "index.html";
-
-    })
-
-   .catch(err => {
+})
+.catch(err => {
 
     console.error(err);
 
     alert("Error saving booking. Please try again.");
 
     btn.disabled = false;
-
     btn.innerText = "I Have Paid";
 
 });
-
 }
 
 </script>
