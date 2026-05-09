@@ -109,28 +109,19 @@ I Have Paid
 
 <script>
 
-// ================= PRICE FIX =================
+document.getElementById("amount").innerText =
+localStorage.getItem("temp_price") ||
+localStorage.getItem("learning_price") || "";
 
-let price =
-    localStorage.getItem("temp_price") ||
-    localStorage.getItem("learning_price") ||
-    localStorage.getItem("price") ||
-    "0";
-
-document.getElementById("amount").innerText = price;
-
-
-// ================= PAYMENT FUNCTION =================
+// ================= PAYMENT =================
 
 function paymentDone(){
 
     let btn = document.getElementById("payBtn");
-
     btn.disabled = true;
     btn.innerText = "Processing...";
 
-    let fileInput = document.getElementById("paymentSlip");
-    let file = fileInput.files[0];
+    let file = document.getElementById("paymentSlip").files[0];
 
     if(!file){
         alert("Please upload payment screenshot");
@@ -141,48 +132,16 @@ function paymentDone(){
 
     let type = localStorage.getItem("temp_type");
 
+    // 🔥 FIX: NEVER ALLOW FALLBACK TO learning unless type missing
+    if(!type){
+        type = "learning";
+    }
+
     let payload = {};
 
-    // ================= POOJA =================
-    if(type == "pooja"){
-        payload = {
-            type:"pooja",
-            poojaType: localStorage.getItem("temp_pooja"),
-            price: localStorage.getItem("temp_price"),
-            gothram: localStorage.getItem("temp_gothram"),
-            name1: localStorage.getItem("temp_name1"),
-            name2: localStorage.getItem("temp_name2"),
-            name3: localStorage.getItem("temp_name3"),
-            name4: localStorage.getItem("temp_name4"),
-            name5: localStorage.getItem("temp_name5"),
-            wish: localStorage.getItem("temp_wish"),
-            phone: localStorage.getItem("temp_phone"),
-            email: localStorage.getItem("temp_email")
-        };
-    }
+    // ================= MUHURTHAM FIXED =================
+    if(type === "muhurtham"){
 
-    // ================= ASTROLOGY =================
-    else if(type == "astrology"){
-        payload = {
-            type:"astrology",
-            service: localStorage.getItem("temp_service"),
-            price: localStorage.getItem("temp_price"),
-            name1: localStorage.getItem("temp_name1"),
-            dob1: localStorage.getItem("temp_dob1"),
-            tob1: localStorage.getItem("temp_tob1"),
-            pob1: localStorage.getItem("temp_pob1"),
-            name2: localStorage.getItem("temp_name2"),
-            dob2: localStorage.getItem("temp_dob2"),
-            tob2: localStorage.getItem("temp_tob2"),
-            pob2: localStorage.getItem("temp_pob2"),
-            reason: localStorage.getItem("temp_reason"),
-            phone: localStorage.getItem("temp_phone"),
-            email: localStorage.getItem("temp_email")
-        };
-    }
-
-    // ================= MUHURTHAM =================
-    else if(type == "muhurtham"){
         payload = {
             type:"muhurtham",
             service: localStorage.getItem("temp_muhurtham_type"),
@@ -199,7 +158,8 @@ function paymentDone(){
     }
 
     // ================= PRODUCT =================
-    else if(type == "product"){
+    else if(type === "product"){
+
         payload = {
             type:"product",
             product: localStorage.getItem("temp_product"),
@@ -213,7 +173,8 @@ function paymentDone(){
     }
 
     // ================= LEARNING =================
-    else{
+    else if(type === "learning"){
+
         payload = {
             type:"learning",
             course: localStorage.getItem("learning_course"),
@@ -227,48 +188,34 @@ function paymentDone(){
         };
     }
 
-    // ================= API CALL =================
-
     fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
         method: "POST",
         body: JSON.stringify(payload)
     })
+
     .then(res => res.text())
     .then(text => {
 
-        let response = {};
-
-        try {
-            response = JSON.parse(text);
-        } catch(e) {
-            console.error("Invalid response:", text);
-        }
-
-        let id = response.bookingId || response.orderId || "N/A";
+        let response = JSON.parse(text);
+        let id = response.bookingId || response.orderId;
 
         alert(
             "Jai Shree Ram 🙏\n\n" +
             "Booking Successful\n" +
             "ID: " + id + "\n\n" +
-            "Thank you for choosing Pendyala Divine Services.\n" +
             "Har Har Mahadev 🔱"
         );
 
         localStorage.clear();
         window.location.href = "index.html";
-
     })
+
     .catch(err => {
-
         console.error(err);
-
-        alert("Error saving booking. Please try again.");
-
+        alert("Error saving booking");
         btn.disabled = false;
         btn.innerText = "I Have Paid";
-
     });
-
 }
 
 </script>
