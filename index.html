@@ -648,31 +648,33 @@ window.location.href = "payment.html";
 // 🔒 CONTROL SWITCH
 let BOOKING_ENABLED = false;
 
-// 🔔 POPUP MESSAGE FUNCTION
+// 🔔 MESSAGE
 function showBookingClosedMessage(){
-    alert("🙏 Booking is currently closed. Please try again later.");
+    alert("🙏 Booking is closed for thisPooja.");
 }
 
-// 🔒 DISABLE ALL BOOK BUTTONS
+// 🔒 DISABLE BOOKING PROPERLY
 function disableBookingButtons(){
 
     const buttons = document.querySelectorAll(".service-card .btn");
 
     buttons.forEach(btn => {
 
+        // change UI
         btn.innerText = "Booking Closed";
         btn.style.background = "#999";
         btn.style.cursor = "not-allowed";
 
-        // override click
-        btn.onclick = function(e){
+        // IMPORTANT: stop original onclick from firing
+        btn.addEventListener("click", function(e){
             e.preventDefault();
+            e.stopImmediatePropagation(); // 🔥 THIS is the key fix
             showBookingClosedMessage();
-        };
+        }, true); // capture phase
     });
 }
 
-// APPLY CONDITION
+// APPLY
 if(!BOOKING_ENABLED){
     disableBookingButtons();
 }
