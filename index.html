@@ -642,6 +642,35 @@ localStorage.setItem(
 window.location.href = "payment.html";
 }
 
+
+<script>
+
+// 🔒 SET THIS TO FALSE TO CLOSE BOOKINGS
+let BOOKING_ENABLED = false;
+
+function disableBookingButtons(){
+
+    const buttons = document.querySelectorAll(".service-card .btn");
+
+    buttons.forEach(btn => {
+
+        btn.disabled = true;
+        btn.innerText = "Booking Closed";
+        btn.style.background = "#999";
+        btn.style.cursor = "not-allowed";
+
+        // remove click action completely
+        btn.onclick = null;
+    });
+}
+
+// APPLY CONDITION
+if(!BOOKING_ENABLED){
+    disableBookingButtons();
+}
+
+</script>
+    
 </script>
 
 </body>
