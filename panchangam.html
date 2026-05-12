@@ -12,10 +12,6 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -40,69 +36,33 @@ header{
 }
 
 .logo{
-    width:110px;
-    height:110px;
+    width:100px;
+    height:100px;
     border-radius:50%;
     background:white;
     padding:6px;
 }
 
 .title-main{
-    font-size:36px;
+    font-size:32px;
     font-weight:bold;
     margin:0;
 }
 
 .title-sub{
-    font-size:18px;
+    font-size:16px;
     margin-top:5px;
 }
 
-/* MENU */
-
-.menu{
-    background:white;
-    padding:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.menu a{
-    text-decoration:none;
-    color:#ff6600;
-    font-weight:bold;
-    font-size:15px;
-    padding:6px 10px;
-    border-radius:6px;
-}
-
-@media (max-width:600px){
-
-    .menu{
-        justify-content:space-around;
-    }
-
-    .menu a{
-        font-size:13px;
-        padding:6px 8px;
-    }
-}
-
-/* CONTAINER */
+/* PAGE */
 
 .container{
     padding:15px;
 }
 
-/* TITLE */
-
 .page-title{
     color:#8B0000;
-    font-size:32px;
+    font-size:30px;
     margin-top:20px;
 }
 
@@ -114,19 +74,13 @@ header{
 
 /* CARD */
 
-.section-card{
+.card{
     background:white;
     margin:20px auto;
     padding:20px;
     border-radius:12px;
-    max-width:1100px;
+    max-width:1000px;
     box-shadow:0 0 10px rgba(0,0,0,0.12);
-}
-
-.section-title{
-    color:#8B0000;
-    margin-bottom:18px;
-    font-size:24px;
 }
 
 /* GRID */
@@ -135,33 +89,31 @@ header{
     display:grid;
     grid-template-columns:
     repeat(auto-fit,minmax(220px,1fr));
-
     gap:15px;
 }
 
 .item{
     background:#fff4e8;
-    border-radius:10px;
     padding:15px;
+    border-radius:10px;
 }
 
 .label{
-    display:block;
     font-weight:bold;
     color:#8B0000;
+    display:block;
     margin-bottom:6px;
 }
 
 .value{
     font-size:18px;
-    word-break:break-word;
 }
 
 /* LOADING */
 
 .loading{
+    font-size:20px;
     margin-top:40px;
-    font-size:22px;
 }
 
 .error{
@@ -182,42 +134,17 @@ header{
 <img src="icon.jpeg" class="logo">
 
 <div>
-
 <p class="title-main">
 PENDYALA
 </p>
-
 <p class="title-sub">
 DIVINE SERVICES
 </p>
-
 </div>
 
 </div>
 
 </header>
-
-<div class="menu">
-
-<a href="index.html">Home</a>
-
-<a href="astrology.html">
-Astrology
-</a>
-
-<a href="muhurthas.html">
-Muhurthas
-</a>
-
-<a href="products.html">
-Products
-</a>
-
-<a href="learnings.html">
-Learnings
-</a>
-
-</div>
 
 <div class="container">
 
@@ -231,248 +158,119 @@ id="todayDate">
 
 <div id="loading"
 class="loading">
-
 Loading Panchangam...
-
 </div>
 
 <div id="error"
-class="error">
-</div>
+class="error"></div>
 
 <div id="content"
 style="display:none;">
 
-<!-- CALENDAR -->
+<div class="card">
 
-<div class="section-card">
-
-<h2 class="section-title">
-Calendar Details
-</h2>
+<h2>Calendar</h2>
 
 <div class="grid">
 
 <div class="item">
-<span class="label">
-Samvatsaram
-</span>
-<span class="value"
-id="year">
-</span>
+<span class="label">Year</span>
+<span class="value" id="year"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Ayanam
-</span>
-<span class="value"
-id="ayanam">
-</span>
+<span class="label">Ayanam</span>
+<span class="value" id="ayanam"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Rutu
-</span>
-<span class="value"
-id="ritu">
-</span>
+<span class="label">Rutu</span>
+<span class="value" id="ritu"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Maasam
-</span>
-<span class="value"
-id="month">
-</span>
+<span class="label">Month</span>
+<span class="value" id="month"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Paksham
-</span>
-<span class="value"
-id="paksham">
-</span>
+<span class="label">Paksham</span>
+<span class="value" id="paksham"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Vaaram
-</span>
-<span class="value"
-id="vaaram">
-</span>
+<span class="label">Vaaram</span>
+<span class="value" id="vaaram"></span>
 </div>
 
 </div>
 
 </div>
 
-<!-- DAILY -->
+<div class="card">
 
-<div class="section-card">
-
-<h2 class="section-title">
-Daily Panchangam
-</h2>
+<h2>Daily Panchangam</h2>
 
 <div class="grid">
 
 <div class="item">
-<span class="label">
-Tithi
-</span>
-<span class="value"
-id="tithi">
-</span>
+<span class="label">Tithi</span>
+<span class="value" id="tithi"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Nakshatram
-</span>
-<span class="value"
-id="nakshatra">
-</span>
+<span class="label">Nakshatra</span>
+<span class="value" id="nakshatra"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Yogam
-</span>
-<span class="value"
-id="yogam">
-</span>
+<span class="label">Yogam</span>
+<span class="value" id="yogam"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Karanam
-</span>
-<span class="value"
-id="karanam">
-</span>
+<span class="label">Karanam</span>
+<span class="value" id="karanam"></span>
 </div>
 
 </div>
 
 </div>
 
-<!-- TIMINGS -->
+<div class="card">
 
-<div class="section-card">
-
-<h2 class="section-title">
-Important Timings
-</h2>
+<h2>Timings</h2>
 
 <div class="grid">
 
 <div class="item">
-<span class="label">
-Rahukalam
-</span>
-<span class="value"
-id="rahukalam">
-</span>
+<span class="label">Rahukalam</span>
+<span class="value" id="rahukalam"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Yamagandam
-</span>
-<span class="value"
-id="yamagandam">
-</span>
+<span class="label">Yamagandam</span>
+<span class="value" id="yamagandam"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Gulika Kalam
-</span>
-<span class="value"
-id="gulika">
-</span>
+<span class="label">Gulika</span>
+<span class="value" id="gulika"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Varjyam
-</span>
-<span class="value"
-id="varjyam">
-</span>
+<span class="label">Varjyam</span>
+<span class="value" id="varjyam"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Amrita Kalam
-</span>
-<span class="value"
-id="amrita">
-</span>
+<span class="label">Amrita</span>
+<span class="value" id="amrita"></span>
 </div>
 
 <div class="item">
-<span class="label">
-Durmuhurtham
-</span>
-<span class="value"
-id="durmuhurtham">
-</span>
-</div>
-
-</div>
-
-</div>
-
-<!-- SUN -->
-
-<div class="section-card">
-
-<h2 class="section-title">
-Sun & Moon Timings
-</h2>
-
-<div class="grid">
-
-<div class="item">
-<span class="label">
-Sunrise
-</span>
-<span class="value"
-id="sunrise">
-</span>
-</div>
-
-<div class="item">
-<span class="label">
-Sunset
-</span>
-<span class="value"
-id="sunset">
-</span>
-</div>
-
-<div class="item">
-<span class="label">
-Moonrise
-</span>
-<span class="value"
-id="moonrise">
-</span>
-</div>
-
-<div class="item">
-<span class="label">
-Moonset
-</span>
-<span class="value"
-id="moonset">
-</span>
+<span class="label">Durmuhurtham</span>
+<span class="value" id="durmuhurtham"></span>
 </div>
 
 </div>
@@ -485,19 +283,9 @@ id="moonset">
 
 <script>
 
-// IMPORTANT
-// Replace with your actual secret
-
-const CLIENT_ID =
-"09ace1cc-b524-4f98-9085-24899949c06a";
-
-const CLIENT_SECRET =
-"PASTE_YOUR_SECRET_HERE";
-
-// LOCATION
-
-const LAT = "17.3850";
-const LNG = "78.4867";
+// YOUR APPS SCRIPT URL
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzwBsayIN21y1onJCcKSVdDd1F0PNNv08-WK12QUcsOQcgh2uQQb6nhGqGNt9jlbpv8/exec";
 
 // DATE
 
@@ -507,221 +295,84 @@ document.getElementById("todayDate")
 .innerText =
 now.toDateString();
 
-// MAIN FUNCTION
+// LOAD DATA
 
 async function loadPanchangam(){
 
     try{
 
-        // TOKEN
+        const res =
+        await fetch(API_URL);
 
-        const tokenResponse =
-        await fetch(
-            "https://api.prokerala.com/token",
-            {
-                method:"POST",
+        const data =
+        await res.json();
 
-                headers:{
-                    "Content-Type":
-                    "application/x-www-form-urlencoded"
-                },
+        console.log(data);
 
-                body:
-                    "grant_type=client_credentials" +
-                    "&client_id=" +
-                    encodeURIComponent(
-                        CLIENT_ID
-                    ) +
-                    "&client_secret=" +
-                    encodeURIComponent(
-                        CLIENT_SECRET
-                    )
-            }
-        );
-
-        const tokenData =
-        await tokenResponse.json();
-
-        console.log(tokenData);
-
-        if(!tokenData.access_token){
-
-            throw new Error(
-                "Token failed"
-            );
-        }
-
-        const accessToken =
-        tokenData.access_token;
-
-        // DATE FORMAT
-
-        const yyyy =
-        now.getFullYear();
-
-        const mm =
-        String(
-            now.getMonth()+1
-        ).padStart(2,"0");
-
-        const dd =
-        String(
-            now.getDate()
-        ).padStart(2,"0");
-
-        const date =
-        yyyy + "-" + mm + "-" + dd;
-
-        // API URL
-
-        const apiUrl =
-        "https://api.prokerala.com/v2/astrology/panchang" +
-        "?ayanamsa=1" +
-        "&coordinates=" +
-        LAT + "," + LNG +
-        "&datetime=" +
-        date +
-        "T06:00:00+05:30";
-
-        // FETCH DATA
-
-        const response =
-        await fetch(
-            apiUrl,
-            {
-                headers:{
-                    Authorization:
-                    "Bearer " +
-                    accessToken
-                }
-            }
-        );
-
-        const result =
-        await response.json();
-
-        console.log(result);
-
-        const p =
-        result.data;
-
-        // CALENDAR
+        // FILL DATA
 
         document.getElementById("year")
-        .innerText =
-        p.year_name || "-";
+        .innerText = data.year;
 
         document.getElementById("ayanam")
-        .innerText =
-        p.ayanam || "-";
+        .innerText = data.ayanam;
 
         document.getElementById("ritu")
-        .innerText =
-        p.ritu || "-";
+        .innerText = data.ritu;
 
         document.getElementById("month")
-        .innerText =
-        p.malayalam_month || "-";
+        .innerText = data.month;
 
         document.getElementById("paksham")
-        .innerText =
-        p.paksha || "-";
+        .innerText = data.paksham;
 
         document.getElementById("vaaram")
-        .innerText =
-        p.vaara || "-";
-
-        // DAILY
+        .innerText = data.vaaram;
 
         document.getElementById("tithi")
-        .innerText =
-        p.tithi?.name || "-";
+        .innerText = data.tithi;
 
         document.getElementById("nakshatra")
-        .innerText =
-        p.nakshatra?.name || "-";
+        .innerText = data.nakshatra;
 
         document.getElementById("yogam")
-        .innerText =
-        p.yoga?.name || "-";
+        .innerText = data.yogam;
 
         document.getElementById("karanam")
-        .innerText =
-        p.karana?.name || "-";
-
-        // TIMINGS
+        .innerText = data.karanam;
 
         document.getElementById("rahukalam")
-        .innerText =
-        JSON.stringify(
-            p.rahu_kalam || "-"
-        );
+        .innerText = data.rahukalam;
 
         document.getElementById("yamagandam")
-        .innerText =
-        JSON.stringify(
-            p.yamakanda_kalam || "-"
-        );
+        .innerText = data.yamagandam;
 
         document.getElementById("gulika")
-        .innerText =
-        JSON.stringify(
-            p.gulika_kalam || "-"
-        );
+        .innerText = data.gulika;
 
         document.getElementById("varjyam")
-        .innerText =
-        JSON.stringify(
-            p.varjyam || "-"
-        );
+        .innerText = data.varjyam;
 
         document.getElementById("amrita")
-        .innerText =
-        JSON.stringify(
-            p.amrit_kalam || "-"
-        );
+        .innerText = data.amrita;
 
         document.getElementById("durmuhurtham")
-        .innerText =
-        JSON.stringify(
-            p.durmuhurtam || "-"
-        );
-
-        // SUN
-
-        document.getElementById("sunrise")
-        .innerText =
-        p.sunrise || "-";
-
-        document.getElementById("sunset")
-        .innerText =
-        p.sunset || "-";
-
-        document.getElementById("moonrise")
-        .innerText =
-        p.moonrise || "-";
-
-        document.getElementById("moonset")
-        .innerText =
-        p.moonset || "-";
+        .innerText = data.durmuhurtham;
 
         // SHOW
 
         document.getElementById("loading")
-        .style.display =
-        "none";
+        .style.display = "none";
 
         document.getElementById("content")
-        .style.display =
-        "block";
+        .style.display = "block";
 
     }catch(err){
 
         console.log(err);
 
         document.getElementById("loading")
-        .style.display =
-        "none";
+        .style.display = "none";
 
         document.getElementById("error")
         .innerText =
