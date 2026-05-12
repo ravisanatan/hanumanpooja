@@ -1,104 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Today's Telugu Panchangam</title>
 
 <style>
-body{
-    font-family: Arial;
-    background:#fff8f0;
-    margin:0;
-    padding:20px;
-    color:#222;
+
+html{
+    scroll-behavior:smooth;
 }
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#fff5e6;
+    text-align:center;
+}
+
+/* HEADER */
+
+header{
+    background:#ff6600;
+    color:white;
+    padding:12px;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:white;
+    padding:6px;
+}
+
+.title-main{
+    font-size:36px;
+    font-weight:bold;
+    margin:0;
+}
+
+.title-sub{
+    font-size:18px;
+    margin-top:5px;
+}
+
+/* MENU */
+
+.menu{
+    background:white;
+    padding:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#ff6600;
+    font-weight:bold;
+    font-size:15px;
+    padding:6px 10px;
+    border-radius:6px;
+}
+
+@media (max-width:600px){
+
+    .menu{
+        justify-content:space-around;
+    }
+
+    .menu a{
+        font-size:13px;
+        padding:6px 8px;
+    }
+}
+
+/* CONTAINER */
 
 .container{
-    max-width:800px;
-    margin:auto;
+    padding:15px;
 }
 
-h1{
-    text-align:center;
-    color:#b22222;
+/* TITLE */
+
+.page-title{
+    color:#8B0000;
+    font-size:32px;
+    margin-top:20px;
 }
 
-.card{
+.today-date{
+    font-size:18px;
+    margin-top:10px;
+    color:#444;
+}
+
+/* CARD */
+
+.section-card{
     background:white;
+    margin:20px auto;
+    padding:20px;
     border-radius:12px;
-    padding:18px;
-    margin-bottom:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    max-width:1100px;
+    box-shadow:0 0 10px rgba(0,0,0,0.12);
 }
+
+.section-title{
+    color:#8B0000;
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+/* GRID */
 
 .grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
 }
 
 .item{
-    padding:10px;
     background:#fff4e8;
-    border-radius:8px;
+    border-radius:10px;
+    padding:15px;
 }
 
 .label{
+    display:block;
     font-weight:bold;
-    color:#b22222;
+    color:#8B0000;
+    margin-bottom:6px;
 }
 
-.loading{
-    text-align:center;
+.value{
     font-size:18px;
+    word-break:break-word;
 }
+
+/* LOADING */
+
+.loading{
+    margin-top:40px;
+    font-size:22px;
+}
+
+.error{
+    color:red;
+    margin-top:20px;
+}
+
 </style>
+
 </head>
 
 <body>
 
+<header>
+
+<div class="header-content">
+
+<img src="icon.jpeg" class="logo">
+
+<div>
+
+<p class="title-main">
+PENDYALA
+</p>
+
+<p class="title-sub">
+DIVINE SERVICES
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+
+<a href="astrology.html">
+Astrology
+</a>
+
+<a href="muhurthas.html">
+Muhurthas
+</a>
+
+<a href="products.html">
+Products
+</a>
+
+<a href="learnings.html">
+Learnings
+</a>
+
+</div>
+
 <div class="container">
 
-<h1>🕉 Today's Telugu Panchangam</h1>
+<h1 class="page-title">
+🕉 Today's Telugu Panchangam
+</h1>
 
-<div id="loading" class="loading">
+<div class="today-date"
+id="todayDate">
+</div>
+
+<div id="loading"
+class="loading">
+
 Loading Panchangam...
+
 </div>
 
-<div id="content" style="display:none;">
+<div id="error"
+class="error">
+</div>
 
-<div class="card">
-<h2>Calendar Details</h2>
+<div id="content"
+style="display:none;">
+
+<!-- CALENDAR -->
+
+<div class="section-card">
+
+<h2 class="section-title">
+Calendar Details
+</h2>
 
 <div class="grid">
-<div class="item"><span class="label">Year:</span> <span id="year"></span></div>
-<div class="item"><span class="label">Ayanam:</span> <span id="ayanam"></span></div>
-<div class="item"><span class="label">Rutu:</span> <span id="ritu"></span></div>
-<div class="item"><span class="label">Month:</span> <span id="month"></span></div>
-</div>
+
+<div class="item">
+<span class="label">
+Samvatsaram
+</span>
+<span class="value"
+id="year">
+</span>
 </div>
 
-<div class="card">
-<h2>Daily Panchangam</h2>
+<div class="item">
+<span class="label">
+Ayanam
+</span>
+<span class="value"
+id="ayanam">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Rutu
+</span>
+<span class="value"
+id="ritu">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Maasam
+</span>
+<span class="value"
+id="month">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Paksham
+</span>
+<span class="value"
+id="paksham">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Vaaram
+</span>
+<span class="value"
+id="vaaram">
+</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- DAILY -->
+
+<div class="section-card">
+
+<h2 class="section-title">
+Daily Panchangam
+</h2>
 
 <div class="grid">
-<div class="item"><span class="label">Tithi:</span> <span id="tithi"></span></div>
-<div class="item"><span class="label">Nakshatra:</span> <span id="nakshatra"></span></div>
-<div class="item"><span class="label">Yogam:</span> <span id="yogam"></span></div>
-<div class="item"><span class="label">Karanam:</span> <span id="karanam"></span></div>
-</div>
+
+<div class="item">
+<span class="label">
+Tithi
+</span>
+<span class="value"
+id="tithi">
+</span>
 </div>
 
-<div class="card">
-<h2>Important Timings</h2>
+<div class="item">
+<span class="label">
+Nakshatram
+</span>
+<span class="value"
+id="nakshatra">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Yogam
+</span>
+<span class="value"
+id="yogam">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Karanam
+</span>
+<span class="value"
+id="karanam">
+</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- TIMINGS -->
+
+<div class="section-card">
+
+<h2 class="section-title">
+Important Timings
+</h2>
 
 <div class="grid">
-<div class="item"><span class="label">Rahukalam:</span> <span id="rahukalam"></span></div>
-<div class="item"><span class="label">Yamagandam:</span> <span id="yamagandam"></span></div>
-<div class="item"><span class="label">Varjyam:</span> <span id="varjyam"></span></div>
-<div class="item"><span class="label">Amrita Kalam:</span> <span id="amrita"></span></div>
+
+<div class="item">
+<span class="label">
+Rahukalam
+</span>
+<span class="value"
+id="rahukalam">
+</span>
 </div>
+
+<div class="item">
+<span class="label">
+Yamagandam
+</span>
+<span class="value"
+id="yamagandam">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Gulika Kalam
+</span>
+<span class="value"
+id="gulika">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Varjyam
+</span>
+<span class="value"
+id="varjyam">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Amrita Kalam
+</span>
+<span class="value"
+id="amrita">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Durmuhurtham
+</span>
+<span class="value"
+id="durmuhurtham">
+</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- SUN -->
+
+<div class="section-card">
+
+<h2 class="section-title">
+Sun & Moon Timings
+</h2>
+
+<div class="grid">
+
+<div class="item">
+<span class="label">
+Sunrise
+</span>
+<span class="value"
+id="sunrise">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Sunset
+</span>
+<span class="value"
+id="sunset">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Moonrise
+</span>
+<span class="value"
+id="moonrise">
+</span>
+</div>
+
+<div class="item">
+<span class="label">
+Moonset
+</span>
+<span class="value"
+id="moonset">
+</span>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -107,111 +485,251 @@ Loading Panchangam...
 
 <script>
 
+// IMPORTANT
+// Replace with your actual secret
+
+const CLIENT_ID =
+"09ace1cc-b524-4f98-9085-24899949c06a";
+
+const CLIENT_SECRET =
+"PASTE_YOUR_SECRET_HERE";
+
+// LOCATION
+
+const LAT = "17.3850";
+const LNG = "78.4867";
+
 // DATE
 
 const now = new Date();
 
-document.getElementById("todayDate").innerText =
+document.getElementById("todayDate")
+.innerText =
 now.toDateString();
 
-// DATA
+// MAIN FUNCTION
 
-const panchangam = {
+async function loadPanchangam(){
 
-    year: "Krodhi",
-    ayanam: "Uttarayanam",
-    ritu: "Vasantha",
-    month: "Vaishakha",
-    paksham: "Shukla Paksham",
-    vaaram: "Wednesday",
+    try{
 
-    tithi: "Ekadashi",
-    nakshatra: "Rohini",
-    yogam: "Siddha",
-    karanam: "Bava",
+        // TOKEN
 
-    rahukalam: "12:00 PM - 01:30 PM",
-    yamagandam: "07:30 AM - 09:00 AM",
-    gulika: "10:30 AM - 12:00 PM",
-    varjyam: "02:15 PM - 03:00 PM",
-    amrita: "06:00 PM - 07:00 PM",
-    durmuhurtham: "11:50 AM - 12:40 PM",
+        const tokenResponse =
+        await fetch(
+            "https://api.prokerala.com/token",
+            {
+                method:"POST",
 
-    sunrise: "05:48 AM",
-    sunset: "06:32 PM",
-    moonrise: "03:15 PM",
-    moonset: "02:45 AM"
-};
+                headers:{
+                    "Content-Type":
+                    "application/x-www-form-urlencoded"
+                },
 
-// SET VALUES
+                body:
+                    "grant_type=client_credentials" +
+                    "&client_id=" +
+                    encodeURIComponent(
+                        CLIENT_ID
+                    ) +
+                    "&client_secret=" +
+                    encodeURIComponent(
+                        CLIENT_SECRET
+                    )
+            }
+        );
 
-document.getElementById("year").innerText =
-panchangam.year;
+        const tokenData =
+        await tokenResponse.json();
 
-document.getElementById("ayanam").innerText =
-panchangam.ayanam;
+        console.log(tokenData);
 
-document.getElementById("ritu").innerText =
-panchangam.ritu;
+        if(!tokenData.access_token){
 
-document.getElementById("month").innerText =
-panchangam.month;
+            throw new Error(
+                "Token failed"
+            );
+        }
 
-document.getElementById("paksham").innerText =
-panchangam.paksham;
+        const accessToken =
+        tokenData.access_token;
 
-document.getElementById("vaaram").innerText =
-panchangam.vaaram;
+        // DATE FORMAT
 
-document.getElementById("tithi").innerText =
-panchangam.tithi;
+        const yyyy =
+        now.getFullYear();
 
-document.getElementById("nakshatra").innerText =
-panchangam.nakshatra;
+        const mm =
+        String(
+            now.getMonth()+1
+        ).padStart(2,"0");
 
-document.getElementById("yogam").innerText =
-panchangam.yogam;
+        const dd =
+        String(
+            now.getDate()
+        ).padStart(2,"0");
 
-document.getElementById("karanam").innerText =
-panchangam.karanam;
+        const date =
+        yyyy + "-" + mm + "-" + dd;
 
-document.getElementById("rahukalam").innerText =
-panchangam.rahukalam;
+        // API URL
 
-document.getElementById("yamagandam").innerText =
-panchangam.yamagandam;
+        const apiUrl =
+        "https://api.prokerala.com/v2/astrology/panchang" +
+        "?ayanamsa=1" +
+        "&coordinates=" +
+        LAT + "," + LNG +
+        "&datetime=" +
+        date +
+        "T06:00:00+05:30";
 
-document.getElementById("gulika").innerText =
-panchangam.gulika;
+        // FETCH DATA
 
-document.getElementById("varjyam").innerText =
-panchangam.varjyam;
+        const response =
+        await fetch(
+            apiUrl,
+            {
+                headers:{
+                    Authorization:
+                    "Bearer " +
+                    accessToken
+                }
+            }
+        );
 
-document.getElementById("amrita").innerText =
-panchangam.amrita;
+        const result =
+        await response.json();
 
-document.getElementById("durmuhurtham").innerText =
-panchangam.durmuhurtham;
+        console.log(result);
 
-document.getElementById("sunrise").innerText =
-panchangam.sunrise;
+        const p =
+        result.data;
 
-document.getElementById("sunset").innerText =
-panchangam.sunset;
+        // CALENDAR
 
-document.getElementById("moonrise").innerText =
-panchangam.moonrise;
+        document.getElementById("year")
+        .innerText =
+        p.year_name || "-";
 
-document.getElementById("moonset").innerText =
-panchangam.moonset;
+        document.getElementById("ayanam")
+        .innerText =
+        p.ayanam || "-";
 
-// SHOW PAGE
+        document.getElementById("ritu")
+        .innerText =
+        p.ritu || "-";
 
-document.getElementById("loading").style.display =
-"none";
+        document.getElementById("month")
+        .innerText =
+        p.malayalam_month || "-";
 
-document.getElementById("content").style.display =
-"block";
+        document.getElementById("paksham")
+        .innerText =
+        p.paksha || "-";
+
+        document.getElementById("vaaram")
+        .innerText =
+        p.vaara || "-";
+
+        // DAILY
+
+        document.getElementById("tithi")
+        .innerText =
+        p.tithi?.name || "-";
+
+        document.getElementById("nakshatra")
+        .innerText =
+        p.nakshatra?.name || "-";
+
+        document.getElementById("yogam")
+        .innerText =
+        p.yoga?.name || "-";
+
+        document.getElementById("karanam")
+        .innerText =
+        p.karana?.name || "-";
+
+        // TIMINGS
+
+        document.getElementById("rahukalam")
+        .innerText =
+        JSON.stringify(
+            p.rahu_kalam || "-"
+        );
+
+        document.getElementById("yamagandam")
+        .innerText =
+        JSON.stringify(
+            p.yamakanda_kalam || "-"
+        );
+
+        document.getElementById("gulika")
+        .innerText =
+        JSON.stringify(
+            p.gulika_kalam || "-"
+        );
+
+        document.getElementById("varjyam")
+        .innerText =
+        JSON.stringify(
+            p.varjyam || "-"
+        );
+
+        document.getElementById("amrita")
+        .innerText =
+        JSON.stringify(
+            p.amrit_kalam || "-"
+        );
+
+        document.getElementById("durmuhurtham")
+        .innerText =
+        JSON.stringify(
+            p.durmuhurtam || "-"
+        );
+
+        // SUN
+
+        document.getElementById("sunrise")
+        .innerText =
+        p.sunrise || "-";
+
+        document.getElementById("sunset")
+        .innerText =
+        p.sunset || "-";
+
+        document.getElementById("moonrise")
+        .innerText =
+        p.moonrise || "-";
+
+        document.getElementById("moonset")
+        .innerText =
+        p.moonset || "-";
+
+        // SHOW
+
+        document.getElementById("loading")
+        .style.display =
+        "none";
+
+        document.getElementById("content")
+        .style.display =
+        "block";
+
+    }catch(err){
+
+        console.log(err);
+
+        document.getElementById("loading")
+        .style.display =
+        "none";
+
+        document.getElementById("error")
+        .innerText =
+        "Failed to load Panchangam";
+    }
+}
+
+loadPanchangam();
 
 </script>
 
