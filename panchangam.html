@@ -197,60 +197,6 @@ header{
 
 <script>
 
-// =====================
-// API URL
-// =====================
-const API_URL =
-"https://script.google.com/macros/s/AKfycbzwBsayIN21y1onJCcKSVdDd1F0PNNv08-WK12QUcsOQcgh2uQQb6nhGqGNt9jlbpv8/exec";
-
-// =====================
-// DATE
-// =====================
-const now = new Date();
-document.getElementById("todayDate").innerText = now.toDateString();
-
-// =====================
-// MAIN FUNCTION
-// =====================
-async function loadPanchangam(){
-
-  try{
-
-    const response = await fetch(API_URL);
-    const p = await response.json();
-
-    console.log(p);
-
-    // ONLY REAL FIELDS FROM YOUR BACKEND
-
-    document.getElementById("vaaram").innerText = p.vaaram || "-";
-
-    document.getElementById("sunrise").innerText = p.sunrise || "-";
-    document.getElementById("sunset").innerText = p.sunset || "-";
-    document.getElementById("moonrise").innerText = p.moonrise || "-";
-    document.getElementById("moonset").innerText = p.moonset || "-";
-
-    document.getElementById("rahukalam").innerText = p.rahukalam || "-";
-    document.getElementById("yamagandam").innerText = p.yamagandam || "-";
-    document.getElementById("gulika").innerText = p.gulika || "-";
-
-    document.getElementById("varjyam").innerText = p.varjyam || "-";
-    document.getElementById("amrita").innerText = p.amrita || "-";
-    document.getElementById("durmuhurtham").innerText = p.durmuhurtham || "-";
-
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("content").style.display = "block";
-
-  }catch(err){
-
-    console.log(err);
-
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("error").innerText = "Failed to load Panchangam";
-  }
-}
-loadPanchangam();
-
 </script>
 
 </body>
