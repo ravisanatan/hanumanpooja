@@ -402,18 +402,37 @@ Cancel
 <script>
 
 function scrollSlider(btn, dir){
+
     const wrapper = btn.parentElement;
+
     const slider = wrapper.querySelector('.slider');
-    slider.scrollBy({ left: dir * 300, behavior: 'smooth' });
+
+    slider.scrollBy({
+        left: dir * 300,
+        behavior: 'smooth'
+    });
 }
 
 let selectedPoojaType = "";
 let selectedPoojaName = "";
 let selectedPrice = "";
 
+// 🔒 CONTROL SWITCH
+let BOOKING_ENABLED = true;
+
+// OPEN POPUP
 function openPoojaPopup(btn, type, poojaName){
 
+    // 🚫 BLOCK IF DISABLED
+    if(!BOOKING_ENABLED){
+
+        showBookingClosedMessage();
+
+        return;
+    }
+
     selectedPoojaType = type;
+
     selectedPoojaName = poojaName;
 
     // AUTO GET PRICE FROM CARD
@@ -427,19 +446,21 @@ function openPoojaPopup(btn, type, poojaName){
     document.getElementById("popupTitle").innerText =
         poojaName + " - " + type;
 
-    // Hide optional fields
+    // HIDE OPTIONAL FIELDS
     document.getElementById("name2").style.display = "none";
     document.getElementById("name3").style.display = "none";
     document.getElementById("name4").style.display = "none";
     document.getElementById("name5").style.display = "none";
 
-    // Couple
+    // COUPLE
     if(type == "Couple"){
+
         document.getElementById("name2").style.display = "block";
     }
 
-    // Family
+    // FAMILY
     if(type == "Family"){
+
         document.getElementById("name2").style.display = "block";
         document.getElementById("name3").style.display = "block";
         document.getElementById("name4").style.display = "block";
@@ -448,12 +469,14 @@ function openPoojaPopup(btn, type, poojaName){
 
     document.getElementById("poojaPopup").style.display = "flex";
 }
+
+// CLOSE POPUP
 function closePoojaPopup(){
 
     document.getElementById("poojaPopup").style.display = "none";
-
 }
 
+// SUBMIT BOOKING
 function submitPoojaBooking(){
 
     let data = {
@@ -467,9 +490,13 @@ function submitPoojaBooking(){
         gothram: document.getElementById("gothram").value.trim(),
 
         name1: document.getElementById("name1").value.trim(),
+
         name2: document.getElementById("name2").value.trim(),
+
         name3: document.getElementById("name3").value.trim(),
+
         name4: document.getElementById("name4").value.trim(),
+
         name5: document.getElementById("name5").value.trim(),
 
         wish: document.getElementById("wish").value.trim(),
@@ -550,138 +577,99 @@ function submitPoojaBooking(){
         return;
     }
 
-    // fetch("https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec", {
-    
-    //     method: "POST",
-    
-    //     body: JSON.stringify(data)
-    
-    // })
+    // SAVE TEMP DATA
 
-    // .then(res => res.json())
+    localStorage.setItem("temp_type", "pooja");
 
-    // .then(response => {
+    localStorage.setItem(
+        "temp_pooja",
+        selectedPoojaName
+    );
 
+    localStorage.setItem(
+        "temp_price",
+        selectedPrice
+    );
 
+    localStorage.setItem(
+        "temp_gothram",
+        data.gothram
+    );
 
-    //     // PAYMENT LINK
-    //     window.location.href =
-    //     "https://rzp.io/rzp/YOURPAYMENTLINK";
+    localStorage.setItem(
+        "temp_name1",
+        data.name1
+    );
 
-    // })
+    localStorage.setItem(
+        "temp_name2",
+        data.name2
+    );
 
-    // .catch(err => {
+    localStorage.setItem(
+        "temp_name3",
+        data.name3
+    );
 
-    //     console.log(err);
+    localStorage.setItem(
+        "temp_name4",
+        data.name4
+    );
 
-    //     alert("Error submitting booking");
+    localStorage.setItem(
+        "temp_name5",
+        data.name5
+    );
 
-    // });
+    localStorage.setItem(
+        "temp_wish",
+        data.wish
+    );
 
-  // SAVE TEMP DATA
+    localStorage.setItem(
+        "temp_phone",
+        data.phone
+    );
 
-localStorage.setItem("temp_type", "pooja");
+    localStorage.setItem(
+        "temp_email",
+        data.email
+    );
 
-localStorage.setItem(
-    "temp_pooja",
-    selectedPoojaName
-);
+    // REDIRECT
 
-localStorage.setItem(
-    "temp_price",
-    selectedPrice
-);
-
-localStorage.setItem(
-    "temp_gothram",
-    data.gothram
-);
-
-localStorage.setItem(
-    "temp_name1",
-    data.name1
-);
-
-localStorage.setItem(
-    "temp_name2",
-    data.name2
-);
-
-localStorage.setItem(
-    "temp_name3",
-    data.name3
-);
-
-localStorage.setItem(
-    "temp_name4",
-    data.name4
-);
-
-localStorage.setItem(
-    "temp_name5",
-    data.name5
-);
-
-localStorage.setItem(
-    "temp_wish",
-    data.wish
-);
-
-localStorage.setItem(
-    "temp_phone",
-    data.phone
-);
-
-localStorage.setItem(
-    "temp_email",
-    data.email
-);
-
-// REDIRECT
-
-window.location.href = "payment.html";
+    window.location.href = "payment.html";
 }
-
-
-<script>
-
-// 🔒 CONTROL SWITCH
-let BOOKING_ENABLED = true;
 
 // 🔔 MESSAGE
 function showBookingClosedMessage(){
-    alert("🙏 Booking is closed for thisPooja.");
+
+    alert("🙏 Booking is closed for this Pooja.");
 }
 
-// 🔒 DISABLE BOOKING PROPERLY
+// 🔒 DISABLE BUTTONS UI
 function disableBookingButtons(){
 
-    const buttons = document.querySelectorAll(".service-card .btn");
+    const buttons = document.querySelectorAll(
+        ".service-card .card-footer .btn"
+    );
 
     buttons.forEach(btn => {
 
-        // change UI
         btn.innerText = "Booking Closed";
-        btn.style.background = "#999";
-        btn.style.cursor = "not-allowed";
 
-        // IMPORTANT: stop original onclick from firing
-        btn.addEventListener("click", function(e){
-            e.preventDefault();
-            e.stopImmediatePropagation(); // 🔥 THIS is the key fix
-            showBookingClosedMessage();
-        }, true); // capture phase
+        btn.style.background = "#999";
+
+        btn.style.cursor = "not-allowed";
     });
 }
 
 // APPLY
 if(!BOOKING_ENABLED){
+
     disableBookingButtons();
 }
 
 </script>
-    
-</script>
-
 </body>
 </html>
