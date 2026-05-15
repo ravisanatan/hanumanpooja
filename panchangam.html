@@ -283,17 +283,17 @@ Loading Panchangam...
 
 <div class="item">
 <span class="label">Varjyam</span>
-<span class="value" id="varjyam">-</span>
+<span class="value" id="varjyam">Not Available</span>
 </div>
 
 <div class="item">
 <span class="label">Amrita Kalam</span>
-<span class="value" id="amrita">-</span>
+<span class="value" id="amrita">Not Available</span>
 </div>
 
 <div class="item">
 <span class="label">Durmuhurtham</span>
-<span class="value" id="durmuhurtham">-</span>
+<span class="value" id="durmuhurtham">Not Available</span>
 </div>
 
 </div>
@@ -333,16 +333,18 @@ function formatTime(value){
 
     try{
 
-        // ISO DATE FORMAT
         if(typeof value === "string" && value.includes("T")){
 
             const d = new Date(value);
 
-            return d.toLocaleTimeString("en-IN",{
-                hour:'2-digit',
-                minute:'2-digit',
-                hour12:true
-            });
+            return d.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour:'2-digit',
+                    minute:'2-digit',
+                    hour12:true
+                }
+            );
         }
 
         return value;
@@ -351,6 +353,22 @@ function formatTime(value){
 
         return value;
     }
+}
+
+// ======================================
+// FORMAT DISPLAY TIME
+// ======================================
+
+function formatDisplayTime(date){
+
+    return date.toLocaleTimeString(
+        "en-IN",
+        {
+            hour:'2-digit',
+            minute:'2-digit',
+            hour12:true
+        }
+    );
 }
 
 // ======================================
@@ -364,28 +382,71 @@ function setValue(id, value){
 
     if(!el) return;
 
-    if(typeof value === "object"){
+    el.innerText =
+    formatTime(value) || "-";
+}
 
-        // START END FORMAT
+// ======================================
+// CALCULATE RAHUKALAM
+// ======================================
 
-        if(value.start && value.end){
+function calculateKalam(sunrise, sunset){
 
-            el.innerText =
-            formatTime(value.start)
+    const sr =
+    new Date(sunrise);
+
+    const ss =
+    new Date(sunset);
+
+    const total =
+    (ss - sr) / 8;
+
+    const day =
+    sr.getDay();
+
+    // SUNDAY TO SATURDAY
+
+    const rahuMap =
+    [7,1,6,4,5,3,2];
+
+    const yamaMap =
+    [4,3,2,1,0,6,5];
+
+    const gulikaMap =
+    [6,5,4,3,2,1,0];
+
+    function getPeriod(index){
+
+        const start =
+        new Date(
+            sr.getTime() +
+            total * index
+        );
+
+        const end =
+        new Date(
+            start.getTime() +
+            total
+        );
+
+        return (
+            formatDisplayTime(start)
             + " - " +
-            formatTime(value.end);
-
-        }else{
-
-            el.innerText =
-            JSON.stringify(value);
-        }
-
-    }else{
-
-        el.innerText =
-        formatTime(value) || "-";
+            formatDisplayTime(end)
+        );
     }
+
+    return {
+
+        rahu:
+        getPeriod(rahuMap[day]),
+
+        yama:
+        getPeriod(yamaMap[day]),
+
+        gulika:
+        getPeriod(gulikaMap[day])
+    };
 }
 
 // ======================================
@@ -398,7 +459,9 @@ async function loadPanchangam(){
 
         const response =
         await fetch(
-            API_URL + "?t=" + new Date().getTime()
+            API_URL +
+            "?t=" +
+            new Date().getTime()
         );
 
         const text =
@@ -407,65 +470,72 @@ async function loadPanchangam(){
         console.log("FULL API RESPONSE:");
         console.log(text);
 
-        alert(text);
-
         const p =
         JSON.parse(text);
 
-        // =====================
-        // VALUES
-        // =====================
+        // ======================================
+        // BASIC VALUES
+        // ======================================
 
-        setValue("vaaram",
-            p.vaaram || p.day
+        setValue(
+            "vaaram",
+            p.vaaram || now.toLocaleDateString(
+                "en-IN",
+                { weekday:'long' }
+            )
         );
 
-        setValue("sunrise",
+        setValue(
+            "sunrise",
             p.sunrise
         );
 
-        setValue("sunset",
+        setValue(
+            "sunset",
             p.sunset
         );
 
-        setValue("moonrise",
+        setValue(
+            "moonrise",
             p.moonrise
         );
 
-        setValue("moonset",
+        setValue(
+            "moonset",
             p.moonset
         );
 
-        setValue("rahukalam",
-            p.rahukalam
+        // ======================================
+        // CALCULATED VALUES
+        // ======================================
+
+        const kalam =
+        calculateKalam(
+            p.sunrise,
+            p.sunset
         );
 
-        setValue("yamagandam",
-            p.yamagandam
+        setValue(
+            "rahukalam",
+            kalam.rahu
         );
 
-        setValue("gulika",
-            p.gulika
+        setValue(
+            "yamagandam",
+            kalam.yama
         );
 
-        setValue("varjyam",
-            p.varjyam
+        setValue(
+            "gulika",
+            kalam.gulika
         );
 
-        setValue("amrita",
-            p.amrita
-        );
-
-        setValue("durmuhurtham",
-            p.durmuhurtham
-        );
-
-        // HIDE LOADING
+        // ======================================
+        // SHOW CONTENT
+        // ======================================
 
         document.getElementById("loading")
         .style.display = "none";
-
-        // SHOW CONTENT
 
         document.getElementById("content")
         .style.display = "block";
