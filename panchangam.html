@@ -404,7 +404,10 @@ async function loadPanchangam(){
         const text =
         await response.text();
 
+        console.log("FULL API RESPONSE:");
         console.log(text);
+
+        alert(text);
 
         const p =
         JSON.parse(text);
