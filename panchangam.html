@@ -10,11 +10,16 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#fff5e6;
     text-align:center;
+    color:#222;
 }
 
 /* HEADER */
@@ -22,7 +27,8 @@ body{
 header{
     background:#ff6600;
     color:white;
-    padding:12px;
+    padding:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
 .header-content{
@@ -34,15 +40,16 @@ header{
 }
 
 .logo{
-    width:100px;
-    height:100px;
+    width:90px;
+    height:90px;
     border-radius:50%;
     background:white;
-    padding:6px;
+    padding:5px;
+    object-fit:cover;
 }
 
 .title-main{
-    font-size:32px;
+    font-size:34px;
     font-weight:bold;
     margin:0;
 }
@@ -50,24 +57,28 @@ header{
 .title-sub{
     font-size:16px;
     margin-top:5px;
+    letter-spacing:1px;
 }
 
 /* PAGE */
 
 .container{
     padding:15px;
+    max-width:1200px;
+    margin:auto;
 }
 
 .page-title{
     color:#8B0000;
-    font-size:30px;
-    margin-top:20px;
+    font-size:32px;
+    margin-top:25px;
 }
 
 .today-date{
     font-size:18px;
     margin-top:10px;
-    color:#444;
+    color:#555;
+    font-weight:bold;
 }
 
 /* CARD */
@@ -75,48 +86,90 @@ header{
 .card{
     background:white;
     margin:20px auto;
-    padding:20px;
-    border-radius:12px;
+    padding:22px;
+    border-radius:15px;
     max-width:1000px;
-    box-shadow:0 0 10px rgba(0,0,0,0.12);
+    box-shadow:0 4px 14px rgba(0,0,0,0.12);
+}
+
+.card h2{
+    color:#8B0000;
+    margin-bottom:20px;
 }
 
 /* GRID */
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
 }
+
+/* ITEM */
 
 .item{
     background:#fff4e8;
-    padding:15px;
-    border-radius:10px;
+    padding:20px;
+    border-radius:12px;
+    min-height:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border:1px solid #ffe0c2;
 }
 
 .label{
     font-weight:bold;
     color:#8B0000;
     display:block;
-    margin-bottom:6px;
+    margin-bottom:10px;
+    font-size:18px;
 }
 
 .value{
-    font-size:18px;
+    font-size:20px;
     word-break:break-word;
+    overflow-wrap:break-word;
+    line-height:1.6;
+    color:#222;
+    font-weight:500;
 }
 
 /* LOADING */
 
 .loading{
-    font-size:20px;
+    font-size:22px;
     margin-top:40px;
+    color:#8B0000;
 }
 
 .error{
     color:red;
     margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .title-main{
+        font-size:28px;
+    }
+
+    .page-title{
+        font-size:26px;
+    }
+
+    .value{
+        font-size:18px;
+    }
+
+    .label{
+        font-size:16px;
+    }
 }
 
 </style>
@@ -160,7 +213,7 @@ Loading Panchangam...
 
 <div class="card">
 
-<h2>Calendar</h2>
+<h2>📅 Calendar</h2>
 
 <div class="grid">
 
@@ -173,11 +226,11 @@ Loading Panchangam...
 
 </div>
 
-<!-- TIMINGS -->
+<!-- SUN MOON -->
 
 <div class="card">
 
-<h2>Sun & Moon Timings</h2>
+<h2>☀️ Sun & Moon Timings</h2>
 
 <div class="grid">
 
@@ -205,11 +258,11 @@ Loading Panchangam...
 
 </div>
 
-<!-- PANCHANGAM -->
+<!-- IMPORTANT -->
 
 <div class="card">
 
-<h2>Important Timings</h2>
+<h2>🕉 Important Timings</h2>
 
 <div class="grid">
 
@@ -253,16 +306,16 @@ Loading Panchangam...
 
 <script>
 
-// =====================
+// ======================================
 // APPS SCRIPT URL
-// =====================
+// ======================================
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzwBsayIN21y1onJCcKSVdDd1F0PNNv08-WK12QUcsOQcgh2uQQb6nhGqGNt9jlbpv8/exec";
 
-// =====================
-// DATE
-// =====================
+// ======================================
+// TODAY DATE
+// ======================================
 
 const now = new Date();
 
@@ -270,40 +323,83 @@ document.getElementById("todayDate")
 .innerText =
 now.toDateString();
 
-// =====================
+// ======================================
+// FORMAT TIME
+// ======================================
+
+function formatTime(value){
+
+    if(!value) return "-";
+
+    try{
+
+        // ISO DATE FORMAT
+        if(typeof value === "string" && value.includes("T")){
+
+            const d = new Date(value);
+
+            return d.toLocaleTimeString("en-IN",{
+                hour:'2-digit',
+                minute:'2-digit',
+                hour12:true
+            });
+        }
+
+        return value;
+
+    }catch(err){
+
+        return value;
+    }
+}
+
+// ======================================
 // SAFE VALUE SETTER
-// =====================
+// ======================================
 
 function setValue(id, value){
 
     const el =
     document.getElementById(id);
 
-    if(el){
+    if(!el) return;
 
-        if(typeof value === "object"){
+    if(typeof value === "object"){
+
+        // START END FORMAT
+
+        if(value.start && value.end){
 
             el.innerText =
-            JSON.stringify(value);
+            formatTime(value.start)
+            + " - " +
+            formatTime(value.end);
 
         }else{
 
             el.innerText =
-            value || "-";
+            JSON.stringify(value);
         }
+
+    }else{
+
+        el.innerText =
+        formatTime(value) || "-";
     }
 }
 
-// =====================
-// LOAD DATA
-// =====================
+// ======================================
+// LOAD PANCHANGAM
+// ======================================
 
 async function loadPanchangam(){
 
     try{
 
         const response =
-        await fetch(API_URL);
+        await fetch(
+            API_URL + "?t=" + new Date().getTime()
+        );
 
         const text =
         await response.text();
@@ -313,27 +409,53 @@ async function loadPanchangam(){
         const p =
         JSON.parse(text);
 
-        // SET VALUES
+        // =====================
+        // VALUES
+        // =====================
 
-        setValue("vaaram", p.vaaram);
+        setValue("vaaram",
+            p.vaaram || p.day
+        );
 
-        setValue("sunrise", p.sunrise);
-        setValue("sunset", p.sunset);
+        setValue("sunrise",
+            p.sunrise
+        );
 
-        setValue("moonrise", p.moonrise);
-        setValue("moonset", p.moonset);
+        setValue("sunset",
+            p.sunset
+        );
 
-        setValue("rahukalam", p.rahukalam);
+        setValue("moonrise",
+            p.moonrise
+        );
 
-        setValue("yamagandam", p.yamagandam);
+        setValue("moonset",
+            p.moonset
+        );
 
-        setValue("gulika", p.gulika);
+        setValue("rahukalam",
+            p.rahukalam
+        );
 
-        setValue("varjyam", p.varjyam);
+        setValue("yamagandam",
+            p.yamagandam
+        );
 
-        setValue("amrita", p.amrita);
+        setValue("gulika",
+            p.gulika
+        );
 
-        setValue("durmuhurtham", p.durmuhurtham);
+        setValue("varjyam",
+            p.varjyam
+        );
+
+        setValue("amrita",
+            p.amrita
+        );
+
+        setValue("durmuhurtham",
+            p.durmuhurtham
+        );
 
         // HIDE LOADING
 
@@ -358,9 +480,9 @@ async function loadPanchangam(){
     }
 }
 
-// =====================
+// ======================================
 // START
-// =====================
+// ======================================
 
 loadPanchangam();
 
