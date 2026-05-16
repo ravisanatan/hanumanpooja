@@ -5,9 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PENDYALA DIVINE SERVICES</title>
 
+<meta property="og:title" content="PENDYALA DIVINE SERVICES">
+<meta property="og:description"
+content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
+<meta property="og:image"
+content="https://pendyaladivineservices.com/banner.png">
+<meta property="og:url"
+content="https://pendyaladivineservices.com">
+<meta property="og:type"
+content="website">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
 <style>
 
-html{scroll-behavior:smooth;}
+html{ scroll-behavior:smooth; }
 
 body{
     margin:0;
@@ -25,23 +38,36 @@ header{
 
 .header-content{
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     gap:15px;
+    flex-wrap:wrap;
 }
 
 .logo{
-    width:100px;
-    height:100px;
+    width:110px;
+    height:110px;
     border-radius:50%;
     background:white;
-    padding:5px;
+    padding:6px;
+}
+
+.title-main{
+    font-size:36px;
+    font-weight:bold;
+    margin:0;
+}
+
+.title-sub{
+    font-size:18px;
+    margin-top:5px;
 }
 
 /* MENU */
 .menu{
     background:white;
     padding:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -52,89 +78,126 @@ header{
     text-decoration:none;
     color:#ff6600;
     font-weight:bold;
+    font-size:15px;
+    padding:6px 10px;
+    border-radius:6px;
 }
 
-/* GRID FIX → 5 / 4 / 2 */
+/* CONTAINER */
+.container{ padding:20px; }
+
+#searchBox{
+    padding:10px;
+    width:90%;
+    max-width:400px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-bottom:20px;
+}
+
+.section-title{
+    color:#8B0000;
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+/* PRODUCTS GRID (UNCHANGED) */
 .products{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    max-width:1400px;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    max-width:1200px;
     margin:auto;
-    padding:10px;
-}
-
-@media(max-width:1100px){
-    .products{grid-template-columns:repeat(4,1fr);}
-}
-
-@media(max-width:800px){
-    .products{grid-template-columns:repeat(3,1fr);}
 }
 
 @media(max-width:600px){
-    .products{grid-template-columns:repeat(2,1fr);}
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
 }
 
 /* CARD */
 .card{
     background:white;
-    border-radius:10px;
-    padding:8px;
-    box-shadow:0 0 8px rgba(0,0,0,0.1);
+    border-radius:12px;
+    padding:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.10);
+}
+
+/* IMAGE */
+.main-image{
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    border-radius:8px;
 }
 
 .main-image img{
     width:100%;
-    height:120px;
+    height:100%;
     object-fit:cover;
-    border-radius:8px;
 }
 
-h3{
-    font-size:13px;
-    margin:6px 0;
+/* TEXT */
+.card h3{
+    font-size:14px;
+    margin:10px 0 5px;
+    min-height:36px;
 }
 
 .desc{
-    font-size:11px;
+    font-size:12px;
     color:#444;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:34px;
 }
 
 .price{
+    color:#cc0000;
+    font-size:18px;
     font-weight:bold;
-    color:#c00;
-    font-size:15px;
+    margin-top:8px;
 }
 
-/* BUTTON FIX */
+/* ✅ FIX: CENTER BUTTONS (NO LAYOUT CHANGE) */
 .btn{
-    width:100%;
-    margin-top:5px;
-    padding:6px;
-    border:none;
-    border-radius:6px;
     background:#ff6600;
     color:white;
+    padding:8px;
+    border-radius:6px;
+    text-decoration:none;
+    display:block;
+    margin:8px auto;
+    border:none;
     cursor:pointer;
-    font-size:12px;
+    font-size:13px;
+    width:90%;
+    text-align:center;
 }
+
+.btn:hover{ background:#e65c00; }
 
 /* QTY */
 .qty-box{
     display:flex;
     justify-content:center;
-    gap:8px;
-    margin-top:5px;
+    align-items:center;
+    gap:10px;
+    margin-top:10px;
 }
 
 .qty-box button{
-    width:24px;
-    height:24px;
+    width:28px;
+    height:28px;
+    border:none;
     background:#ff6600;
     color:white;
-    border:none;
     border-radius:4px;
+    cursor:pointer;
 }
 
 /* POPUP */
@@ -148,59 +211,59 @@ h3{
     background:rgba(0,0,0,0.6);
     justify-content:center;
     align-items:center;
-    padding:10px;
+    z-index:999;
+    padding:15px;
 }
 
 .popup-box{
     background:white;
     width:100%;
     max-width:420px;
-    padding:15px;
-    border-radius:10px;
-    text-align:left;
     max-height:90vh;
     overflow:auto;
+    border-radius:12px;
+    padding:20px;
+    text-align:left;
 }
 
+/* ✅ FIX: MOBILE IMAGE TOO BIG */
 .popup-box img{
     width:100%;
-    max-height:260px;
+    max-height:300px;
     object-fit:contain;
+    border-radius:10px;
+    margin-bottom:15px;
 }
 
-/* TOP SUMMARY */
-.summary{
-    background:#fff3e0;
-    padding:10px;
-    border-radius:8px;
+.popup-title{
+    font-size:22px;
+    color:#8B0000;
     margin-bottom:10px;
-    font-weight:bold;
 }
 
-/* FORM FIX */
+.popup-price{
+    color:#cc0000;
+    font-size:24px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.popup-desc{
+    line-height:1.7;
+    color:#444;
+    font-size:15px;
+}
+
 input,textarea{
     width:100%;
     padding:10px;
-    margin-top:8px;
+    margin:6px 0;
     border:1px solid #ccc;
     border-radius:6px;
-    box-sizing:border-box;
+    font-size:14px;
 }
 
-/* BUTTONS */
-.popup-btn{
-    width:100%;
-    margin-top:10px;
-    padding:10px;
-    border:none;
-    border-radius:6px;
-    background:#ff6600;
-    color:white;
-}
-
-.close{
-    background:#777;
-}
+.close-btn{ background:#777; }
 
 </style>
 </head>
@@ -210,160 +273,203 @@ input,textarea{
 <header>
 <div class="header-content">
 <img src="icon.jpeg" class="logo">
-<h2>PENDYALA DIVINE SERVICES</h2>
+<div>
+<p class="title-main">PENDYALA</p>
+<p class="title-sub">DIVINE SERVICES</p>
+</div>
 </div>
 </header>
 
 <div class="menu">
-<a href="#">Poojas</a>
-<a href="#">Astrology</a>
-<a href="#">Products</a>
+<a href="index.html">Poojas</a>
+<a href="astrology.html">Astrology</a>
+<a href="muhurthas.html">Muhurthas</a>
+<a href="products.html">Products</a>
+<a href="learnings.html">Learnings</a>
 </div>
 
-<h2>Spiritual Products</h2>
+<div class="container">
+
+<input type="text" id="searchBox" placeholder="Search products...">
+
+<h2 class="section-title">Spiritual Products</h2>
 
 <div class="products">
 
-<!-- 1 -->
+<!-- PRODUCT 1 -->
 <div class="card">
-<img class="main-image" src="Images/SpatikaShivaLingam_One Inch.jpeg">
+<div class="main-image">
+<img src="Images/SpatikaShivaLingam_One Inch.jpeg">
+</div>
+
 <h3>Spatika Shivlingam</h3>
-<p class="desc">Peace & growth</p>
+<p class="desc">Brings peace, purity, and spiritual growth.</p>
+
 <div class="price">₹1149</div>
 
 <div class="qty-box">
-<button onclick="qty(this,-1)">-</button>
+<button onclick="changeQty(this,-1)">-</button>
 <span class="qty">1</span>
-<button onclick="qty(this,1)">+</button>
+<button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(this)">View Details</button>
+<button class="btn" onclick="openDetails(
+'Spatika Shivlingam',
+'₹1149',
+'Images/SpatikaShivaLingam_One Inch.jpeg',
+'Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.'
+)">View Details</button>
+
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- 2 -->
+<!-- PRODUCT 2 -->
 <div class="card">
-<img class="main-image" src="Images/MarakathaShivalingam.jpeg">
+<div class="main-image">
+<img src="Images/MarakathaShivalingam.jpeg">
+</div>
+
 <h3>Marakatha Shivlingam</h3>
-<p class="desc">Wealth energy</p>
+<p class="desc">Helps in financial stability and wealth creation.</p>
+
 <div class="price">₹1099</div>
 
 <div class="qty-box">
-<button onclick="qty(this,-1)">-</button>
+<button onclick="changeQty(this,-1)">-</button>
 <span class="qty">1</span>
-<button onclick="qty(this,1)">+</button>
+<button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(this)">View Details</button>
-<button class="btn" onclick="openCheckout(this)">Buy Now</button>
-</div>
+<button class="btn" onclick="openDetails(
+'Marakatha Shivlingam',
+'₹1099',
+'Images/MarakathaShivalingam.jpeg',
+'Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.'
+)">View Details</button>
 
-<!-- 3 -->
-<div class="card">
-<img class="main-image" src="Images/Navagraha Mala.jpeg">
-<h3>Navagraha Mala</h3>
-<p class="desc">Planet balance</p>
-<div class="price">₹5500</div>
-
-<div class="qty-box">
-<button onclick="qty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="qty(this,1)">+</button>
-</div>
-
-<button class="btn" onclick="openDetails(this)">View Details</button>
-<button class="btn" onclick="openCheckout(this)">Buy Now</button>
-</div>
-
-<!-- 4 -->
-<div class="card">
-<img class="main-image" src="Images/spatika_nandi1.jpeg">
-<h3>Spatika Nandi</h3>
-<p class="desc">Calm energy</p>
-<div class="price">₹1099</div>
-
-<div class="qty-box">
-<button onclick="qty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="qty(this,1)">+</button>
-</div>
-
-<button class="btn" onclick="openDetails(this)">View Details</button>
-<button class="btn" onclick="openCheckout(this)">Buy Now</button>
-</div>
-
-<!-- 5 -->
-<div class="card">
-<img class="main-image" src="Images/MarakathaNandi.jpeg">
-<h3>Marakatha Nandi</h3>
-<p class="desc">Focus & positivity</p>
-<div class="price">₹1099</div>
-
-<div class="qty-box">
-<button onclick="qty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="qty(this,1)">+</button>
-</div>
-
-<button class="btn" onclick="openDetails(this)">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 </div>
+</div>
 
-<!-- POPUP -->
-<div class="popup-bg" id="popup">
+<!-- DETAILS POPUP -->
+<div class="popup-bg" id="detailsPopup">
+<div class="popup-box">
+<img id="detailsImage">
+<div class="popup-title" id="detailsTitle"></div>
+<div class="popup-price" id="detailsPrice"></div>
+<div class="popup-desc" id="detailsDesc"></div>
+<button class="btn close-btn" onclick="closeDetails()">Close</button>
+</div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="popup-bg" id="checkoutPopup">
 <div class="popup-box">
 
-<img id="img">
+<h2 style="text-align:center;color:#8B0000;">Enter Details</h2>
 
-<div class="summary">
-Product: <span id="pname"></span><br>
-Qty: <span id="pqty"></span><br>
-Total: ₹<span id="ptotal"></span>
-</div>
+<b>Product:</b> <span id="popup_product_name"></span><br><br>
+<b>Quantity:</b> <span id="popup_qty"></span><br><br>
 
-<input placeholder="Name">
-<input placeholder="Phone">
-<textarea placeholder="Address"></textarea>
+<!-- ✅ FIX: SHOW TOTAL -->
+<b>Total Amount:</b> ₹<span id="popup_amount"></span>
 
-<button class="popup-btn">Proceed</button>
-<button class="popup-btn close" onclick="closePopup()">Close</button>
+<input id="c_name" placeholder="Full Name">
+<input id="c_phone" placeholder="Phone Number">
+<textarea id="c_address" placeholder="Address with Pin Code"></textarea>
+<input id="c_email" placeholder="Email ID">
+
+<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
+<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
 
 </div>
 </div>
 
 <script>
 
-function qty(btn,n){
-    let s = btn.parentElement.querySelector(".qty");
-    let v = Math.max(1, parseInt(s.innerText)+n);
-    s.innerText=v;
+/* QTY */
+function changeQty(btn,change){
+    let qtyEl = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtyEl.innerText);
+    qty = Math.max(1, qty + change);
+    qtyEl.innerText = qty;
 }
+
+/* DETAILS */
+function openDetails(title,price,image,desc){
+    document.getElementById("detailsTitle").innerText = title;
+    document.getElementById("detailsPrice").innerText = price;
+    document.getElementById("detailsImage").src = image;
+    document.getElementById("detailsDesc").innerText = desc;
+    document.getElementById("detailsPopup").style.display = "flex";
+}
+
+function closeDetails(){
+    document.getElementById("detailsPopup").style.display = "none";
+}
+
+/* CHECKOUT */
+let selectedProduct="";
+let selectedQty=0;
+let selectedPrice=0;
 
 function openCheckout(btn){
-    let card=btn.closest(".card");
-    let name=card.querySelector("h3").innerText;
-    let qty=parseInt(card.querySelector(".qty").innerText);
-    let price=parseInt(card.querySelector(".price").innerText.replace("₹",""));
 
-    document.getElementById("pname").innerText=name;
-    document.getElementById("pqty").innerText=qty;
-    document.getElementById("ptotal").innerText=qty*price;
+    let card = btn.closest(".card");
 
-    document.getElementById("popup").style.display="flex";
+    selectedProduct = card.querySelector("h3").innerText;
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+
+    let basePrice = parseInt(card.querySelector(".price").innerText.replace("₹",""));
+
+    selectedPrice = basePrice * selectedQty;
+
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    document.getElementById("popup_amount").innerText = selectedPrice;
+
+    document.getElementById("checkoutPopup").style.display = "flex";
 }
 
-function closePopup(){
-    document.getElementById("popup").style.display="none";
+function closeCheckout(){
+    document.getElementById("checkoutPopup").style.display = "none";
 }
 
-function openDetails(btn){
-    let card=btn.closest(".card");
-    let img=card.querySelector("img").src;
-    document.getElementById("img").src=img;
-    document.getElementById("popup").style.display="flex";
+/* SUBMIT */
+function submitOrder(){
+
+    let name = document.getElementById("c_name").value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+    let email = document.getElementById("c_email").value.trim();
+
+    if(!name || !phone || !address || !email){
+        alert("Please fill all details");
+        return;
+    }
+
+    localStorage.setItem("temp_product", selectedProduct);
+    localStorage.setItem("temp_price", selectedPrice);
+    localStorage.setItem("temp_qty", selectedQty);
+
+    localStorage.setItem("temp_name", name);
+    localStorage.setItem("temp_phone", phone);
+    localStorage.setItem("temp_email", email);
+    localStorage.setItem("temp_address", address);
+
+    window.location.href = "payment.html";
 }
+
+/* SEARCH */
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card=>{
+        card.style.display = card.innerText.toLowerCase().includes(filter)
+        ? "block" : "none";
+    });
+});
 
 </script>
 
