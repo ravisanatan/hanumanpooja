@@ -6,18 +6,21 @@
 <title>PENDYALA DIVINE SERVICES</title>
 
 <meta property="og:title" content="PENDYALA DIVINE SERVICES">
-<meta property="og:description" content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
-<meta property="og:image" content="https://pendyaladivineservices.com/banner.png">
-<meta property="og:url" content="https://pendyaladivineservices.com">
-<meta property="og:type" content="website">
+<meta property="og:description"
+content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
+<meta property="og:image"
+content="https://pendyaladivineservices.com/banner.png">
+<meta property="og:url"
+content="https://pendyaladivineservices.com">
+<meta property="og:type"
+content="website">
 
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card"
+content="summary_large_image">
 
 <style>
 
-html{
-    scroll-behavior:smooth;
-}
+html{ scroll-behavior:smooth; }
 
 body{
     margin:0;
@@ -81,9 +84,7 @@ header{
 }
 
 /* CONTAINER */
-.container{
-    padding:20px;
-}
+.container{ padding:20px; }
 
 #searchBox{
     padding:10px;
@@ -94,7 +95,13 @@ header{
     margin-bottom:20px;
 }
 
-/* PRODUCTS */
+.section-title{
+    color:#8B0000;
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+/* PRODUCTS GRID (UNCHANGED) */
 .products{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -156,26 +163,23 @@ header{
     margin-top:8px;
 }
 
-/* CENTER BUTTONS FIX */
+/* ✅ FIX: CENTER BUTTONS (NO LAYOUT CHANGE) */
 .btn{
     background:#ff6600;
     color:white;
     padding:8px;
     border-radius:6px;
     text-decoration:none;
+    display:block;
+    margin:8px auto;
     border:none;
     cursor:pointer;
     font-size:13px;
-
-    display:block;
-    width:85%;
-    margin:8px auto;
+    width:90%;
     text-align:center;
 }
 
-.btn:hover{
-    background:#e65c00;
-}
+.btn:hover{ background:#e65c00; }
 
 /* QTY */
 .qty-box{
@@ -222,10 +226,10 @@ header{
     text-align:left;
 }
 
-/* FIX BIG IMAGE ISSUE */
+/* ✅ FIX: MOBILE IMAGE TOO BIG */
 .popup-box img{
     width:100%;
-    max-height:40vh;
+    max-height:300px;
     object-fit:contain;
     border-radius:10px;
     margin-bottom:15px;
@@ -259,16 +263,7 @@ input,textarea{
     font-size:14px;
 }
 
-.close-btn{
-    background:#777;
-}
-
-.amount-box{
-    font-size:18px;
-    font-weight:bold;
-    color:#000;
-    margin:10px 0;
-}
+.close-btn{ background:#777; }
 
 </style>
 </head>
@@ -369,23 +364,17 @@ input,textarea{
 </div>
 </div>
 
-<!-- CHECKOUT POPUP -->
+<!-- CHECKOUT -->
 <div class="popup-bg" id="checkoutPopup">
 <div class="popup-box">
 
 <h2 style="text-align:center;color:#8B0000;">Enter Details</h2>
 
-<b>Product:</b>
-<span id="popup_product_name"></span>
+<b>Product:</b> <span id="popup_product_name"></span><br><br>
+<b>Quantity:</b> <span id="popup_qty"></span><br><br>
 
-<br><br>
-
-<b>Quantity:</b>
-<span id="popup_qty"></span>
-
-<div class="amount-box">
-Total Amount: ₹<span id="popup_amount"></span>
-</div>
+<!-- ✅ FIX: SHOW TOTAL -->
+<b>Total Amount:</b> ₹<span id="popup_amount"></span>
 
 <input id="c_name" placeholder="Full Name">
 <input id="c_phone" placeholder="Phone Number">
@@ -423,20 +412,17 @@ function closeDetails(){
 
 /* CHECKOUT */
 let selectedProduct="";
-let selectedPrice=0;
 let selectedQty=0;
+let selectedPrice=0;
 
 function openCheckout(btn){
 
     let card = btn.closest(".card");
 
     selectedProduct = card.querySelector("h3").innerText;
-
     selectedQty = parseInt(card.querySelector(".qty").innerText);
 
-    let basePrice = parseInt(
-        card.querySelector(".price").innerText.replace("₹","")
-    );
+    let basePrice = parseInt(card.querySelector(".price").innerText.replace("₹",""));
 
     selectedPrice = basePrice * selectedQty;
 
@@ -475,6 +461,15 @@ function submitOrder(){
 
     window.location.href = "payment.html";
 }
+
+/* SEARCH */
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card=>{
+        card.style.display = card.innerText.toLowerCase().includes(filter)
+        ? "block" : "none";
+    });
+});
 
 </script>
 
