@@ -11,8 +11,6 @@
 <meta property="og:url" content="https://pendyaladivineservices.com">
 <meta property="og:type" content="website">
 
-<meta name="twitter:card" content="summary_large_image">
-
 <style>
 
 html{scroll-behavior:smooth;}
@@ -47,17 +45,6 @@ header{
     padding:6px;
 }
 
-.title-main{
-    font-size:36px;
-    font-weight:bold;
-    margin:0;
-}
-
-.title-sub{
-    font-size:18px;
-    margin-top:5px;
-}
-
 /* MENU */
 .menu{
     background:white;
@@ -73,53 +60,55 @@ header{
     text-decoration:none;
     color:#ff6600;
     font-weight:bold;
-    font-size:15px;
-    padding:6px 10px;
-    border-radius:6px;
 }
 
 /* CONTAINER */
-.container{
-    padding:20px;
-}
+.container{padding:20px;}
 
 #searchBox{
     padding:10px;
     width:90%;
     max-width:400px;
-    border-radius:8px;
     border:1px solid #ccc;
+    border-radius:8px;
     margin-bottom:20px;
 }
 
+/* SECTION TITLE */
 .section-title{
     color:#8B0000;
     font-size:24px;
-    margin-bottom:20px;
 }
 
-/* ✅ FIXED GRID: 3 WEB + 2 MOBILE */
+/* ✅ FIX: 5 PRODUCTS PER ROW (DESKTOP) */
 .products{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:15px;
-    max-width:1200px;
+    grid-template-columns:repeat(5, 1fr);
+    gap:10px;
+    max-width:1400px;
     margin:auto;
 }
 
-@media(max-width:600px){
+/* TABLET */
+@media(max-width:1100px){
     .products{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
+        grid-template-columns:repeat(4, 1fr);
     }
 }
 
-/* CARD */
+/* MOBILE */
+@media(max-width:700px){
+    .products{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+/* CARD SMALLER FOR MORE PRODUCTS */
 .card{
     background:white;
-    border-radius:12px;
-    padding:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.10);
+    border-radius:10px;
+    padding:8px;
+    box-shadow:0 0 8px rgba(0,0,0,0.08);
 }
 
 /* IMAGE */
@@ -136,63 +125,52 @@ header{
     object-fit:cover;
 }
 
-/* TEXT */
+/* TEXT SMALLER */
 .card h3{
-    font-size:14px;
-    margin:10px 0 5px;
-    min-height:36px;
+    font-size:13px;
+    margin:8px 0;
 }
 
 .desc{
-    font-size:12px;
+    font-size:11px;
     color:#444;
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-    min-height:34px;
+    min-height:30px;
 }
 
 .price{
     color:#cc0000;
-    font-size:18px;
+    font-size:16px;
     font-weight:bold;
-    margin-top:8px;
 }
 
-/* ✅ CENTER BUTTON FIX */
+/* BUTTONS CENTER */
 .btn{
     background:#ff6600;
     color:white;
-    padding:8px;
-    border-radius:6px;
     border:none;
+    padding:6px;
+    width:100%;
+    margin-top:6px;
+    border-radius:6px;
     cursor:pointer;
-    font-size:13px;
-
-    display:block;
-    width:92%;
-    margin:8px auto;
-    text-align:center;
+    font-size:12px;
 }
 
 /* QTY */
 .qty-box{
     display:flex;
     justify-content:center;
-    align-items:center;
-    gap:10px;
-    margin-top:10px;
+    gap:8px;
+    margin-top:8px;
 }
 
 .qty-box button{
-    width:28px;
-    height:28px;
+    width:26px;
+    height:26px;
     border:none;
     background:#ff6600;
     color:white;
     border-radius:4px;
-    cursor:pointer;
 }
 
 /* POPUP */
@@ -206,66 +184,28 @@ header{
     background:rgba(0,0,0,0.6);
     justify-content:center;
     align-items:center;
-    z-index:999;
-    padding:15px;
 }
 
 .popup-box{
     background:white;
-    width:100%;
+    width:90%;
     max-width:420px;
-    max-height:90vh;
-    overflow:auto;
-    border-radius:12px;
-    padding:20px;
-    text-align:left;
+    padding:15px;
+    border-radius:10px;
 }
 
-/* ✅ FIX IMAGE SIZE */
 .popup-box img{
     width:100%;
-    max-height:320px;
+    max-height:280px;
     object-fit:contain;
-    border-radius:10px;
-    margin-bottom:15px;
+    border-radius:8px;
 }
-
-.popup-title{
-    font-size:22px;
-    color:#8B0000;
-    margin-bottom:10px;
-}
-
-.popup-price{
-    color:#cc0000;
-    font-size:24px;
-    font-weight:bold;
-    margin:10px 0;
-}
-
-.popup-desc{
-    line-height:1.7;
-    color:#444;
-    font-size:15px;
-}
-
-input,textarea{
-    width:100%;
-    padding:10px;
-    margin:6px 0;
-    border:1px solid #ccc;
-    border-radius:6px;
-    font-size:14px;
-}
-
-.close-btn{background:#777;}
 
 /* TOTAL */
-.total-box{
+.total{
     font-size:18px;
     font-weight:bold;
     margin:10px 0;
-    color:#000;
 }
 
 </style>
@@ -277,18 +217,16 @@ input,textarea{
 <div class="header-content">
 <img src="icon.jpeg" class="logo">
 <div>
-<p class="title-main">PENDYALA</p>
-<p class="title-sub">DIVINE SERVICES</p>
+<h2>PENDYALA DIVINE SERVICES</h2>
 </div>
 </div>
 </header>
 
 <div class="menu">
-<a href="index.html">Poojas</a>
-<a href="astrology.html">Astrology</a>
-<a href="muhurthas.html">Muhurthas</a>
-<a href="products.html">Products</a>
-<a href="learnings.html">Learnings</a>
+<a href="#">Poojas</a>
+<a href="#">Astrology</a>
+<a href="#">Muhurthas</a>
+<a href="#">Products</a>
 </div>
 
 <div class="container">
@@ -301,71 +239,61 @@ input,textarea{
 
 <!-- PRODUCT 1 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg">
-</div>
+<div class="main-image"><img src="Images/SpatikaShivaLingam_One Inch.jpeg"></div>
 <h3>Spatika Shivlingam</h3>
-<p class="desc">Brings peace, purity, and spiritual growth.</p>
+<p class="desc">Peace & spiritual growth</p>
 <div class="price">₹1149</div>
-
 <div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
+<button onclick="changeQty(this,-1)">-</button><span class="qty">1</span><button onclick="changeQty(this,1)">+</button>
 </div>
-
-<button class="btn" onclick="openDetails('Spatika Shivlingam','₹1149','Images/SpatikaShivaLingam_One Inch.jpeg','Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.')">View Details</button>
-
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 2 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/MarakathaShivalingam.jpeg">
-</div>
+<div class="main-image"><img src="Images/MarakathaShivalingam.jpeg"></div>
 <h3>Marakatha Shivlingam</h3>
-<p class="desc">Helps in financial stability and wealth creation.</p>
+<p class="desc">Wealth & prosperity</p>
 <div class="price">₹1099</div>
-
 <div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
+<button onclick="changeQty(this,-1)">-</button><span class="qty">1</span><button onclick="changeQty(this,1)">+</button>
 </div>
-
-<button class="btn" onclick="openDetails('Marakatha Shivlingam','₹1099','Images/MarakathaShivalingam.jpeg','Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.')">View Details</button>
-
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 3 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/Navagraha Mala.jpeg">
-</div>
+<div class="main-image"><img src="Images/Navagraha Mala.jpeg"></div>
 <h3>Navagraha Mala</h3>
-<p class="desc">Balances planetary energies and removes doshas.</p>
+<p class="desc">Planetary balance</p>
 <div class="price">₹5500</div>
-
 <div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<span class="qty">1</span>
-<button onclick="changeQty(this,1)">+</button>
+<button onclick="changeQty(this,-1)">-</button><span class="qty">1</span><button onclick="changeQty(this,1)">+</button>
 </div>
-
-<button class="btn" onclick="openDetails('Navagraha Mala','₹5500','Images/Navagraha Mala.jpeg','Navagraha Mala helps balance all planetary influences and improves harmony in life.')">View Details</button>
-
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 4 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/spatika_nandi1.jpeg">
-</div>
+<div class="main-image"><img src="Images/spatika_nandi1.jpeg"></div>
 <h3>Spatika Nandi</h3>
-<p class="desc">Improves focus, positivity and calmness.</p>
+<p class="desc">Focus & calmness</p>
+<div class="price">₹1099</div>
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button><span class="qty">1</span><button onclick="changeQty(this,1)">+</button>
+</div>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- ✅ PRODUCT 5 (ADDED) -->
+<div class="card">
+<div class="main-image">
+<img src="Images/MarakathaNandi.jpeg">
+</div>
+
+<h3>Marakatha Nandi (1 inch)</h3>
+<p class="desc">Improves calmness & positivity</p>
+
 <div class="price">₹1099</div>
 
 <div class="qty-box">
@@ -374,45 +302,29 @@ input,textarea{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails('Spatika Nandi','₹1099','Images/spatika_nandi1.jpeg','Spatika Nandi improves positive vibrations, peace and spiritual focus.')">View Details</button>
-
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 </div>
 </div>
 
-<!-- DETAILS POPUP -->
-<div class="popup-bg" id="detailsPopup">
-<div class="popup-box">
-<img id="detailsImage">
-<div class="popup-title" id="detailsTitle"></div>
-<div class="popup-price" id="detailsPrice"></div>
-<div class="popup-desc" id="detailsDesc"></div>
-<button class="btn close-btn" onclick="closeDetails()">Close</button>
-</div>
-</div>
-
-<!-- CHECKOUT -->
+<!-- POPUP -->
 <div class="popup-bg" id="checkoutPopup">
 <div class="popup-box">
 
-<h2 style="text-align:center;color:#8B0000;">Enter Details</h2>
+<h3>Checkout</h3>
 
-<b>Product:</b> <span id="popup_product_name"></span><br><br>
-<b>Quantity:</b> <span id="popup_qty"></span><br><br>
+<b>Product:</b> <span id="pname"></span><br><br>
+<b>Qty:</b> <span id="pqty"></span><br><br>
 
-<div class="total-box">
-Total Amount: ₹<span id="popup_amount"></span>
-</div>
+<div class="total">Total: ₹<span id="ptotal"></span></div>
 
-<input id="c_name" placeholder="Full Name">
-<input id="c_phone" placeholder="Phone Number">
-<textarea id="c_address" placeholder="Address with Pin Code"></textarea>
-<input id="c_email" placeholder="Email ID">
+<input placeholder="Name">
+<input placeholder="Phone">
+<textarea placeholder="Address"></textarea>
 
-<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
-<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
+<button class="btn">Proceed</button>
+<button class="btn" onclick="closePopup()">Close</button>
 
 </div>
 </div>
@@ -420,73 +332,34 @@ Total Amount: ₹<span id="popup_amount"></span>
 <script>
 
 function changeQty(btn,change){
-    let qtyEl = btn.parentElement.querySelector(".qty");
-    let qty = parseInt(qtyEl.innerText);
-    qty = Math.max(1, qty + change);
-    qtyEl.innerText = qty;
+    let q = btn.parentElement.querySelector(".qty");
+    let v = Math.max(1, parseInt(q.innerText) + change);
+    q.innerText = v;
 }
-
-function openDetails(title,price,image,desc){
-    document.getElementById("detailsTitle").innerText = title;
-    document.getElementById("detailsPrice").innerText = price;
-    document.getElementById("detailsImage").src = image;
-    document.getElementById("detailsDesc").innerText = desc;
-    document.getElementById("detailsPopup").style.display = "flex";
-}
-
-function closeDetails(){
-    document.getElementById("detailsPopup").style.display = "none";
-}
-
-let selectedProduct="";
-let selectedQty=0;
-let selectedPrice=0;
 
 function openCheckout(btn){
 
     let card = btn.closest(".card");
 
-    selectedProduct = card.querySelector("h3").innerText;
-    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    let name = card.querySelector("h3").innerText;
+    let qty = parseInt(card.querySelector(".qty").innerText);
+    let price = parseInt(card.querySelector(".price").innerText.replace("₹",""));
 
-    let basePrice = parseInt(card.querySelector(".price").innerText.replace("₹",""));
+    document.getElementById("pname").innerText = name;
+    document.getElementById("pqty").innerText = qty;
+    document.getElementById("ptotal").innerText = qty * price;
 
-    selectedPrice = basePrice * selectedQty;
-
-    document.getElementById("popup_product_name").innerText = selectedProduct;
-    document.getElementById("popup_qty").innerText = selectedQty;
-    document.getElementById("popup_amount").innerText = selectedPrice;
-
-    document.getElementById("checkoutPopup").style.display = "flex";
+    document.getElementById("checkoutPopup").style.display="flex";
 }
 
-function closeCheckout(){
-    document.getElementById("checkoutPopup").style.display = "none";
+function closePopup(){
+    document.getElementById("checkoutPopup").style.display="none";
 }
 
-function submitOrder(){
-
-    let name = document.getElementById("c_name").value.trim();
-    let phone = document.getElementById("c_phone").value.trim();
-    let address = document.getElementById("c_address").value.trim();
-    let email = document.getElementById("c_email").value.trim();
-
-    if(!name || !phone || !address || !email){
-        alert("Please fill all details");
-        return;
-    }
-
-    localStorage.setItem("temp_product", selectedProduct);
-    localStorage.setItem("temp_price", selectedPrice);
-    localStorage.setItem("temp_qty", selectedQty);
-
-    window.location.href = "payment.html";
-}
-
-document.getElementById("searchBox").addEventListener("keyup", function(){
-    let filter = this.value.toLowerCase();
-    document.querySelectorAll(".card").forEach(card=>{
-        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
+document.getElementById("searchBox").addEventListener("keyup",function(){
+    let f=this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(c=>{
+        c.style.display=c.innerText.toLowerCase().includes(f)?"block":"none";
     });
 });
 
