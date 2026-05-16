@@ -20,8 +20,6 @@ content="summary_large_image">
 
 <style>
 
-/* (YOUR ENTIRE CSS REMAINS SAME — NO CHANGES) */
-
 html{ scroll-behavior:smooth; }
 
 body{
@@ -391,7 +389,7 @@ input,textarea{
 'Spatika Nandi (1 inch)',
 '₹1099',
 'Images/spatika_nandi1.jpeg',
-'Spatika Nandi helps in balancing energies, peace and spiritual protection.'
+'Spatika Nandi brings peace, stability and removes negative energies.'
 )">View Details</button>
 
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
@@ -425,9 +423,118 @@ input,textarea{
 </div>
 </div>
 
-<!-- POPUPS + JS REMAINS EXACT SAME (NO CHANGES) -->
+<!-- POPUPS -->
+<div class="popup-bg" id="detailsPopup">
+<div class="popup-box">
+<img id="detailsImage">
+<div class="popup-title" id="detailsTitle"></div>
+<div class="popup-price" id="detailsPrice"></div>
+<div class="popup-desc" id="detailsDesc"></div>
+<button class="btn close-btn" onclick="closeDetails()">Close</button>
+</div>
+</div>
 
-<!-- (KEEP YOUR EXISTING POPUP + SCRIPT AS-IS) -->
+<div class="popup-bg" id="checkoutPopup">
+<div class="popup-box">
+<h2 style="text-align:center;color:#8B0000;">Enter Details</h2>
+
+<b>Product:</b> <span id="popup_product_name"></span><br><br>
+<b>Quantity:</b> <span id="popup_qty"></span><br><br>
+<b>Total Amount:</b> ₹<span id="popup_amount"></span>
+
+<input id="c_name" placeholder="Full Name">
+<input id="c_phone" placeholder="Phone Number">
+<textarea id="c_address" placeholder="Address"></textarea>
+<input id="c_email" placeholder="Email">
+
+<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
+<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
+
+</div>
+</div>
+
+<script>
+
+/* ALL YOUR ORIGINAL JS (UNCHANGED) */
+
+function changeQty(btn,change){
+    let qtyEl = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtyEl.innerText);
+    qty = Math.max(1, qty + change);
+    qtyEl.innerText = qty;
+}
+
+function openDetails(title,price,image,desc){
+    document.getElementById("detailsTitle").innerText = title;
+    document.getElementById("detailsPrice").innerText = price;
+    document.getElementById("detailsImage").src = image;
+    document.getElementById("detailsDesc").innerText = desc;
+    document.getElementById("detailsPopup").style.display = "flex";
+}
+
+function closeDetails(){
+    document.getElementById("detailsPopup").style.display = "none";
+}
+
+let selectedProduct="";
+let selectedQty=0;
+let selectedPrice=0;
+
+function openCheckout(btn){
+
+    let card = btn.closest(".card");
+
+    selectedProduct = card.querySelector("h3").innerText;
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+
+    let basePrice = parseInt(card.querySelector(".price").innerText.replace("₹",""));
+
+    selectedPrice = basePrice * selectedQty;
+
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    document.getElementById("popup_amount").innerText = selectedPrice;
+
+    document.getElementById("checkoutPopup").style.display = "flex";
+}
+
+function closeCheckout(){
+    document.getElementById("checkoutPopup").style.display = "none";
+}
+
+function submitOrder(){
+
+    let name = document.getElementById("c_name").value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+    let email = document.getElementById("c_email").value.trim();
+
+    if(!name || !phone || !address || !email){
+        alert("Please fill all details");
+        return;
+    }
+
+    localStorage.setItem("temp_product", selectedProduct);
+    localStorage.setItem("temp_price", selectedPrice);
+    localStorage.setItem("temp_qty", selectedQty);
+
+    localStorage.setItem("temp_name", name);
+    localStorage.setItem("temp_phone", phone);
+    localStorage.setItem("temp_email", email);
+    localStorage.setItem("temp_address", address);
+
+    window.location.href = "payment.html";
+}
+
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card=>{
+        card.style.display = card.innerText.toLowerCase().includes(filter)
+        ? "block" : "none";
+    });
+});
+
+</script>
 
 </body>
 </html>
