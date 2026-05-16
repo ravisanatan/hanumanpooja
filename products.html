@@ -6,21 +6,16 @@
 <title>PENDYALA DIVINE SERVICES</title>
 
 <meta property="og:title" content="PENDYALA DIVINE SERVICES">
-<meta property="og:description"
-content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
-<meta property="og:image"
-content="https://pendyaladivineservices.com/banner.png">
-<meta property="og:url"
-content="https://pendyaladivineservices.com">
-<meta property="og:type"
-content="website">
+<meta property="og:description" content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
+<meta property="og:image" content="https://pendyaladivineservices.com/banner.png">
+<meta property="og:url" content="https://pendyaladivineservices.com">
+<meta property="og:type" content="website">
 
-<meta name="twitter:card"
-content="summary_large_image">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 
-html{ scroll-behavior:smooth; }
+html{scroll-behavior:smooth;}
 
 body{
     margin:0;
@@ -84,7 +79,9 @@ header{
 }
 
 /* CONTAINER */
-.container{ padding:20px; }
+.container{
+    padding:20px;
+}
 
 #searchBox{
     padding:10px;
@@ -101,10 +98,10 @@ header{
     margin-bottom:20px;
 }
 
-/* PRODUCTS GRID (UNCHANGED) */
+/* ✅ FIXED GRID: 3 WEB + 2 MOBILE */
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(3, 1fr);
     gap:15px;
     max-width:1200px;
     margin:auto;
@@ -163,23 +160,21 @@ header{
     margin-top:8px;
 }
 
-/* ✅ FIX: CENTER BUTTONS (NO LAYOUT CHANGE) */
+/* ✅ CENTER BUTTON FIX */
 .btn{
     background:#ff6600;
     color:white;
     padding:8px;
     border-radius:6px;
-    text-decoration:none;
-    display:block;
-    margin:8px auto;
     border:none;
     cursor:pointer;
     font-size:13px;
-    width:90%;
+
+    display:block;
+    width:92%;
+    margin:8px auto;
     text-align:center;
 }
-
-.btn:hover{ background:#e65c00; }
 
 /* QTY */
 .qty-box{
@@ -226,10 +221,10 @@ header{
     text-align:left;
 }
 
-/* ✅ FIX: MOBILE IMAGE TOO BIG */
+/* ✅ FIX IMAGE SIZE */
 .popup-box img{
     width:100%;
-    max-height:300px;
+    max-height:320px;
     object-fit:contain;
     border-radius:10px;
     margin-bottom:15px;
@@ -263,7 +258,15 @@ input,textarea{
     font-size:14px;
 }
 
-.close-btn{ background:#777; }
+.close-btn{background:#777;}
+
+/* TOTAL */
+.total-box{
+    font-size:18px;
+    font-weight:bold;
+    margin:10px 0;
+    color:#000;
+}
 
 </style>
 </head>
@@ -301,10 +304,8 @@ input,textarea{
 <div class="main-image">
 <img src="Images/SpatikaShivaLingam_One Inch.jpeg">
 </div>
-
 <h3>Spatika Shivlingam</h3>
 <p class="desc">Brings peace, purity, and spiritual growth.</p>
-
 <div class="price">₹1149</div>
 
 <div class="qty-box">
@@ -313,12 +314,7 @@ input,textarea{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Spatika Shivlingam',
-'₹1149',
-'Images/SpatikaShivaLingam_One Inch.jpeg',
-'Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.'
-)">View Details</button>
+<button class="btn" onclick="openDetails('Spatika Shivlingam','₹1149','Images/SpatikaShivaLingam_One Inch.jpeg','Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.')">View Details</button>
 
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
@@ -328,10 +324,8 @@ input,textarea{
 <div class="main-image">
 <img src="Images/MarakathaShivalingam.jpeg">
 </div>
-
 <h3>Marakatha Shivlingam</h3>
 <p class="desc">Helps in financial stability and wealth creation.</p>
-
 <div class="price">₹1099</div>
 
 <div class="qty-box">
@@ -340,12 +334,47 @@ input,textarea{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Marakatha Shivlingam',
-'₹1099',
-'Images/MarakathaShivalingam.jpeg',
-'Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.'
-)">View Details</button>
+<button class="btn" onclick="openDetails('Marakatha Shivlingam','₹1099','Images/MarakathaShivalingam.jpeg','Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.')">View Details</button>
+
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="card">
+<div class="main-image">
+<img src="Images/Navagraha Mala.jpeg">
+</div>
+<h3>Navagraha Mala</h3>
+<p class="desc">Balances planetary energies and removes doshas.</p>
+<div class="price">₹5500</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails('Navagraha Mala','₹5500','Images/Navagraha Mala.jpeg','Navagraha Mala helps balance all planetary influences and improves harmony in life.')">View Details</button>
+
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="card">
+<div class="main-image">
+<img src="Images/spatika_nandi1.jpeg">
+</div>
+<h3>Spatika Nandi</h3>
+<p class="desc">Improves focus, positivity and calmness.</p>
+<div class="price">₹1099</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails('Spatika Nandi','₹1099','Images/spatika_nandi1.jpeg','Spatika Nandi improves positive vibrations, peace and spiritual focus.')">View Details</button>
 
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
@@ -373,8 +402,9 @@ input,textarea{
 <b>Product:</b> <span id="popup_product_name"></span><br><br>
 <b>Quantity:</b> <span id="popup_qty"></span><br><br>
 
-<!-- ✅ FIX: SHOW TOTAL -->
-<b>Total Amount:</b> ₹<span id="popup_amount"></span>
+<div class="total-box">
+Total Amount: ₹<span id="popup_amount"></span>
+</div>
 
 <input id="c_name" placeholder="Full Name">
 <input id="c_phone" placeholder="Phone Number">
@@ -389,7 +419,6 @@ input,textarea{
 
 <script>
 
-/* QTY */
 function changeQty(btn,change){
     let qtyEl = btn.parentElement.querySelector(".qty");
     let qty = parseInt(qtyEl.innerText);
@@ -397,7 +426,6 @@ function changeQty(btn,change){
     qtyEl.innerText = qty;
 }
 
-/* DETAILS */
 function openDetails(title,price,image,desc){
     document.getElementById("detailsTitle").innerText = title;
     document.getElementById("detailsPrice").innerText = price;
@@ -410,7 +438,6 @@ function closeDetails(){
     document.getElementById("detailsPopup").style.display = "none";
 }
 
-/* CHECKOUT */
 let selectedProduct="";
 let selectedQty=0;
 let selectedPrice=0;
@@ -437,7 +464,6 @@ function closeCheckout(){
     document.getElementById("checkoutPopup").style.display = "none";
 }
 
-/* SUBMIT */
 function submitOrder(){
 
     let name = document.getElementById("c_name").value.trim();
@@ -454,20 +480,13 @@ function submitOrder(){
     localStorage.setItem("temp_price", selectedPrice);
     localStorage.setItem("temp_qty", selectedQty);
 
-    localStorage.setItem("temp_name", name);
-    localStorage.setItem("temp_phone", phone);
-    localStorage.setItem("temp_email", email);
-    localStorage.setItem("temp_address", address);
-
     window.location.href = "payment.html";
 }
 
-/* SEARCH */
 document.getElementById("searchBox").addEventListener("keyup", function(){
     let filter = this.value.toLowerCase();
     document.querySelectorAll(".card").forEach(card=>{
-        card.style.display = card.innerText.toLowerCase().includes(filter)
-        ? "block" : "none";
+        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
     });
 });
 
