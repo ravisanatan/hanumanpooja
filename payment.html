@@ -318,37 +318,37 @@ function paymentDone(){
 
     // ================= LEARNING =================
 
-    else if(type === "learning"){
+   else if(type === "learning"){
 
-        payload = {
+    payload = {
 
-            type:"learning",
+        type:"learning",
 
-            course:
-            localStorage.getItem("learning_course"),
+        course:
+        localStorage.getItem("temp_course"),
 
-            price:
-            localStorage.getItem("learning_price"),
+        price:
+        localStorage.getItem("temp_price"),
 
-            name:
-            localStorage.getItem("learning_name"),
+        name:
+        localStorage.getItem("temp_name"),
 
-            phone:
-            localStorage.getItem("learning_phone"),
+        phone:
+        localStorage.getItem("temp_phone"),
 
-            email:
-            localStorage.getItem("learning_email"),
+        email:
+        localStorage.getItem("temp_email"),
 
-            city:
-            localStorage.getItem("learning_city"),
+        city:
+        localStorage.getItem("temp_city"),
 
-            age:
-            localStorage.getItem("learning_age"),
+        age:
+        localStorage.getItem("temp_age"),
 
-            notes:
-            localStorage.getItem("learning_notes")
-        };
-    }
+        notes:
+        localStorage.getItem("temp_notes")
+    };
+}
 
     else{
 
