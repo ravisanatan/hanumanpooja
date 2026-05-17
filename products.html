@@ -235,6 +235,7 @@ header{
     border-radius:12px;
     padding:20px;
     text-align:left;
+    box-sizing:border-box;
 }
 
 .popup-box img{
@@ -264,13 +265,22 @@ header{
     font-size:15px;
 }
 
-input,textarea,select{{
+input,
+textarea,
+select{
+
     width:100%;
+    box-sizing:border-box;
+
     padding:10px;
     margin:6px 0;
+
     border:1px solid #ccc;
     border-radius:6px;
+
     font-size:14px;
+
+    display:block;
 }
 
 .close-btn{ background:#777; }
