@@ -526,6 +526,9 @@ function submitOrder(){
         return;
     }
 
+    // IMPORTANT FIX
+    localStorage.setItem("temp_type", "product");
+
     localStorage.setItem("temp_product", selectedProduct);
     localStorage.setItem("temp_price", selectedPrice);
     localStorage.setItem("temp_qty", selectedQty);
@@ -537,7 +540,6 @@ function submitOrder(){
 
     window.location.href = "payment.html";
 }
-
 document.getElementById("searchBox").addEventListener("keyup", function(){
     let filter = this.value.toLowerCase();
     document.querySelectorAll(".card").forEach(card=>{
