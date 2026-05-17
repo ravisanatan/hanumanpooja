@@ -532,30 +532,137 @@ function closeCheckout(){
 function submitOrder(){
 
     let name = document.getElementById("c_name").value.trim();
-    let phone = document.getElementById("c_phone").value.trim();
-    let address = document.getElementById("c_address").value.trim();
-    let email = document.getElementById("c_email").value.trim();
 
-    if(!name || !phone || !address || !email){
+    let phone = document.getElementById("c_phone")
+    .value.trim();
+
+    let address = document.getElementById("c_address")
+    .value.trim();
+
+    let state = document.getElementById("c_state")
+    .value.trim();
+
+    let pincode = document.getElementById("c_pincode")
+    .value.trim();
+
+    let email = document.getElementById("c_email")
+    .value.trim();
+
+    // REQUIRED CHECK
+
+    if(!name || !phone || !address ||
+       !state || !pincode || !email){
+
         alert("Please fill all details");
         return;
     }
 
+    // INDIAN MOBILE VALIDATION
+
+    if(!/^[6-9]\d{9}$/.test(phone)){
+
+        alert("Enter valid Indian mobile number");
+        return;
+    }
+
+    // INDIAN PINCODE VALIDATION
+
+    if(!/^[1-9][0-9]{5}$/.test(pincode)){
+
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    // EXTRA INDIA CHECK
+
+    const firstDigit = parseInt(pincode[0]);
+
+    if(firstDigit < 1 || firstDigit > 8){
+
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    // ADDRESS CHECK
+
+    if(address.length < 10){
+
+        alert("Please enter complete address");
+        return;
+    }
+
+    // STATE VALIDATION
+
+    const indianStates = [
+
+        "Andhra Pradesh",
+        "Arunachal Pradesh",
+        "Assam",
+        "Bihar",
+        "Chhattisgarh",
+        "Goa",
+        "Gujarat",
+        "Haryana",
+        "Himachal Pradesh",
+        "Jharkhand",
+        "Karnataka",
+        "Kerala",
+        "Madhya Pradesh",
+        "Maharashtra",
+        "Manipur",
+        "Meghalaya",
+        "Mizoram",
+        "Nagaland",
+        "Odisha",
+        "Punjab",
+        "Rajasthan",
+        "Sikkim",
+        "Tamil Nadu",
+        "Telangana",
+        "Tripura",
+        "Uttar Pradesh",
+        "Uttarakhand",
+        "West Bengal",
+        "Delhi"
+    ];
+
+    if(!indianStates.some(s =>
+        s.toLowerCase() === state.toLowerCase()
+    )){
+
+        alert("Enter valid Indian state");
+        return;
+    }
+
     // IMPORTANT FIX
+
     localStorage.setItem("temp_type", "product");
 
+    // STORE DATA
+
     localStorage.setItem("temp_product", selectedProduct);
+
     localStorage.setItem("temp_price", selectedPrice);
+
     localStorage.setItem("temp_qty", selectedQty);
 
     localStorage.setItem("temp_name", name);
+
     localStorage.setItem("temp_phone", phone);
+
     localStorage.setItem("temp_email", email);
+
     localStorage.setItem("temp_address", address);
+
+    localStorage.setItem("temp_state", state);
+
+    localStorage.setItem("temp_pincode", pincode);
+
+    // REDIRECT
 
     window.location.href = "payment.html";
 }
-document.getElementById("searchBox").addEventListener("keyup", function(){
+    document.getElementById("searchBox").addEventListener("keyup", function(){
     let filter = this.value.toLowerCase();
     document.querySelectorAll(".card").forEach(card=>{
         card.style.display = card.innerText.toLowerCase().includes(filter)
