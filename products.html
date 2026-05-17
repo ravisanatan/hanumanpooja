@@ -455,8 +455,23 @@ input,textarea{
 <b>Total Amount:</b> ₹<span id="popup_amount"></span>
 
 <input id="c_name" placeholder="Full Name">
-<input id="c_phone" placeholder="Phone Number">
-<textarea id="c_address" placeholder="Address"></textarea>
+
+<input id="c_phone"
+placeholder="Indian Mobile Number"
+maxlength="10"
+inputmode="numeric">
+
+<textarea id="c_address"
+placeholder="Full Indian Address"></textarea>
+
+<input id="c_state"
+placeholder="State">
+
+<input id="c_pincode"
+placeholder="6 Digit PIN Code"
+maxlength="6"
+inputmode="numeric">
+
 <input id="c_email" placeholder="Email">
 
 <button class="btn" onclick="submitOrder()">Proceed to Payment</button>
