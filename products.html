@@ -652,18 +652,52 @@ function openCheckout(btn){
 
     let card = btn.closest(".card");
 
-    selectedProduct = card.querySelector("h3").innerText;
-    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    selectedProduct =
+    card.querySelector("h3").innerText;
 
-    let basePrice = parseInt(card.querySelector(".price").innerText.replace("₹",""));
+    selectedQty =
+    parseInt(card.querySelector(".qty").innerText);
 
-    selectedPrice = basePrice * selectedQty;
+    let priceEl =
+    card.querySelector(".price");
 
-    document.getElementById("popup_product_name").innerText = selectedProduct;
-    document.getElementById("popup_qty").innerText = selectedQty;
-    document.getElementById("popup_amount").innerText = selectedPrice;
+    // SPECIAL SHIPPING PRODUCT
+    if(priceEl.dataset.bookPrice){
 
-    document.getElementById("checkoutPopup").style.display = "flex";
+        let bookPrice =
+        parseInt(priceEl.dataset.bookPrice);
+
+        let shipping =
+        parseInt(priceEl.dataset.shipping);
+
+        // SHIPPING ONLY ONCE
+        selectedPrice =
+        (bookPrice * selectedQty) + shipping;
+    }
+
+    // NORMAL PRODUCTS
+    else{
+
+        let basePrice =
+        parseInt(
+            priceEl.innerText.replace("₹","")
+        );
+
+        selectedPrice =
+        basePrice * selectedQty;
+    }
+
+    document.getElementById("popup_product_name")
+    .innerText = selectedProduct;
+
+    document.getElementById("popup_qty")
+    .innerText = selectedQty;
+
+    document.getElementById("popup_amount")
+    .innerText = selectedPrice;
+
+    document.getElementById("checkoutPopup")
+    .style.display = "flex";
 }
 
 function closeCheckout(){
