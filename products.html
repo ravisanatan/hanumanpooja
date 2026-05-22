@@ -6,20 +6,14 @@
 <title>PENDYALA DIVINE SERVICES</title>
 
 <meta property="og:title" content="PENDYALA DIVINE SERVICES">
-<meta property="og:description"
-content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
-<meta property="og:image"
-content="https://pendyaladivineservices.com/banner.png">
-<meta property="og:url"
-content="https://pendyaladivineservices.com">
-<meta property="og:type"
-content="website">
+<meta property="og:description" content="Book Poojas, Astrology, Muhurthas & Divine Services Online.">
+<meta property="og:image" content="https://pendyaladivineservices.com/banner.png">
+<meta property="og:url" content="https://pendyaladivineservices.com">
+<meta property="og:type" content="website">
 
-<meta name="twitter:card"
-content="summary_large_image">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
-
 html{ scroll-behavior:smooth; }
 
 body{
@@ -144,20 +138,7 @@ header{
     box-shadow:0 0 10px rgba(0,0,0,0.10);
 }
 
-/* IMAGE */
-.main-image{
-    width:100%;
-    aspect-ratio:1/1;
-    overflow:hidden;
-    border-radius:8px;
-}
-
-.main-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
+/* IMAGE SLIDER FIXES */
 .slider{
     position:relative;
     width:100%;
@@ -313,23 +294,17 @@ header{
 input,
 textarea,
 select{
-
     width:100%;
     box-sizing:border-box;
-
     padding:10px;
     margin:6px 0;
-
     border:1px solid #ccc;
     border-radius:6px;
-
     font-size:14px;
-
     display:block;
 }
 
 .close-btn{ background:#777; }
-
 </style>
 </head>
 
@@ -337,11 +312,10 @@ select{
 
 <header>
 <div class="header-content">
-<img src="icon.jpeg" class="logo">
+<img src="icon.jpeg" class="logo" alt="Logo">
 <div>
 <p class="title-main">PENDYALA</p>
 <p class="title-sub">DIVINE SERVICES</p>
-<!-- <p class="tagline">Tradition • Devotion • Guidance</p> -->
 </div>
 </div>
 </header>
@@ -364,8 +338,12 @@ select{
 
 <!-- PRODUCT 1 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/SpatikaShivaLingam_One Inch.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/SpatikaShivaLingam_One Inch.jpeg" class="active" alt="Spatika Shivlingam View 1">
+<img src="Images/SpatikaShivaLingam_One Inch_2.jpeg" alt="Spatika Shivlingam View 2">
+<img src="Images/SpatikaShivaLingam_One Inch_3.jpeg" alt="Spatika Shivlingam View 3">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
 <h3>Spatika Shivlingam</h3>
 <p class="desc">Brings peace, purity, and spiritual growth.</p>
@@ -377,20 +355,17 @@ select{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Spatika Shivlingam',
-'₹1149',
-'Images/SpatikaShivaLingam_One Inch.jpeg',
-'Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.'
-)">View Details</button>
-
+<button class="btn" onclick="openDetails(this, 'Spatika Shivlingam', '₹1149', 'Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.')">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 2 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/MarakathaShivalingam.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/MarakathaShivalingam.jpeg" class="active" alt="Marakatha Shivlingam View 1">
+<img src="Images/MarakathaShivalingam_2.jpeg" alt="Marakatha Shivlingam View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
 <h3>Marakatha Shivlingam</h3>
 <p class="desc">Helps in financial stability and wealth creation.</p>
@@ -402,20 +377,17 @@ select{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Marakatha Shivlingam',
-'₹1099',
-'Images/MarakathaShivalingam.jpeg',
-'Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.'
-)">View Details</button>
-
+<button class="btn" onclick="openDetails(this, 'Marakatha Shivlingam', '₹1099', 'Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.')">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 3 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/Navagraha Mala.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/Navagraha Mala.jpeg" class="active" alt="Navagraha Mala View 1">
+<img src="Images/Navagraha Mala_2.jpeg" alt="Navagraha Mala View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
 <h3>Navagraha Mala</h3>
 <p class="desc">Balances all planetary energies and removes doshas.</p>
@@ -427,23 +399,20 @@ select{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Navagraha Mala',
-'₹5500',
-'Images/Navagraha Mala.jpeg',
-'Balances all planetary energies and removes doshas.'
-)">View Details</button>
-
+<button class="btn" onclick="openDetails(this, 'Navagraha Mala', '₹5500', 'Balances all planetary energies and removes doshas.')">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 4 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/spatika_nandi1.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/spatika_nandi1.jpeg" class="active" alt="Spatika Nandi View 1">
+<img src="Images/spatika_nandi2.jpeg" alt="Spatika Nandi View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
 <h3>Spatika Nandi (1 inch)</h3>
-<p class="desc">Balances all planetary energies and removes doshas.</p>
+<p class="desc">Brings peace, stability, and removes negative energies.</p>
 <div class="price">₹1099</div>
 
 <div class="qty-box">
@@ -452,20 +421,17 @@ select{
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Spatika Nandi (1 inch)',
-'₹1099',
-'Images/spatika_nandi1.jpeg',
-'Spatika Nandi brings peace, stability and removes negative energies.'
-)">View Details</button>
-
+<button class="btn" onclick="openDetails(this, 'Spatika Nandi (1 inch)', '₹1099', 'Spatika Nandi brings peace, stability and removes negative energies.')">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 5 -->
 <div class="card">
-<div class="main-image">
-<img src="Images/MarakathaNandi.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/MarakathaNandi.jpeg" class="active" alt="Marakatha Nandi View 1">
+<img src="Images/MarakathaNandi_2.jpeg" alt="Marakatha Nandi View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
 <h3>Marakatha Nandi (1 inch)</h3>
 <p class="desc">Improves focus, calmness, and positive vibrations.</p>
@@ -477,42 +443,24 @@ select{
 <button onclick="changeQty(this,1)">+</button>
 </div>
     
-<button class="btn" onclick="openDetails(
-'Marakatha Nandi (1 inch)',
-'₹1199',
-'Images/MarakathaNandi.jpeg',
-'Improves focus, calmness, and positive vibrations.'
-)">View Details</button>
-
+<button class="btn" onclick="openDetails(this, 'Marakatha Nandi (1 inch)', '₹1099', 'Improves focus, calmness, and positive vibrations.')">View Details</button>
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
 <!-- PRODUCT 6 -->
 <div class="card">
-
-<div class="main-image">
-<img src="Images/products/hanumancha1.jpeg">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/products/hanumancha1.jpeg" class="active" alt="Hanuman Chalisa Colouring Book View 1">
+<img src="Images/products/hanumancha2.jpeg" alt="Hanuman Chalisa Colouring Book View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
 </div>
-
 <h3>Hanuman Chalisa Colouring Book for Kids</h3>
+<p class="desc">Let kids chant, color and connect with Hanuman.</p>
 
-<p class="desc">
-Let kids chant, color and connect with Hanuman.
-</p>
+<div class="price" data-book-price="350" data-shipping="100">₹450</div>
 
-<div class="price"
-     data-book-price="350"
-     data-shipping="100">
-
-₹450
-</div>
-
-<div style="
-font-size:12px;
-color:#666;
-margin-top:4px;
-line-height:1.5;
-">
+<div style="font-size:12px; color:#666; margin-top:4px; line-height:1.5;">
 Book: ₹350<br>
 Shipping: ₹100
 </div>
@@ -523,30 +471,17 @@ Shipping: ₹100
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<button class="btn" onclick="openDetails(
-'Hanuman Chalisa Colouring Book for Kids',
-'₹400',
-'Images/products/hanumancha1.jpeg',
-'Let kids chant, color and connect with Hanuman.'
-)">
-View Details
-</button>
-
-<button class="btn" onclick="openCheckout(this)">
-Buy Now
-</button>
-
-</div>
+<button class="btn" onclick="openDetails(this, 'Hanuman Chalisa Colouring Book for Kids', '₹450', 'Let kids chant, color and connect with Hanuman. (Price includes ₹350 book cost and ₹100 shipping fee)')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-    
 </div>
 </div>
 
 <!-- POPUPS -->
 <div class="popup-bg" id="detailsPopup">
 <div class="popup-box">
-<img id="detailsImage">
+<img id="detailsImage" alt="Product Details">
 <div class="popup-title" id="detailsTitle"></div>
 <div class="popup-price" id="detailsPrice"></div>
 <div class="popup-desc" id="detailsDesc"></div>
@@ -556,26 +491,18 @@ Buy Now
 
 <div class="popup-bg" id="checkoutPopup">
 <div class="popup-box">
-<h2 style="text-align:center;color:#8B0000;">Enter Details</h2>
+<h2 style="text-align:center;color:#8B0000;margin-top:0;">Enter Details</h2>
 
 <b>Product:</b> <span id="popup_product_name"></span><br><br>
 <b>Quantity:</b> <span id="popup_qty"></span><br><br>
 <b>Total Amount:</b> ₹<span id="popup_amount"></span>
 
 <input id="c_name" placeholder="Full Name">
-
-<input id="c_phone"
-placeholder="Indian Mobile Number"
-maxlength="10"
-inputmode="numeric">
-
-<textarea id="c_address"
-placeholder="Full Indian Address"></textarea>
+<input id="c_phone" placeholder="Indian Mobile Number" maxlength="10" inputmode="numeric">
+<textarea id="c_address" placeholder="Full Indian Address"></textarea>
 
 <select id="c_state">
-
 <option value="">Select State</option>
-
 <option>Andhra Pradesh</option>
 <option>Arunachal Pradesh</option>
 <option>Assam</option>
@@ -605,25 +532,45 @@ placeholder="Full Indian Address"></textarea>
 <option>Uttarakhand</option>
 <option>West Bengal</option>
 <option>Delhi</option>
-
 </select>
 
-<input id="c_pincode"
-placeholder="6 Digit PIN Code"
-maxlength="6"
-inputmode="numeric">
-
+<input id="c_pincode" placeholder="6 Digit PIN Code" maxlength="6" inputmode="numeric">
 <input id="c_email" placeholder="Email">
 
 <button class="btn" onclick="submitOrder()">Proceed to Payment</button>
 <button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
-
 </div>
 </div>
 
 <script>
+/* SLIDER JAVASCRIPT */
+function moveSlide(btn, direction) {
+    let slider = btn.parentElement;
+    let images = slider.querySelectorAll("img");
+    let activeIndex = -1;
 
-/* ALL YOUR ORIGINAL JS (UNCHANGED) */
+    // Find the currently active image index
+    for (let i = 0; i < images.length; i++) {
+        if (images[i].classList.contains("active")) {
+            activeIndex = i;
+            break;
+        }
+    }
+
+    // Remove active status from old image
+    images[activeIndex].classList.remove("active");
+
+    // Calculate new index with loop-around logic
+    let newIndex = activeIndex + direction;
+    if (newIndex >= images.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = images.length - 1;
+    }
+
+    // Display the new active image
+    images[newIndex].classList.add("active");
+}
 
 function changeQty(btn,change){
     let qtyEl = btn.parentElement.querySelector(".qty");
@@ -632,10 +579,14 @@ function changeQty(btn,change){
     qtyEl.innerText = qty;
 }
 
-function openDetails(title,price,image,desc){
+/* MODIFIED TO EXTRACT CURRENT ACTIVE SLIDER IMAGE PATH */
+function openDetails(btn, title, price, desc) {
+    let card = btn.closest(".card");
+    let activeImg = card.querySelector(".slider img.active");
+    
     document.getElementById("detailsTitle").innerText = title;
     document.getElementById("detailsPrice").innerText = price;
-    document.getElementById("detailsImage").src = image;
+    document.getElementById("detailsImage").src = activeImg ? activeImg.src : "";
     document.getElementById("detailsDesc").innerText = desc;
     document.getElementById("detailsPopup").style.display = "flex";
 }
@@ -649,55 +600,29 @@ let selectedQty=0;
 let selectedPrice=0;
 
 function openCheckout(btn){
-
     let card = btn.closest(".card");
 
-    selectedProduct =
-    card.querySelector("h3").innerText;
-
-    selectedQty =
-    parseInt(card.querySelector(".qty").innerText);
-
-    let priceEl =
-    card.querySelector(".price");
+    selectedProduct = card.querySelector("h3").innerText;
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    let priceEl = card.querySelector(".price");
 
     // SPECIAL SHIPPING PRODUCT
     if(priceEl.dataset.bookPrice){
-
-        let bookPrice =
-        parseInt(priceEl.dataset.bookPrice);
-
-        let shipping =
-        parseInt(priceEl.dataset.shipping);
-
+        let bookPrice = parseInt(priceEl.dataset.bookPrice);
+        let shipping = parseInt(priceEl.dataset.shipping);
         // SHIPPING ONLY ONCE
-        selectedPrice =
-        (bookPrice * selectedQty) + shipping;
+        selectedPrice = (bookPrice * selectedQty) + shipping;
     }
-
     // NORMAL PRODUCTS
     else{
-
-        let basePrice =
-        parseInt(
-            priceEl.innerText.replace("₹","")
-        );
-
-        selectedPrice =
-        basePrice * selectedQty;
+        let basePrice = parseInt(priceEl.innerText.replace("₹",""));
+        selectedPrice = basePrice * selectedQty;
     }
 
-    document.getElementById("popup_product_name")
-    .innerText = selectedProduct;
-
-    document.getElementById("popup_qty")
-    .innerText = selectedQty;
-
-    document.getElementById("popup_amount")
-    .innerText = selectedPrice;
-
-    document.getElementById("checkoutPopup")
-    .style.display = "flex";
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    document.getElementById("popup_amount").innerText = selectedPrice;
+    document.getElementById("checkoutPopup").style.display = "flex";
 }
 
 function closeCheckout(){
@@ -705,146 +630,82 @@ function closeCheckout(){
 }
 
 function submitOrder(){
-
     let name = document.getElementById("c_name").value.trim();
-
-    let phone = document.getElementById("c_phone")
-    .value.trim();
-
-    let address = document.getElementById("c_address")
-    .value.trim();
-
-    let state = document.getElementById("c_state")
-    .value.trim();
-
-    let pincode = document.getElementById("c_pincode")
-    .value.trim();
-
-    let email = document.getElementById("c_email")
-    .value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+    let state = document.getElementById("c_state").value.trim();
+    let pincode = document.getElementById("c_pincode").value.trim();
+    let email = document.getElementById("c_email").value.trim();
 
     // REQUIRED CHECK
-
-    if(!name || !phone || !address ||
-       !state || !pincode || !email){
-
+    if(!name || !phone || !address || !state || !pincode || !email){
         alert("Please fill all details");
         return;
     }
 
     // INDIAN MOBILE VALIDATION
-
     if(!/^[6-9]\d{9}$/.test(phone)){
-
         alert("Enter valid Indian mobile number");
         return;
     }
 
     // INDIAN PINCODE VALIDATION
-
     if(!/^[1-9][0-9]{5}$/.test(pincode)){
-
         alert("Enter valid Indian PIN code");
         return;
     }
 
     // EXTRA INDIA CHECK
-
     const firstDigit = parseInt(pincode[0]);
-
     if(firstDigit < 1 || firstDigit > 8){
-
         alert("Enter valid Indian PIN code");
         return;
     }
 
     // ADDRESS CHECK
-
     if(address.length < 10){
-
         alert("Please enter complete address");
         return;
     }
 
     // STATE VALIDATION
-
     const indianStates = [
-
-        "Andhra Pradesh",
-        "Arunachal Pradesh",
-        "Assam",
-        "Bihar",
-        "Chhattisgarh",
-        "Goa",
-        "Gujarat",
-        "Haryana",
-        "Himachal Pradesh",
-        "Jharkhand",
-        "Karnataka",
-        "Kerala",
-        "Madhya Pradesh",
-        "Maharashtra",
-        "Manipur",
-        "Meghalaya",
-        "Mizoram",
-        "Nagaland",
-        "Odisha",
-        "Punjab",
-        "Rajasthan",
-        "Sikkim",
-        "Tamil Nadu",
-        "Telangana",
-        "Tripura",
-        "Uttar Pradesh",
-        "Uttarakhand",
-        "West Bengal",
-        "Delhi"
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+        "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi"
     ];
 
-    if(!indianStates.some(s =>
-        s.toLowerCase() === state.toLowerCase()
-    )){
-
+    if(!indianStates.some(s => s.toLowerCase() === state.toLowerCase())){
         alert("Enter valid Indian state");
         return;
     }
 
     // IMPORTANT FIX
-
     localStorage.setItem("temp_type", "product");
 
     // STORE DATA
-
     localStorage.setItem("temp_product", selectedProduct);
-
     localStorage.setItem("temp_price", selectedPrice);
-
     localStorage.setItem("temp_qty", selectedQty);
-
     localStorage.setItem("temp_name", name);
-
     localStorage.setItem("temp_phone", phone);
-
     localStorage.setItem("temp_email", email);
-
     localStorage.setItem("temp_address", address);
-
     localStorage.setItem("temp_state", state);
-
     localStorage.setItem("temp_pincode", pincode);
 
     // REDIRECT
-
     window.location.href = "payment.html";
 }
-    document.getElementById("searchBox").addEventListener("keyup", function(){
-    let filter = this.value.toLowerCase();
+
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase().trim();
     document.querySelectorAll(".card").forEach(card=>{
-        card.style.display = card.innerText.toLowerCase().includes(filter)
-        ? "block" : "none";
+        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
     });
 });
-
 </script>
 
 </body>
