@@ -1024,37 +1024,47 @@ function setupConsultationDate(){
         }
     });
 }
-function loadAvailableSlots(date){
+async function loadAvailableSlots(date){
 
     const slotSelect =
     document.getElementById("consultSlot");
 
     slotSelect.innerHTML =
-    '<option value="">Select Slot</option>';
+    '<option value="">Loading Slots...</option>';
 
-    let bookedSlots =
-    JSON.parse(localStorage.getItem("bookedSlots") || "{}");
+    try{
 
-    let bookedForDate =
-    bookedSlots[date] || [];
+        const response = await fetch(
+            "YOUR_APPS_SCRIPT_URL?action=getBookedSlots&date=" + encodeURIComponent(date)
+        );
 
-    allSlots.forEach(slot => {
+        const bookedForDate = await response.json();
 
-        if(!bookedForDate.includes(slot)){
+        slotSelect.innerHTML =
+        '<option value="">Select Slot</option>';
 
-            let option =
-            document.createElement("option");
+        allSlots.forEach(slot => {
 
-            option.value = slot;
+            if(!bookedForDate.includes(slot)){
 
-            option.textContent = slot;
+                let option =
+                document.createElement("option");
 
-            slotSelect.appendChild(option);
-        }
+                option.value = slot;
+                option.textContent = slot;
 
-    });
+                slotSelect.appendChild(option);
+            }
+        });
+
+    }catch(err){
+
+        console.error(err);
+
+        slotSelect.innerHTML =
+        '<option value="">Error loading slots</option>';
+    }
 }
-
 document.addEventListener("change", function(e){
 
     if(e.target.id == "consultDate"){
