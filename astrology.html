@@ -625,6 +625,44 @@ style="padding:10px;margin:5px 0;">
 placeholder="Email ID"
 style="padding:10px;margin:5px 0;">
 
+//Slot selection
+<div id="slotSection" style="display:none;">
+
+<label style="font-size:14px;font-weight:bold;">
+Consultation Date
+</label>
+
+<input
+type="date"
+id="consultDate"
+style="
+width:100%;
+padding:12px;
+margin:5px 0;
+border:1px solid #999;
+border-radius:8px;
+font-size:16px;
+">
+
+<label style="font-size:14px;font-weight:bold;">
+Available Time Slots (IST)
+</label>
+
+<select
+id="consultSlot"
+style="
+width:100%;
+padding:12px;
+margin:5px 0;
+border:1px solid #999;
+border-radius:8px;
+font-size:16px;
+">
+<option value="">Select Slot</option>
+</select>
+
+</div>    
+    
 <button
 onclick="submitAstrology()"
 style="
