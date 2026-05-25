@@ -1035,7 +1035,7 @@ async function loadAvailableSlots(date){
     try{
 
         const response = await fetch(
-            "YOUR_APPS_SCRIPT_URL?action=getBookedSlots&date=" + encodeURIComponent(date)
+            "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec?action=getBookedSlots&date=" + encodeURIComponent(date)
         );
 
         const bookedForDate = await response.json();
