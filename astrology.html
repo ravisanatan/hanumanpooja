@@ -979,6 +979,7 @@ function setupConsultationDate(){
     const dateInput =
     document.getElementById("consultDate");
 
+    // Get current time in IST
     let now = new Date();
 
     let istNow = new Date(
@@ -987,6 +988,7 @@ function setupConsultationDate(){
         })
     );
 
+    // Force NEXT DAY only
     istNow.setDate(istNow.getDate() + 1);
 
     let yyyy = istNow.getFullYear();
@@ -999,13 +1001,29 @@ function setupConsultationDate(){
 
     let minDate = `${yyyy}-${mm}-${dd}`;
 
+    // Set min date (blocks past + today)
     dateInput.min = minDate;
-
     dateInput.value = minDate;
 
+    // Load slots for default date
     loadAvailableSlots(minDate);
-}
 
+    // Safety check: prevent manual invalid entry
+    dateInput.addEventListener("change", function(){
+
+        if(this.value < minDate){
+
+            alert("Please select a valid future date");
+
+            this.value = minDate;
+
+            loadAvailableSlots(minDate);
+        }
+        else{
+            loadAvailableSlots(this.value);
+        }
+    });
+}
 function loadAvailableSlots(date){
 
     const slotSelect =
