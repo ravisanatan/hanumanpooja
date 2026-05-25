@@ -724,6 +724,15 @@ function openAstrologyPopup(type, service, price){
     // HIDE SECOND PERSON
     document.getElementById("secondPersonAstro").style.display = "none";
 
+    document.getElementById("slotSection").style.display = "none";
+
+if(service.includes("Consultation")){
+
+    document.getElementById("slotSection").style.display = "block";
+
+    setupConsultationDate();
+}
+
     // SHOW FOR COUPLE
     if(type == "couple"){
 
@@ -773,6 +782,12 @@ function submitAstrology(){
     let email =
     document.getElementById("astro_email").value.trim();
 
+    let consultDate =
+    document.getElementById("consultDate")?.value;
+
+    let consultSlot =
+    document.getElementById("consultSlot")?.value;
+    
     // VALIDATION
 
     const nameRegex = /^[A-Za-z\s]+$/;
@@ -803,6 +818,19 @@ function submitAstrology(){
         return;
     }
 
+    if(
+       astroService.includes("Consultation")
+    ){
+    
+        if(!consultDate || !consultSlot){
+    
+            alert("Please select consultation slot");
+    
+            return;
+        }
+    
+    }
+    
     if(!emailRegex.test(email)){
 
         alert("Invalid email");
@@ -908,10 +936,113 @@ localStorage.setItem("temp_email", email);
 
 // REDIRECT
 
+if(
+   astroService.includes("Consultation")
+){
+
+    let bookedSlots =
+    JSON.parse(localStorage.getItem("bookedSlots") || "{}");
+
+    if(!bookedSlots[consultDate]){
+
+        bookedSlots[consultDate] = [];
+    }
+
+    bookedSlots[consultDate].push(consultSlot);
+
+    localStorage.setItem(
+        "bookedSlots",
+        JSON.stringify(bookedSlots)
+    );
+
+}
+    
 window.location.href = "payment.html";
     
 }
+const allSlots = [
 
+"04:00 PM - 04:45 PM",
+"05:00 PM - 05:45 PM",
+"06:00 PM - 06:45 PM",
+"07:00 PM - 07:45 PM",
+"08:00 PM - 08:45 PM",
+"09:00 PM - 09:45 PM"
+
+];
+
+function setupConsultationDate(){
+
+    const dateInput =
+    document.getElementById("consultDate");
+
+    let now = new Date();
+
+    let istNow = new Date(
+        now.toLocaleString("en-US", {
+            timeZone: "Asia/Kolkata"
+        })
+    );
+
+    istNow.setDate(istNow.getDate() + 1);
+
+    let yyyy = istNow.getFullYear();
+
+    let mm =
+    String(istNow.getMonth() + 1).padStart(2, '0');
+
+    let dd =
+    String(istNow.getDate()).padStart(2, '0');
+
+    let minDate = `${yyyy}-${mm}-${dd}`;
+
+    dateInput.min = minDate;
+
+    dateInput.value = minDate;
+
+    loadAvailableSlots(minDate);
+}
+
+function loadAvailableSlots(date){
+
+    const slotSelect =
+    document.getElementById("consultSlot");
+
+    slotSelect.innerHTML =
+    '<option value="">Select Slot</option>';
+
+    let bookedSlots =
+    JSON.parse(localStorage.getItem("bookedSlots") || "{}");
+
+    let bookedForDate =
+    bookedSlots[date] || [];
+
+    allSlots.forEach(slot => {
+
+        if(!bookedForDate.includes(slot)){
+
+            let option =
+            document.createElement("option");
+
+            option.value = slot;
+
+            option.textContent = slot;
+
+            slotSelect.appendChild(option);
+        }
+
+    });
+}
+
+document.addEventListener("change", function(e){
+
+    if(e.target.id == "consultDate"){
+
+        loadAvailableSlots(e.target.value);
+
+    }
+
+});
 </script>
 
 </body>
