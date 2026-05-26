@@ -109,14 +109,14 @@ I Have Paid
 
 <script>
 
-// ================= SHOW PRICE =================
+/* ================= SHOW PRICE ================= */
 
 document.getElementById("amount").innerText =
 localStorage.getItem("temp_price") ||
 localStorage.getItem("learning_price") ||
 "";
 
-// ================= PAYMENT =================
+/* ================= PAYMENT FUNCTION ================= */
 
 function paymentDone(){
 
@@ -138,229 +138,132 @@ function paymentDone(){
         return;
     }
 
-    // ================= TYPE =================
+    /* ================= TYPE DETECTION ================= */
 
     let type =
     localStorage.getItem("temp_type");
 
-    // LEARNING FALLBACK ONLY
-    if(!type &&
-       localStorage.getItem("temp_course")){
-    
+    if(!type && localStorage.getItem("temp_course")){
         type = "learning";
     }
 
     let payload = {};
 
-    // ================= POOJA =================
+    /* ================= POOJA ================= */
 
     if(type === "pooja"){
 
         payload = {
-
             type:"pooja",
+            poojaType: localStorage.getItem("temp_pooja"),
+            price: localStorage.getItem("temp_price"),
+            gothram: localStorage.getItem("temp_gothram"),
 
-            poojaType:
-            localStorage.getItem("temp_pooja"),
+            name1: localStorage.getItem("temp_name1"),
+            name2: localStorage.getItem("temp_name2"),
+            name3: localStorage.getItem("temp_name3"),
+            name4: localStorage.getItem("temp_name4"),
+            name5: localStorage.getItem("temp_name5"),
 
-            price:
-            localStorage.getItem("temp_price"),
-
-            gothram:
-            localStorage.getItem("temp_gothram"),
-
-            name1:
-            localStorage.getItem("temp_name1"),
-
-            name2:
-            localStorage.getItem("temp_name2"),
-
-            name3:
-            localStorage.getItem("temp_name3"),
-
-            name4:
-            localStorage.getItem("temp_name4"),
-
-            name5:
-            localStorage.getItem("temp_name5"),
-
-            wish:
-            localStorage.getItem("temp_wish"),
-
-            phone:
-            localStorage.getItem("temp_phone"),
-
-            email:
-            localStorage.getItem("temp_email")
+            wish: localStorage.getItem("temp_wish"),
+            phone: localStorage.getItem("temp_phone"),
+            email: localStorage.getItem("temp_email")
         };
     }
 
-    // ================= ASTROLOGY =================
+    /* ================= ASTROLOGY ================= */
 
     else if(type === "astrology"){
 
         payload = {
-
             type:"astrology",
+            service: localStorage.getItem("temp_service"),
+            price: localStorage.getItem("temp_price"),
 
-            service:
-            localStorage.getItem("temp_service"),
+            consultDate: localStorage.getItem("temp_consultDate"),
+            consultSlot: localStorage.getItem("temp_consultSlot"),
 
-            price:
-            localStorage.getItem("temp_price"),
+            name1: localStorage.getItem("temp_name1"),
+            dob1: localStorage.getItem("temp_dob1"),
+            tob1: localStorage.getItem("temp_tob1"),
+            pob1: localStorage.getItem("temp_pob1"),
 
-            consultDate:
-            localStorage.getItem("temp_consultDate"),
-            
-            consultSlot:
-            localStorage.getItem("temp_consultSlot"),
-            
-            name1:
-            localStorage.getItem("temp_name1"),
+            name2: localStorage.getItem("temp_name2"),
+            dob2: localStorage.getItem("temp_dob2"),
+            tob2: localStorage.getItem("temp_tob2"),
+            pob2: localStorage.getItem("temp_pob2"),
 
-            dob1:
-            localStorage.getItem("temp_dob1"),
-
-            tob1:
-            localStorage.getItem("temp_tob1"),
-
-            pob1:
-            localStorage.getItem("temp_pob1"),
-
-            name2:
-            localStorage.getItem("temp_name2"),
-
-            dob2:
-            localStorage.getItem("temp_dob2"),
-
-            tob2:
-            localStorage.getItem("temp_tob2"),
-
-            pob2:
-            localStorage.getItem("temp_pob2"),
-
-            reason:
-            localStorage.getItem("temp_reason"),
-
-            phone:
-            localStorage.getItem("temp_phone"),
-
-            email:
-            localStorage.getItem("temp_email")
+            reason: localStorage.getItem("temp_reason"),
+            phone: localStorage.getItem("temp_phone"),
+            email: localStorage.getItem("temp_email")
         };
     }
 
-    // ================= MUHURTHAM =================
+    /* ================= MUHURTHAM ================= */
 
-    else if(type === "muhurtha" ||
-            type === "muhurtham"){
+    else if(type === "muhurtha" || type === "muhurtham"){
 
         payload = {
-
             type:"muhurtham",
+            service: localStorage.getItem("temp_muhurtham_type"),
+            price: localStorage.getItem("temp_price"),
 
-            service:
-            localStorage.getItem("temp_muhurtham_type"),
+            name1: localStorage.getItem("temp_name1"),
+            nak1: localStorage.getItem("temp_nak1"),
+            name2: localStorage.getItem("temp_name2"),
+            nak2: localStorage.getItem("temp_nak2"),
 
-            price:
-            localStorage.getItem("temp_price"),
+            event: localStorage.getItem("temp_event"),
+            requirement: localStorage.getItem("temp_requirement"),
 
-            name1:
-            localStorage.getItem("temp_name1"),
-
-            nak1:
-            localStorage.getItem("temp_nak1"),
-
-            name2:
-            localStorage.getItem("temp_name2"),
-
-            nak2:
-            localStorage.getItem("temp_nak2"),
-
-            event:
-            localStorage.getItem("temp_event"),
-
-            requirement:
-            localStorage.getItem("temp_requirement"),
-
-            phone:
-            localStorage.getItem("temp_phone"),
-
-            email:
-            localStorage.getItem("temp_email")
+            phone: localStorage.getItem("temp_phone"),
+            email: localStorage.getItem("temp_email")
         };
     }
 
-    // ================= PRODUCT =================
+    /* ================= PRODUCT (UPDATED WITH DIGITAL SUPPORT) ================= */
 
-else if(type === "product"){
+    else if(type === "product"){
 
-    payload = {
+        payload = {
+            type:"product",
 
-        type:"product",
+            product: localStorage.getItem("temp_product"),
+            price: localStorage.getItem("temp_price"),
+            qty: localStorage.getItem("temp_qty"),
 
-        product:
-        localStorage.getItem("temp_product"),
+            name: localStorage.getItem("temp_name"),
+            phone: localStorage.getItem("temp_phone"),
+            email: localStorage.getItem("temp_email"),
 
-        price:
-        localStorage.getItem("temp_price"),
+            address: localStorage.getItem("temp_address"),
+            state: localStorage.getItem("temp_state"),
+            pincode: localStorage.getItem("temp_pincode"),
 
-        qty:
-        localStorage.getItem("temp_qty"),
+            /* 🔥 NEW DIGITAL SUPPORT */
+            digital: localStorage.getItem("temp_digital") || "false",
+            file: localStorage.getItem("temp_file") || ""
+        };
+    }
 
-        name:
-        localStorage.getItem("temp_name"),
+    /* ================= LEARNING ================= */
 
-        phone:
-        localStorage.getItem("temp_phone"),
+    else if(type === "learning"){
 
-        email:
-        localStorage.getItem("temp_email"),
+        payload = {
+            type:"learning",
+            course: localStorage.getItem("temp_course"),
+            price: localStorage.getItem("temp_price"),
 
-        address:
-        localStorage.getItem("temp_address"),
+            name: localStorage.getItem("temp_name"),
+            phone: localStorage.getItem("temp_phone"),
+            email: localStorage.getItem("temp_email"),
 
-        state:
-        localStorage.getItem("temp_state"),
-        
-        pincode:
-        localStorage.getItem("temp_pincode")
-    };
-}
-
-    // ================= LEARNING =================
-
-   else if(type === "learning"){
-
-    payload = {
-
-        type:"learning",
-
-        course:
-        localStorage.getItem("temp_course"),
-
-        price:
-        localStorage.getItem("temp_price"),
-
-        name:
-        localStorage.getItem("temp_name"),
-
-        phone:
-        localStorage.getItem("temp_phone"),
-
-        email:
-        localStorage.getItem("temp_email"),
-
-        city:
-        localStorage.getItem("temp_city"),
-
-        age:
-        localStorage.getItem("temp_age"),
-
-        notes:
-        localStorage.getItem("temp_notes")
-    };
-}
+            city: localStorage.getItem("temp_city"),
+            age: localStorage.getItem("temp_age"),
+            notes: localStorage.getItem("temp_notes")
+        };
+    }
 
     else{
 
@@ -372,7 +275,7 @@ else if(type === "product"){
         return;
     }
 
-    // ================= API =================
+    /* ================= API CALL ================= */
 
     fetch(
     "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
@@ -382,7 +285,6 @@ else if(type === "product"){
     })
 
     .then(res => res.text())
-
     .then(text => {
 
         let response = JSON.parse(text);
@@ -392,74 +294,54 @@ else if(type === "product"){
         response.orderId;
 
         if(!id){
-
             alert("Booking saved but ID missing");
             return;
         }
 
         let message = "";
 
-if(type === "pooja"){
-    message =
-    "🪔 Jai Shree Ram 🙏\n\n" +
-    "Pooja Booking Confirmed\n" +
-    "Booking ID: " + id + "\n\n" +
-    "We will perform your pooja with full devotion.\n" +
-    "You will receive further updates soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        /* ================= SUCCESS MESSAGES ================= */
 
-else if(type === "astrology"){
-    message =
-    "🔯 Jai Shree Ram 🙏\n\n" +
-    "Astrology Consultation Booked\n" +
-    "Booking ID: " + id + "\n\n" +
-    "Our astrologer will contact you soon with guidance.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        if(type === "pooja"){
+            message = "🪔 Jai Shree Ram 🙏\nPooja Booking Confirmed\nID: "+id;
+        }
+        else if(type === "astrology"){
+            message = "🔯 Astrology Booked\nID: "+id;
+        }
+        else if(type === "muhurtham"){
+            message = "📅 Muhurtham Booked\nID: "+id;
+        }
+        else if(type === "product"){
+            message = "🛍️ Product Order Confirmed\nID: "+id;
+        }
+        else if(type === "learning"){
+            message = "📚 Learning Enrolled\nID: "+id;
+        }
 
-else if(type === "muhurtham"){
-    message =
-    "📅 Jai Shree Ram 🙏\n\n" +
-    "Muhurtham Booking Confirmed\n" +
-    "Booking ID: " + id + "\n\n" +
-    "We will help you select the most auspicious timing.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        alert(message);
 
-else if(type === "product"){
-    message =
-    "🛍️ Jai Shree Ram 🙏\n\n" +
-    "Product Order Placed Successfully\n" +
-    "Order ID: " + id + "\n\n" +
-    "Your spiritual product will be packed and shipped soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        /* ================= 🔥 DIGITAL DOWNLOAD REDIRECT ================= */
 
-else if(type === "learning"){
-    message =
-    "📚 Jai Shree Ram 🙏\n\n" +
-    "Learning Program Enrolled Successfully\n" +
-    "Registration ID: " + id + "\n\n" +
-    "Welcome to your spiritual learning journey.\n" +
-    "We will contact you with class details soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        if(type === "product"){
 
-else{
-    message =
-    "🙏 Jai Shree Ram\n\n" +
-    "Booking Successful\n" +
-    "ID: " + id + "\n\n" +
-    "Thank you for choosing Pendyala Divine Services.";
-}
+            let isDigital = localStorage.getItem("temp_digital");
+            let file = localStorage.getItem("temp_file");
 
-alert(message);
+            if(isDigital === "true" && file){
+
+                localStorage.setItem("download_file", file);
+
+                setTimeout(()=>{
+                    window.location.href = "download.html";
+                }, 800);
+
+                return;
+            }
+        }
 
         localStorage.clear();
+        window.location.href = "index.html";
 
-        window.location.href =
-        "index.html";
     })
 
     .catch(err => {
@@ -474,5 +356,6 @@ alert(message);
 }
 
 </script>
+
 </body>
 </html>
