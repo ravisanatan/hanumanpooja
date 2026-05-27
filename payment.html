@@ -109,14 +109,14 @@ I Have Paid
 
 <script>
 
-// ================= SHOW PRICE =================
+/* ================= SHOW PRICE ================= */
 
 document.getElementById("amount").innerText =
 localStorage.getItem("temp_price") ||
 localStorage.getItem("learning_price") ||
 "";
 
-// ================= PAYMENT =================
+/* ================= PAYMENT ================= */
 
 function paymentDone(){
 
@@ -138,21 +138,21 @@ function paymentDone(){
         return;
     }
 
-    // ================= TYPE =================
+    /* ================= TYPE ================= */
 
     let type =
     localStorage.getItem("temp_type");
 
-    // LEARNING FALLBACK ONLY
+    /* LEARNING FALLBACK */
     if(!type &&
        localStorage.getItem("temp_course")){
-    
+
         type = "learning";
     }
 
     let payload = {};
 
-    // ================= POOJA =================
+    /* ================= POOJA ================= */
 
     if(type === "pooja"){
 
@@ -195,7 +195,7 @@ function paymentDone(){
         };
     }
 
-    // ================= ASTROLOGY =================
+    /* ================= ASTROLOGY ================= */
 
     else if(type === "astrology"){
 
@@ -211,10 +211,10 @@ function paymentDone(){
 
             consultDate:
             localStorage.getItem("temp_consultDate"),
-            
+
             consultSlot:
             localStorage.getItem("temp_consultSlot"),
-            
+
             name1:
             localStorage.getItem("temp_name1"),
 
@@ -250,7 +250,7 @@ function paymentDone(){
         };
     }
 
-    // ================= MUHURTHAM =================
+    /* ================= MUHURTHAM ================= */
 
     else if(type === "muhurtha" ||
             type === "muhurtham"){
@@ -291,76 +291,84 @@ function paymentDone(){
         };
     }
 
-    // ================= PRODUCT =================
+    /* ================= PRODUCT ================= */
 
-else if(type === "product"){
+    else if(type === "product"){
 
-    payload = {
+        payload = {
 
-        type:"product",
+            type:"product",
 
-        product:
-        localStorage.getItem("temp_product"),
+            product:
+            localStorage.getItem("temp_product"),
 
-        price:
-        localStorage.getItem("temp_price"),
+            price:
+            localStorage.getItem("temp_price"),
 
-        qty:
-        localStorage.getItem("temp_qty"),
+            qty:
+            localStorage.getItem("temp_qty"),
 
-        name:
-        localStorage.getItem("temp_name"),
+            name:
+            localStorage.getItem("temp_name"),
 
-        phone:
-        localStorage.getItem("temp_phone"),
+            phone:
+            localStorage.getItem("temp_phone"),
 
-        email:
-        localStorage.getItem("temp_email"),
+            email:
+            localStorage.getItem("temp_email"),
 
-        address:
-        localStorage.getItem("temp_address"),
+            address:
+            localStorage.getItem("temp_address"),
 
-        state:
-        localStorage.getItem("temp_state"),
-        
-        pincode:
-        localStorage.getItem("temp_pincode")
-    };
-}
+            state:
+            localStorage.getItem("temp_state"),
 
-    // ================= LEARNING =================
+            pincode:
+            localStorage.getItem("temp_pincode"),
 
-   else if(type === "learning"){
+            /* DIGITAL PRODUCT SUPPORT */
 
-    payload = {
+            digital:
+            localStorage.getItem("temp_digital") || "false",
 
-        type:"learning",
+            file:
+            localStorage.getItem("temp_file") || ""
+        };
+    }
 
-        course:
-        localStorage.getItem("temp_course"),
+    /* ================= LEARNING ================= */
 
-        price:
-        localStorage.getItem("temp_price"),
+    else if(type === "learning"){
 
-        name:
-        localStorage.getItem("temp_name"),
+        payload = {
 
-        phone:
-        localStorage.getItem("temp_phone"),
+            type:"learning",
 
-        email:
-        localStorage.getItem("temp_email"),
+            course:
+            localStorage.getItem("temp_course"),
 
-        city:
-        localStorage.getItem("temp_city"),
+            price:
+            localStorage.getItem("temp_price"),
 
-        age:
-        localStorage.getItem("temp_age"),
+            name:
+            localStorage.getItem("temp_name"),
 
-        notes:
-        localStorage.getItem("temp_notes")
-    };
-}
+            phone:
+            localStorage.getItem("temp_phone"),
+
+            email:
+            localStorage.getItem("temp_email"),
+
+            city:
+            localStorage.getItem("temp_city"),
+
+            age:
+            localStorage.getItem("temp_age"),
+
+            notes:
+            localStorage.getItem("temp_notes")
+        };
+    }
 
     else{
 
@@ -372,7 +380,7 @@ else if(type === "product"){
         return;
     }
 
-    // ================= API =================
+    /* ================= API ================= */
 
     fetch(
     "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
@@ -394,67 +402,109 @@ else if(type === "product"){
         if(!id){
 
             alert("Booking saved but ID missing");
+
+            btn.disabled = false;
+            btn.innerText = "I Have Paid";
+
             return;
         }
 
         let message = "";
 
-if(type === "pooja"){
-    message =
-    "🪔 Jai Shree Ram 🙏\n\n" +
-    "Pooja Booking Confirmed\n" +
-    "Booking ID: " + id + "\n\n" +
-    "We will perform your pooja with full devotion.\n" +
-    "You will receive further updates soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        /* ================= SUCCESS MESSAGES ================= */
 
-else if(type === "astrology"){
-    message =
-    "🔯 Jai Shree Ram 🙏\n\n" +
-    "Astrology Consultation Booked\n" +
-    "Booking ID: " + id + "\n\n" +
-    "Our astrologer will contact you soon with guidance.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        if(type === "pooja"){
 
-else if(type === "muhurtham"){
-    message =
-    "📅 Jai Shree Ram 🙏\n\n" +
-    "Muhurtham Booking Confirmed\n" +
-    "Booking ID: " + id + "\n\n" +
-    "We will help you select the most auspicious timing.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+            message =
+            "🪔 Jai Shree Ram 🙏\n\n" +
+            "Pooja Booking Confirmed\n" +
+            "Booking ID: " + id + "\n\n" +
+            "We will perform your pooja with full devotion.\n" +
+            "You will receive further updates soon.\n\n" +
+            "Har Har Mahadev 🔱";
+        }
 
-else if(type === "product"){
-    message =
-    "🛍️ Jai Shree Ram 🙏\n\n" +
-    "Product Order Placed Successfully\n" +
-    "Order ID: " + id + "\n\n" +
-    "Your spiritual product will be packed and shipped soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+        else if(type === "astrology"){
 
-else if(type === "learning"){
-    message =
-    "📚 Jai Shree Ram 🙏\n\n" +
-    "Learning Program Enrolled Successfully\n" +
-    "Registration ID: " + id + "\n\n" +
-    "Welcome to your spiritual learning journey.\n" +
-    "We will contact you with class details soon.\n\n" +
-    "Har Har Mahadev 🔱";
-}
+            message =
+            "🔯 Jai Shree Ram 🙏\n\n" +
+            "Astrology Consultation Booked\n" +
+            "Booking ID: " + id + "\n\n" +
+            "Our astrologer will contact you soon with guidance.\n\n" +
+            "Har Har Mahadev 🔱";
+        }
 
-else{
-    message =
-    "🙏 Jai Shree Ram\n\n" +
-    "Booking Successful\n" +
-    "ID: " + id + "\n\n" +
-    "Thank you for choosing Pendyala Divine Services.";
-}
+        else if(type === "muhurtham"){
 
-alert(message);
+            message =
+            "📅 Jai Shree Ram 🙏\n\n" +
+            "Muhurtham Booking Confirmed\n" +
+            "Booking ID: " + id + "\n\n" +
+            "We will help you select the most auspicious timing.\n\n" +
+            "Har Har Mahadev 🔱";
+        }
+
+        else if(type === "product"){
+
+            message =
+            "🛍️ Jai Shree Ram 🙏\n\n" +
+            "Product Order Placed Successfully\n" +
+            "Order ID: " + id + "\n\n" +
+            "Your spiritual product will be packed and shipped soon.\n\n" +
+            "Har Har Mahadev 🔱";
+        }
+
+        else if(type === "learning"){
+
+            message =
+            "📚 Jai Shree Ram 🙏\n\n" +
+            "Learning Program Enrolled Successfully\n" +
+            "Registration ID: " + id + "\n\n" +
+            "Welcome to your spiritual learning journey.\n" +
+            "We will contact you with class details soon.\n\n" +
+            "Har Har Mahadev 🔱";
+        }
+
+        else{
+
+            message =
+            "🙏 Jai Shree Ram\n\n" +
+            "Booking Successful\n" +
+            "ID: " + id + "\n\n" +
+            "Thank you for choosing Pendyala Divine Services.";
+        }
+
+        alert(message);
+
+        /* ================= DIGITAL DOWNLOAD REDIRECT ================= */
+
+        if(type === "product"){
+
+            let isDigital =
+            localStorage.getItem("temp_digital");
+
+            let file =
+            localStorage.getItem("temp_file");
+
+            if(isDigital === "true" && file){
+
+                localStorage.setItem(
+                    "download_file",
+                    file
+                );
+
+                setTimeout(()=>{
+
+                    window.location.href =
+                    "download.html";
+
+                }, 800);
+
+                return;
+            }
+        }
+
+        /* ================= NORMAL REDIRECT ================= */
 
         localStorage.clear();
 
@@ -474,5 +524,6 @@ alert(message);
 }
 
 </script>
+
 </body>
 </html>
