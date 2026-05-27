@@ -5,6 +5,7 @@
 <title>Download Your File</title>
 
 <style>
+
 body{
     font-family:Arial,sans-serif;
     background:#fff5e6;
@@ -59,6 +60,7 @@ button:hover{
     color:#777;
     margin-top:10px;
 }
+
 </style>
 </head>
 
@@ -70,52 +72,83 @@ button:hover{
 
 <p>Your digital product is ready</p>
 
-<div class="product" id="productName">Loading...</div>
+<div class="product" id="productName">
+Loading...
+</div>
 
-<button onclick="downloadFile()">Download Now</button>
+<button onclick="downloadFile()">
+Download Now
+</button>
 
-<p class="note">If download does not start, check your browser settings.</p>
+<p class="note">
+If download does not start, check your browser settings.
+</p>
 
 </div>
 
 <script>
 
-// ================= LOAD DATA =================
-let product = localStorage.getItem("temp_product");
-let file = localStorage.getItem("temp_file");
-let isDigital = localStorage.getItem("temp_digital");
+/* ================= LOAD DATA ================= */
 
-// Show product name
-document.getElementById("productName").innerText = product || "Your File";
+let product =
+localStorage.getItem("temp_product");
 
-// ================= VALIDATION =================
-if(isDigital !== "true" || !file){
-    document.body.innerHTML = `
-        <div class="box">
-            <h2>❌ No Download Available</h2>
-            <p>This page is only for digital purchases.</p>
-        </div>
-    `;
+/* 🔥 IMPORTANT FIX */
+let file =
+localStorage.getItem("download_file");
+
+/* FALLBACK */
+if(!file){
+
+    file =
+    "downloads/shivapuranam/sri-shiva-maha-puranamu.pdf";
 }
 
-// ================= DOWNLOAD =================
+document.getElementById("productName").innerText =
+product || "Your File";
+
+/* ================= DOWNLOAD ================= */
+
 function downloadFile(){
 
     if(!file){
+
         alert("File not found");
         return;
     }
 
-    let link = document.createElement("a");
+    let link =
+    document.createElement("a");
+
     link.href = file;
 
-    // force download
-    link.download = file.split("/").pop();
+    link.download =
+    file.split("/").pop();
 
     document.body.appendChild(link);
+
     link.click();
+
     document.body.removeChild(link);
+
+    /* OPTIONAL CLEANUP */
+    setTimeout(()=>{
+
+        localStorage.removeItem("download_file");
+
+    },1000);
 }
+
+/* ================= AUTO DOWNLOAD ================= */
+
+window.onload = function(){
+
+    setTimeout(()=>{
+
+        downloadFile();
+
+    },500);
+};
 
 </script>
 
