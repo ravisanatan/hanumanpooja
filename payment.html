@@ -109,14 +109,14 @@ I Have Paid
 
 <script>
 
-/* ================= SHOW PRICE ================= */
+// ================= SHOW PRICE =================
 
 document.getElementById("amount").innerText =
 localStorage.getItem("temp_price") ||
 localStorage.getItem("learning_price") ||
 "";
 
-/* ================= PAYMENT ================= */
+// ================= PAYMENT =================
 
 function paymentDone(){
 
@@ -138,21 +138,21 @@ function paymentDone(){
         return;
     }
 
-    /* ================= TYPE ================= */
+    // ================= TYPE =================
 
     let type =
     localStorage.getItem("temp_type");
 
-    /* LEARNING FALLBACK */
+    // LEARNING FALLBACK ONLY
     if(!type &&
        localStorage.getItem("temp_course")){
-
+    
         type = "learning";
     }
 
     let payload = {};
 
-    /* ================= POOJA ================= */
+    // ================= POOJA =================
 
     if(type === "pooja"){
 
@@ -195,7 +195,7 @@ function paymentDone(){
         };
     }
 
-    /* ================= ASTROLOGY ================= */
+    // ================= ASTROLOGY =================
 
     else if(type === "astrology"){
 
@@ -211,10 +211,10 @@ function paymentDone(){
 
             consultDate:
             localStorage.getItem("temp_consultDate"),
-
+            
             consultSlot:
             localStorage.getItem("temp_consultSlot"),
-
+            
             name1:
             localStorage.getItem("temp_name1"),
 
@@ -250,7 +250,7 @@ function paymentDone(){
         };
     }
 
-    /* ================= MUHURTHAM ================= */
+    // ================= MUHURTHAM =================
 
     else if(type === "muhurtha" ||
             type === "muhurtham"){
@@ -291,7 +291,7 @@ function paymentDone(){
         };
     }
 
-    /* ================= PRODUCT ================= */
+    // ================= PRODUCT =================
 
     else if(type === "product"){
 
@@ -322,21 +322,22 @@ function paymentDone(){
 
             state:
             localStorage.getItem("temp_state"),
-
+            
             pincode:
             localStorage.getItem("temp_pincode"),
 
-            /* DIGITAL PRODUCT SUPPORT */
+            // ================= DIGITAL SUPPORT =================
 
             digital:
             localStorage.getItem("temp_digital") || "false",
 
             file:
-            localStorage.getItem("temp_file") || ""
+            localStorage.getItem("temp_file") ||
+            "https://pendyaladivine.com/downloads/shivapuranam/sri-shiva-maha-puranamu.pdf"
         };
     }
 
-    /* ================= LEARNING ================= */
+    // ================= LEARNING =================
 
     else if(type === "learning"){
 
@@ -380,7 +381,7 @@ function paymentDone(){
         return;
     }
 
-    /* ================= API ================= */
+    // ================= API =================
 
     fetch(
     "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec",
@@ -402,19 +403,12 @@ function paymentDone(){
         if(!id){
 
             alert("Booking saved but ID missing");
-
-            btn.disabled = false;
-            btn.innerText = "I Have Paid";
-
             return;
         }
 
         let message = "";
 
-        /* ================= SUCCESS MESSAGES ================= */
-
         if(type === "pooja"){
-
             message =
             "🪔 Jai Shree Ram 🙏\n\n" +
             "Pooja Booking Confirmed\n" +
@@ -425,7 +419,6 @@ function paymentDone(){
         }
 
         else if(type === "astrology"){
-
             message =
             "🔯 Jai Shree Ram 🙏\n\n" +
             "Astrology Consultation Booked\n" +
@@ -435,7 +428,6 @@ function paymentDone(){
         }
 
         else if(type === "muhurtham"){
-
             message =
             "📅 Jai Shree Ram 🙏\n\n" +
             "Muhurtham Booking Confirmed\n" +
@@ -445,7 +437,6 @@ function paymentDone(){
         }
 
         else if(type === "product"){
-
             message =
             "🛍️ Jai Shree Ram 🙏\n\n" +
             "Product Order Placed Successfully\n" +
@@ -455,7 +446,6 @@ function paymentDone(){
         }
 
         else if(type === "learning"){
-
             message =
             "📚 Jai Shree Ram 🙏\n\n" +
             "Learning Program Enrolled Successfully\n" +
@@ -466,7 +456,6 @@ function paymentDone(){
         }
 
         else{
-
             message =
             "🙏 Jai Shree Ram\n\n" +
             "Booking Successful\n" +
@@ -476,65 +465,54 @@ function paymentDone(){
 
         alert(message);
 
-/* ================= DIGITAL DOWNLOAD REDIRECT ================= */
+        // ================= DIGITAL DOWNLOAD REDIRECT =================
 
-if(type === "product"){
+        if(type === "product"){
 
-    let isDigital =
-    localStorage.getItem("temp_digital");
+            let isDigital =
+            localStorage.getItem("temp_digital");
 
-    let file =
-    localStorage.getItem("temp_file");
+            let file =
+            localStorage.getItem("temp_file") ||
+            "https://pendyaladivine.com/downloads/shivapuranam/sri-shiva-maha-puranamu.pdf";
 
-    /* FALLBACK PDF PATH */
-    if(!file){
-        file =
-        "downloads/shivapuranam/sri-shiva-maha-puranamu.pdf";
-    }
+            if(isDigital === "true" && file){
 
-    if(isDigital === "true"){
+                // SAVE FOR DOWNLOAD PAGE
+                localStorage.setItem("download_file", file);
 
-        localStorage.setItem(
-            "download_file",
-            file
-        );
+                // KEEP PRODUCT INFO
+                localStorage.setItem(
+                    "download_product",
+                    localStorage.getItem("temp_product")
+                );
 
-        setTimeout(()=>{
+                // REDIRECT
+                setTimeout(()=>{
+                    window.location.href = "download.html";
+                }, 800);
 
-            window.location.href =
-            "download.html";
+                return;
+            }
+        }
 
-        }, 800);
+        localStorage.clear();
 
-        return;
-    }
-}
+        window.location.href =
+        "index.html";
+    })
 
-/* NORMAL REDIRECT */
+    .catch(err => {
 
-setTimeout(()=>{
+        console.error(err);
 
-    localStorage.clear();
+        alert("Error saving booking");
 
-    window.location.href =
-    "index.html";
-
-}, 800);
-
-})
-
-.catch(err => {
-
-    console.error(err);
-
-    alert("Error saving booking");
-
-    btn.disabled = false;
-    btn.innerText = "I Have Paid";
-});
+        btn.disabled = false;
+        btn.innerText = "I Have Paid";
+    });
 }
 
 </script>
-
 </body>
 </html>
