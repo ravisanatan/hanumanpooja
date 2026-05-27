@@ -476,51 +476,62 @@ function paymentDone(){
 
         alert(message);
 
-        /* ================= DIGITAL DOWNLOAD REDIRECT ================= */
+/* ================= DIGITAL DOWNLOAD REDIRECT ================= */
 
-        if(type === "product"){
+if(type === "product"){
 
-            let isDigital =
-            localStorage.getItem("temp_digital");
+    let isDigital =
+    localStorage.getItem("temp_digital");
 
-            let file =
-            localStorage.getItem("temp_file");
+    let file =
+    localStorage.getItem("temp_file");
 
-            if(isDigital === "true" && file){
+    /* FALLBACK PDF PATH */
+    if(!file){
+        file =
+        "downloads/shivapuranam/sri-shiva-maha-puranamu.pdf";
+    }
 
-                localStorage.setItem(
-                    "download_file",
-                    file
-                );
+    if(isDigital === "true"){
 
-                setTimeout(()=>{
+        localStorage.setItem(
+            "download_file",
+            file
+        );
 
-                    window.location.href =
-                    "download.html";
+        setTimeout(()=>{
 
-                }, 800);
+            window.location.href =
+            "download.html";
 
-                return;
-            }
-        }
+        }, 800);
 
-        /* ================= NORMAL REDIRECT ================= */
+        return;
+    }
+}
 
-        localStorage.clear();
+/* NORMAL REDIRECT */
 
-        window.location.href =
-        "index.html";
-    })
+setTimeout(()=>{
 
-    .catch(err => {
+    localStorage.clear();
 
-        console.error(err);
+    window.location.href =
+    "index.html";
 
-        alert("Error saving booking");
+}, 800);
 
-        btn.disabled = false;
-        btn.innerText = "I Have Paid";
-    });
+})
+
+.catch(err => {
+
+    console.error(err);
+
+    alert("Error saving booking");
+
+    btn.disabled = false;
+    btn.innerText = "I Have Paid";
+});
 }
 
 </script>
