@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PENDYALA DIVINE SERVICES</title>
+
+
+<style>
+html{ scroll-behavior:smooth; }
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#fff5e6;
+    text-align:center;
+}
+
+/* HEADER */
+header{
+    background:#ff6600;
+    color:white;
+    padding:12px;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.logo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:white;
+    padding:6px;
+}
+
+.title-main{
+    font-size:36px;
+    font-weight:bold;
+    margin:0;
+}
+
+.title-sub{
+    font-size:18px;
+    margin-top:5px;
+}
+
+/* MENU */
+.menu{
+    background:white;
+    padding:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#ff6600;
+    font-weight:bold;
+    font-size:15px;
+    padding:6px 10px;
+    border-radius:6px;
+}
+/* MOBILE FIX */
+@media (max-width:600px){
+    .menu{
+        justify-content:space-around;
+    }
+
+    .menu a{
+        font-size:13px;
+        padding:6px 8px;
+    }
+}
+
+/* CONTAINER */
+.container{ padding:20px; }
+
+#searchBox{
+    padding:10px;
+    width:90%;
+    max-width:400px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    margin-bottom:20px;
+}
+
+.section-title{
+    color:#8B0000;
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+/* PRODUCTS GRID */
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* TABLET */
+@media(max-width:900px){
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+}
+
+/* CARD */
+.card{
+    background:white;
+    border-radius:12px;
+    padding:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.10);
+}
+
+/* IMAGE SLIDER FIXES */
+.slider{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    border-radius:8px;
+}
+
+.slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.slider img.active{
+    display:block;
+}
+
+.slide-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+    z-index:2;
+}
+
+.slide-prev{ left:8px; }
+.slide-next{ right:8px; }    
+
+/* TEXT */
+.card h3{
+    font-size:14px;
+    margin:10px 0 5px;
+    min-height:36px;
+}
+
+.desc{
+    font-size:12px;
+    color:#444;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:34px;
+}
+
+.price{
+    color:#cc0000;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+/* BUTTON */
+.btn{
+    background:#ff6600;
+    color:white;
+    padding:8px;
+    border-radius:6px;
+    text-decoration:none;
+    display:block;
+    margin:8px auto;
+    border:none;
+    cursor:pointer;
+    font-size:13px;
+    width:90%;
+    text-align:center;
+}
+
+.btn:hover{ background:#e65c00; }
+
+/* QTY */
+.qty-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:10px;
+}
+
+.qty-box button{
+    width:28px;
+    height:28px;
+    border:none;
+    background:#ff6600;
+    color:white;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+/* POPUP */
+.popup-bg{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    padding:15px;
+}
+
+.popup-box{
+    background:white;
+    width:100%;
+    max-width:420px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:12px;
+    padding:20px;
+    text-align:left;
+    box-sizing:border-box;
+}
+
+.popup-box img{
+    width:100%;
+    max-height:300px;
+    object-fit:contain;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.popup-title{
+    font-size:22px;
+    color:#8B0000;
+    margin-bottom:10px;
+}
+
+.popup-price{
+    color:#cc0000;
+    font-size:24px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.popup-desc{
+    line-height:1.7;
+    color:#444;
+    font-size:15px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    box-sizing:border-box;
+    padding:10px;
+    margin:6px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+    display:block;
+}
+
+.close-btn{ background:#777; }
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-content">
+<img src="icon.jpeg" class="logo" alt="Logo">
+<div>
+<p class="title-main">PENDYALA</p>
+<p class="title-sub">DIVINE SERVICES</p>
+</div>
+</div>
+</header>
+
+<div class="menu">
+<a href="index.html">Poojas</a>
+<a href="astrology.html">Astrology</a>
+<a href="muhurthas.html">Muhurthas</a>
+<a href="products.html">Products</a>
+<a href="learnings.html">Learnings</a>
+</div>
+
+<div class="container">
+
+<input type="text" id="searchBox" placeholder="Search products...">
+
+<h2 class="section-title">Spiritual Products</h2>
+
+<div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/SpatikaShivaLingam_One Inch.jpeg" class="active" alt="Spatika Shivlingam View 1">
+<img src="Images/SpatikaShivaLingam_One Inch_2.jpeg" alt="Spatika Shivlingam View 2">
+<img src="Images/SpatikaShivaLingam_One Inch_3.jpeg" alt="Spatika Shivlingam View 3">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Spatika Shivlingam</h3>
+<p class="desc">Brings peace, purity, and spiritual growth.</p>
+<div class="price">₹1149</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails(this, 'Spatika Shivlingam', '₹1149', 'Spatika Shivlingam helps in spiritual growth, peace of mind, Shiva blessings and positivity inside home.')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/MarakathaShivalingam.jpeg" class="active" alt="Marakatha Shivlingam View 1">
+<img src="Images/MarakathaShivalingam_2.jpeg" alt="Marakatha Shivlingam View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Marakatha Shivlingam</h3>
+<p class="desc">Helps in financial stability and wealth creation.</p>
+<div class="price">₹1099</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails(this, 'Marakatha Shivlingam', '₹1099', 'Marakatha Shivlingam is believed to attract prosperity, calmness and abundance.')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/Navagraha Mala.jpeg" class="active" alt="Navagraha Mala View 1">
+<img src="Images/Navagraha Mala_2.jpeg" alt="Navagraha Mala View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Navagraha Mala</h3>
+<p class="desc">Balances all planetary energies and removes doshas.</p>
+<div class="price">₹5500</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails(this, 'Navagraha Mala', '₹5500', 'Balances all planetary energies and removes doshas.')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/spatika_nandi1.jpeg" class="active" alt="Spatika Nandi View 1">
+<img src="Images/spatika_nandi2.jpeg" alt="Spatika Nandi View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Spatika Nandi (1 inch)</h3>
+<p class="desc">Brings peace, stability, and removes negative energies.</p>
+<div class="price">₹1099</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails(this, 'Spatika Nandi (1 inch)', '₹1099', 'Spatika Nandi brings peace, stability and removes negative energies.')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/MarakathaNandi.jpeg" class="active" alt="Marakatha Nandi View 1">
+<img src="Images/MarakathaNandi_2.jpeg" alt="Marakatha Nandi View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Marakatha Nandi (1 inch)</h3>
+<p class="desc">Improves focus, calmness, and positive vibrations.</p>
+<div class="price">₹1099</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+    
+<button class="btn" onclick="openDetails(this, 'Marakatha Nandi (1 inch)', '₹1099', 'Improves focus, calmness, and positive vibrations.')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 6 -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+<img src="Images/products/hanumancha1.jpeg" class="active" alt="Hanuman Chalisa Colouring Book View 1">
+<img src="Images/products/hanumancha2.jpeg" alt="Hanuman Chalisa Colouring Book View 2">
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+<h3>Hanuman Chalisa Colouring Book for Kids</h3>
+<p class="desc">Let kids chant, color and connect with Hanuman.</p>
+
+<div class="price" data-book-price="350" data-shipping="100">₹450</div>
+
+<div style="font-size:12px; color:#666; margin-top:4px; line-height:1.5;">
+Book: ₹350<br>
+Shipping: ₹100
+</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<button class="btn" onclick="openDetails(this, 'Hanuman Chalisa Colouring Book for Kids', '₹450', 'Let kids chant, color and connect with Hanuman. (Price includes ₹350 book cost and ₹100 shipping fee)')">View Details</button>
+<button class="btn" onclick="openCheckout(this)">Buy Now</button>
+</div>
+
+<!-- PRODUCT 7 (DIGITAL PRODUCT - SHIVA PURANAM TELUGU SOFT COPY) -->
+<div class="card">
+<div class="slider">
+<button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
+
+<img src="Images/products/shivapuranam.png" class="active" alt="Shiva Puranam View 1">
+<img src="Images/products/shivapuranam.png" alt="Shiva Puranam View 2">
+
+<button class="slide-btn slide-next" onclick="moveSlide(this, 1)">&#10095;</button>
+</div>
+
+<h3>Shiva Puranam Soft Copy</h3>
+<p class="desc">Instant downloadable Telugu Shiva Puranam PDF (soft copy).</p>
+
+<div class="price">₹49</div>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+
+<!-- 🔥 DIGITAL BUY BUTTON -->
+<button class="btn"
+onclick="buyDigital(this, 'Shiva Puranam Telugu Soft Copy', 49, 'downloads/shivapuranam/sri-shiva-maha-puranamu.pdf')">
+Buy Now (Digital)
+</button>
+</div>
+    
+</div>
+</div>
+
+<!-- POPUPS -->
+<div class="popup-bg" id="detailsPopup">
+<div class="popup-box">
+<img id="detailsImage" alt="Product Details">
+<div class="popup-title" id="detailsTitle"></div>
+<div class="popup-price" id="detailsPrice"></div>
+<div class="popup-desc" id="detailsDesc"></div>
+<button class="btn close-btn" onclick="closeDetails()">Close</button>
+</div>
+</div>
+
+<div class="popup-bg" id="checkoutPopup">
+<div class="popup-box">
+<h2 style="text-align:center;color:#8B0000;margin-top:0;">Enter Details</h2>
+
+<b>Product:</b> <span id="popup_product_name"></span><br><br>
+<b>Quantity:</b> <span id="popup_qty"></span><br><br>
+<b>Total Amount:</b> ₹<span id="popup_amount"></span>
+
+<input id="c_name" placeholder="Full Name">
+<input id="c_phone" placeholder="Indian Mobile Number" maxlength="10" inputmode="numeric">
+<textarea id="c_address" placeholder="Full Indian Address"></textarea>
+
+<select id="c_state">
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Delhi</option>
+</select>
+
+<input id="c_pincode" placeholder="6 Digit PIN Code" maxlength="6" inputmode="numeric">
+<input id="c_email" placeholder="Email">
+
+<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
+<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
+</div>
+</div>
+
+<script>
+/* SLIDER JAVASCRIPT */
+function moveSlide(btn, direction) {
+    let slider = btn.parentElement;
+    let images = slider.querySelectorAll("img");
+    let activeIndex = -1;
+
+    // Find the currently active image index
+    for (let i = 0; i < images.length; i++) {
+        if (images[i].classList.contains("active")) {
+            activeIndex = i;
+            break;
+        }
+    }
+
+    // Remove active status from old image
+    images[activeIndex].classList.remove("active");
+
+    // Calculate new index with loop-around logic
+    let newIndex = activeIndex + direction;
+    if (newIndex >= images.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = images.length - 1;
+    }
+
+    // Display the new active image
+    images[newIndex].classList.add("active");
+}
+
+function changeQty(btn,change){
+    let qtyEl = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtyEl.innerText);
+    qty = Math.max(1, qty + change);
+    qtyEl.innerText = qty;
+}
+
+/* MODIFIED TO EXTRACT CURRENT ACTIVE SLIDER IMAGE PATH */
+function openDetails(btn, title, price, desc) {
+    let card = btn.closest(".card");
+    let activeImg = card.querySelector(".slider img.active");
+    
+    document.getElementById("detailsTitle").innerText = title;
+    document.getElementById("detailsPrice").innerText = price;
+    document.getElementById("detailsImage").src = activeImg ? activeImg.src : "";
+    document.getElementById("detailsDesc").innerText = desc;
+    document.getElementById("detailsPopup").style.display = "flex";
+}
+
+function closeDetails(){
+    document.getElementById("detailsPopup").style.display = "none";
+}
+
+let selectedProduct="";
+let selectedQty=0;
+let selectedPrice=0;
+
+function openCheckout(btn){
+    let card = btn.closest(".card");
+
+    selectedProduct = card.querySelector("h3").innerText;
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    let priceEl = card.querySelector(".price");
+
+    // SPECIAL SHIPPING PRODUCT
+    if(priceEl.dataset.bookPrice){
+        let bookPrice = parseInt(priceEl.dataset.bookPrice);
+        let shipping = parseInt(priceEl.dataset.shipping);
+        // SHIPPING ONLY ONCE
+        selectedPrice = (bookPrice * selectedQty) + shipping;
+    }
+    // NORMAL PRODUCTS
+    else{
+        let basePrice = parseInt(priceEl.innerText.replace("₹",""));
+        selectedPrice = basePrice * selectedQty;
+    }
+
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    document.getElementById("popup_amount").innerText = selectedPrice;
+    document.getElementById("checkoutPopup").style.display = "flex";
+}
+
+function closeCheckout(){
+    document.getElementById("checkoutPopup").style.display = "none";
+}
+
+function submitOrder(){
+    let name = document.getElementById("c_name").value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+    let state = document.getElementById("c_state").value.trim();
+    let pincode = document.getElementById("c_pincode").value.trim();
+    let email = document.getElementById("c_email").value.trim();
+
+    // REQUIRED CHECK
+    if(!name || !phone || !address || !state || !pincode || !email){
+        alert("Please fill all details");
+        return;
+    }
+
+    // INDIAN MOBILE VALIDATION
+    if(!/^[6-9]\d{9}$/.test(phone)){
+        alert("Enter valid Indian mobile number");
+        return;
+    }
+
+    // INDIAN PINCODE VALIDATION
+    if(!/^[1-9][0-9]{5}$/.test(pincode)){
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    // EXTRA INDIA CHECK
+    const firstDigit = parseInt(pincode[0]);
+    if(firstDigit < 1 || firstDigit > 8){
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    // ADDRESS CHECK
+    if(address.length < 10){
+        alert("Please enter complete address");
+        return;
+    }
+
+    // STATE VALIDATION
+    const indianStates = [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+        "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi"
+    ];
+
+    if(!indianStates.some(s => s.toLowerCase() === state.toLowerCase())){
+        alert("Enter valid Indian state");
+        return;
+    }
+
+    // IMPORTANT FIX
+    localStorage.setItem("temp_type", "product");
+
+    // STORE DATA
+    localStorage.setItem("temp_product", selectedProduct);
+    localStorage.setItem("temp_price", selectedPrice);
+    localStorage.setItem("temp_qty", selectedQty);
+    localStorage.setItem("temp_name", name);
+    localStorage.setItem("temp_phone", phone);
+    localStorage.setItem("temp_email", email);
+    localStorage.setItem("temp_address", address);
+    localStorage.setItem("temp_state", state);
+    localStorage.setItem("temp_pincode", pincode);
+
+    // REDIRECT
+    window.location.href = "payment.html";
+}
+
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase().trim();
+    document.querySelectorAll(".card").forEach(card=>{
+        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
+    });
+});
+
+    /* 🔥 DIGITAL PRODUCT HANDLER (NEW) */
+function buyDigital(btn,name,price,file){
+
+    let card = btn.closest(".card");
+
+    localStorage.setItem("temp_type","product");
+    localStorage.setItem("temp_product",name);
+    localStorage.setItem("temp_price",price);
+    localStorage.setItem("temp_qty",card.querySelector(".qty").innerText);
+
+    // DIGITAL FLAGS
+    localStorage.setItem("temp_digital","true");
+    localStorage.setItem("temp_file",file);
+
+    window.location.href="payment.html";
+}
+    
+</script>
+
+</body>
+</html>
