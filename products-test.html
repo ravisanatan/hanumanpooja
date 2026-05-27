@@ -6,11 +6,7 @@
 <title>PENDYALA DIVINE SERVICES</title>
 
 <style>
-
-html{
-    scroll-behavior:smooth;
-}
-
+html{scroll-behavior:smooth;}
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -24,7 +20,6 @@ header{
     color:white;
     padding:12px;
 }
-
 .header-content{
     display:flex;
     align-items:center;
@@ -32,25 +27,12 @@ header{
     gap:15px;
     flex-wrap:wrap;
 }
-
 .logo{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    background:white;
-    padding:6px;
+    width:110px;height:110px;border-radius:50%;
+    background:white;padding:6px;
 }
-
-.title-main{
-    font-size:36px;
-    font-weight:bold;
-    margin:0;
-}
-
-.title-sub{
-    font-size:18px;
-    margin-top:5px;
-}
+.title-main{font-size:36px;font-weight:bold;margin:0;}
+.title-sub{font-size:18px;margin-top:5px;}
 
 /* MENU */
 .menu{
@@ -62,7 +44,6 @@ header{
     flex-wrap:wrap;
     gap:10px;
 }
-
 .menu a{
     text-decoration:none;
     color:#ff6600;
@@ -72,40 +53,18 @@ header{
     border-radius:6px;
 }
 
-@media (max-width:600px){
-
-    .menu{
-        justify-content:space-around;
-    }
-
-    .menu a{
-        font-size:13px;
-        padding:6px 8px;
-    }
-}
-
-/* CONTAINER */
-
-.container{
-    padding:20px;
-}
-
+/* GRID */
+.container{padding:20px;}
 #searchBox{
-    padding:10px;
-    width:90%;
-    max-width:400px;
-    border-radius:8px;
-    border:1px solid #ccc;
+    padding:10px;width:90%;max-width:400px;
+    border-radius:8px;border:1px solid #ccc;
     margin-bottom:20px;
 }
-
 .section-title{
     color:#8B0000;
     font-size:24px;
     margin-bottom:20px;
 }
-
-/* PRODUCTS GRID */
 
 .products{
     display:grid;
@@ -114,24 +73,10 @@ header{
     max-width:1200px;
     margin:auto;
 }
-
-@media(max-width:900px){
-
-    .products{
-        grid-template-columns:repeat(3,1fr);
-    }
-}
-
-@media(max-width:600px){
-
-    .products{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
-    }
-}
+@media(max-width:900px){.products{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.products{grid-template-columns:repeat(2,1fr);}}
 
 /* CARD */
-
 .card{
     background:white;
     border-radius:12px;
@@ -139,16 +84,12 @@ header{
     box-shadow:0 0 10px rgba(0,0,0,0.10);
 }
 
-/* IMAGE */
-
 .card img{
     width:100%;
     aspect-ratio:1/1;
     object-fit:cover;
     border-radius:8px;
 }
-
-/* TEXT */
 
 .card h3{
     font-size:14px;
@@ -169,190 +110,157 @@ header{
     margin-top:8px;
 }
 
-/* BUTTON */
-
 .btn{
     background:#ff6600;
     color:white;
     padding:8px;
     border-radius:6px;
-    text-decoration:none;
-    display:block;
-    margin:10px auto 0;
     border:none;
     cursor:pointer;
     font-size:13px;
     width:90%;
-    text-align:center;
+    margin-top:8px;
 }
 
-.btn:hover{
-    background:#e65c00;
-}
+.btn:hover{background:#e65c00;}
 
+.qty-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:10px;
+}
+.qty-box button{
+    width:28px;height:28px;
+    border:none;
+    background:#ff6600;
+    color:white;
+    border-radius:4px;
+    cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
 <div class="header-content">
-
 <img src="icon.jpeg" class="logo">
-
 <div>
-
 <p class="title-main">PENDYALA</p>
-
 <p class="title-sub">DIVINE SERVICES</p>
-
 </div>
 </div>
 </header>
 
 <div class="menu">
-
 <a href="index.html">Poojas</a>
-
 <a href="astrology.html">Astrology</a>
-
 <a href="muhurthas.html">Muhurthas</a>
-
 <a href="products.html">Products</a>
-
 <a href="learnings.html">Learnings</a>
-
 </div>
 
 <div class="container">
 
-<input
-type="text"
-id="searchBox"
-placeholder="Search products..."
->
+<input id="searchBox" placeholder="Search products...">
+<h2 class="section-title">Spiritual Products</h2>
 
-<h2 class="section-title">
-Spiritual Products
-</h2>
-
-<!-- DYNAMIC PRODUCTS -->
-
-<div
-class="products"
-id="productsContainer">
-</div>
+<div class="products" id="productsContainer"></div>
 
 </div>
 
 <script>
 
-/* =========================
-   GOOGLE APPS SCRIPT API
-========================= */
-
 const API = "https://script.google.com/macros/s/AKfycbzHLwOjhVzobZFSdCQgqwA4wUhtmQx7A1IazE68X_Ha7PLptniscj0P0vFXSg10CR4/exec?action=getProducts";
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
+/* SAFE STRING */
+function esc(str){
+    return (str || "").toString().replace(/'/g,"\\'");
+}
 
+/* LOAD */
 fetch(API)
+.then(r=>r.json())
+.then(data=>{
 
-.then(response => response.json())
-
-.then(data => {
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
+    let container = document.getElementById("productsContainer");
     container.innerHTML = "";
 
-    data.forEach(product => {
+    data.forEach(p=>{
 
-        // SHOW ONLY ACTIVE PRODUCTS
-
-        if(
-            product.active != true &&
-            product.active != "TRUE"
-        ){
-            return;
-        }
+        if(!(p.active === true || p.active === "TRUE")) return;
 
         container.innerHTML += `
-
         <div class="card">
 
-            <img
-            src="${product.image1}"
-            alt="${product.name}"
-            >
+            <img src="${p.image1}" onerror="this.src='icon.jpeg'">
 
-            <h3>
-            ${product.name}
-            </h3>
+            <h3>${p.name}</h3>
 
-            <p class="desc">
-            ${product.desc}
-            </p>
+            <p class="desc">${p.desc}</p>
 
-            <div class="price">
-            ₹${product.price}
+            <div class="price">₹${p.price}</div>
+
+            <div class="qty-box">
+                <button onclick="changeQty(this,-1)">-</button>
+                <span class="qty">1</span>
+                <button onclick="changeQty(this,1)">+</button>
             </div>
 
-            <button class="btn">
+            <button class="btn"
+            onclick="openDetails('${esc(p.name)}','${p.price}','${esc(p.desc)}','${p.image1}')">
+            View Details
+            </button>
+
+            <button class="btn"
+            onclick="buyNow('${esc(p.name)}',${p.price},this)">
             Buy Now
             </button>
 
-        </div>
-
-        `;
+        </div>`;
     });
 
 })
-
-.catch(error => {
-
-    console.error(error);
-
-    document.getElementById(
-        "productsContainer"
-    ).innerHTML =
-
+.catch(err=>{
+    console.log(err);
+    document.getElementById("productsContainer").innerHTML =
     "<p>Failed to load products</p>";
 });
 
-/* =========================
-   SEARCH
-========================= */
+/* QTY */
+function changeQty(btn,change){
+    let el = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(el.innerText);
+    el.innerText = Math.max(1, qty + change);
+}
 
-document
-.getElementById("searchBox")
+/* DETAILS */
+function openDetails(name,price,desc,image){
+    alert(
+        name +
+        "\n\n₹" + price +
+        "\n\n" + desc
+    );
+}
 
-.addEventListener("keyup", function(){
+/* BUY */
+function buyNow(name,price,btn){
 
-    let filter =
-        this.value.toLowerCase();
+    let card = btn.closest(".card");
+    let qty = parseInt(card.querySelector(".qty").innerText);
 
-    document
-    .querySelectorAll(".card")
+    let total = price * qty;
 
-    .forEach(card => {
+    alert(
+        "Product: " + name +
+        "\nQty: " + qty +
+        "\nTotal: ₹" + total
+    );
 
-        card.style.display =
-
-        card.innerText
-        .toLowerCase()
-        .includes(filter)
-
-        ? "block"
-        : "none";
-
-    });
-});
+    // later redirect to payment
+}
 
 </script>
 
