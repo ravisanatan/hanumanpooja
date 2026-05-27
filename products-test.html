@@ -246,21 +246,25 @@ function openDetails(name,price,desc,image){
 }
 
 /* BUY */
-function buyNow(name,price,btn){
+function buyNow(name, price, btn){
 
     let card = btn.closest(".card");
     let qty = parseInt(card.querySelector(".qty").innerText);
 
-    let total = price * qty;
+    let payload = {
+        type: "product",
+        product: name,
+        qty: qty,
+        price: price
+    };
 
-    alert(
-        "Product: " + name +
-        "\nQty: " + qty +
-        "\nTotal: ₹" + total
-    );
+    // save temp for payment page
+    localStorage.setItem("temp_order", JSON.stringify(payload));
 
-    // later redirect to payment
+    // go to payment page
+    window.location.href = "payment.html";
 }
+
 
 </script>
 
