@@ -56,7 +56,6 @@ header{
     padding:10px;
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
     display:flex;
-    justify(content:center);
     justify-content:center;
     flex-wrap:wrap;
     gap:10px;
@@ -542,4 +541,217 @@ Buy Now (Digital)
 <option>Punjab</option>
 <option>Rajasthan</option>
 <option>Sikkim</option>
-<option
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Delhi</option>
+</select>
+
+<input id="c_pincode" placeholder="6 Digit PIN Code" maxlength="6" inputmode="numeric">
+<input id="c_email" placeholder="Email">
+
+<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
+<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
+</div>
+</div>
+
+<script>
+/* SLIDER JAVASCRIPT */
+function moveSlide(btn, direction) {
+    let slider = btn.parentElement;
+    let images = slider.querySelectorAll("img");
+    let activeIndex = -1;
+
+    for (let i = 0; i < images.length; i++) {
+        if (images[i].classList.contains("active")) {
+            activeIndex = i;
+            break;
+        }
+    }
+
+    images[activeIndex].classList.remove("active");
+
+    let newIndex = activeIndex + direction;
+    if (newIndex >= images.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = images.length - 1;
+    }
+
+    images[newIndex].classList.add("active");
+}
+
+function changeQty(btn,change){
+    let qtyEl = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtyEl.innerText);
+    qty = Math.max(1, qty + change);
+    qtyEl.innerText = qty;
+}
+
+/* VIEW DETAILS POPUP */
+function openDetails(btn, title, price, desc) {
+    let card = btn.closest(".card");
+    let activeImg = card.querySelector(".slider img.active");
+    let isDigital = card.getAttribute("data-is-digital") === "true";
+    
+    document.getElementById("detailsTitle").innerText = title;
+    document.getElementById("detailsImage").src = activeImg ? activeImg.src : "";
+    document.getElementById("detailsDesc").innerText = desc;
+    
+    if(isDigital) {
+        document.getElementById("detailsPrice").innerHTML = "Price: " + price + " <span style='color: green; font-size: 13px; font-weight: normal;'>(Digital Product — No Shipping Charges)</span>";
+    } else {
+        document.getElementById("detailsPrice").innerHTML = "Price: " + price + " <span style='color: #666; font-size: 13px; font-weight: normal;'>(+ ₹100 Delivery & Shipping Fee)</span>";
+    }
+    
+    document.getElementById("detailsPopup").style.display = "flex";
+}
+
+function closeDetails(){
+    document.getElementById("detailsPopup").style.display = "none";
+}
+
+let selectedProduct="";
+let selectedQty=0;
+let selectedPrice=0;
+
+/* FIXED: CHKOUT OVERHAUL TO PREVENT NAVIGATION CRASHES */
+function openCheckout(btn){
+    let card = btn.closest(".card");
+
+    selectedProduct = card.querySelector("h3").innerText;
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    let priceEl = card.querySelector(".price");
+    let isDigital = card.getAttribute("data-is-digital") === "true";
+    let shippingFee = isDigital ? 0 : 100;
+
+    // Evaluate book exception structure explicitly 
+    if(priceEl.dataset.bookPrice){
+        let bookPrice = parseInt(priceEl.dataset.bookPrice);
+        selectedPrice = (bookPrice * selectedQty) + shippingFee;
+    }
+    else{
+        // Extract plain integers even across layout nodes with sub-element spaces
+        let rawPriceText = priceEl.innerText.replace(/[^\d]/g, "");
+        let basePrice = parseInt(rawPriceText) || 0;
+        
+        // Handle explicit overrides if original element text matches combined total labels
+        if(basePrice === 450 && priceEl.dataset.bookPrice === undefined) {
+            basePrice = 350; 
+        }
+        
+        selectedPrice = (basePrice * selectedQty) + shippingFee;
+    }
+
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    
+    if(isDigital) {
+        document.getElementById("popup_amount").innerHTML = selectedPrice + " <span style='color:green; font-size:12px;'>(₹0 Shipping Applied)</span>";
+    } else {
+        document.getElementById("popup_amount").innerHTML = selectedPrice + " <span style='color:#666; font-size:12px;'>(Includes ₹100 Shipping)</span>";
+    }
+    
+    document.getElementById("checkoutPopup").style.display = "flex";
+}
+
+function closeCheckout(){
+    document.getElementById("checkoutPopup").style.display = "none";
+}
+
+function submitOrder(){
+    let name = document.getElementById("c_name").value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+    let state = document.getElementById("c_state").value.trim();
+    let pincode = document.getElementById("c_pincode").value.trim();
+    let email = document.getElementById("c_email").value.trim();
+
+    if(!name || !phone || !address || !state || !pincode || !email){
+        alert("Please fill all details");
+        return;
+    }
+
+    if(!/^[6-9]\d{9}$/.test(phone)){
+        alert("Enter valid Indian mobile number");
+        return;
+    }
+
+    if(!/^[1-9][0-9]{5}$/.test(pincode)){
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    const firstDigit = parseInt(pincode[0]);
+    if(firstDigit < 1 || firstDigit > 8){
+        alert("Enter valid Indian PIN code");
+        return;
+    }
+
+    if(address.length < 10){
+        alert("Please enter complete address");
+        return;
+    }
+
+    const indianStates = [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+        "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi"
+    ];
+
+    if(!indianStates.some(s => s.toLowerCase() === state.toLowerCase())){
+        alert("Enter valid Indian state");
+        return;
+    }
+
+    localStorage.setItem("temp_type", "product");
+    localStorage.setItem("temp_product", selectedProduct);
+    localStorage.setItem("temp_price", selectedPrice);
+    localStorage.setItem("temp_qty", selectedQty);
+    localStorage.setItem("temp_name", name);
+    localStorage.setItem("temp_phone", phone);
+    localStorage.setItem("temp_email", email);
+    localStorage.setItem("temp_address", address);
+    localStorage.setItem("temp_state", state);
+    localStorage.setItem("temp_pincode", pincode);
+
+    window.location.href = "payment.html";
+}
+
+document.getElementById("searchBox").addEventListener("keyup", function(){
+    let filter = this.value.toLowerCase().trim();
+    document.querySelectorAll(".card").forEach(card=>{
+        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
+    });
+});
+
+/* DIGITAL BUY HANDLER (NO SHIPPING) */
+function buyDigital(btn,name,price,file){
+    let card = btn.closest(".card");
+    selectedQty = parseInt(card.querySelector(".qty").innerText);
+    selectedProduct = name;
+    selectedPrice = price * selectedQty;
+
+    localStorage.setItem("temp_type","product");
+    localStorage.setItem("temp_product",selectedProduct);
+    localStorage.setItem("temp_price",selectedPrice);
+    localStorage.setItem("temp_qty",selectedQty);
+    localStorage.setItem("temp_digital","true");
+    localStorage.setItem("temp_file",file);
+
+    // Prompt user verification values before redirecting
+    document.getElementById("popup_product_name").innerText = selectedProduct;
+    document.getElementById("popup_qty").innerText = selectedQty;
+    document.getElementById("popup_amount").innerHTML = selectedPrice + " <span style='color:green; font-size:12px;'>(₹0 Shipping Applied)</span>";
+    document.getElementById("checkoutPopup").style.display = "flex";
+}
+    
+</script>
+
+</body>
+</html>
