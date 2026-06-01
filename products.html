@@ -56,6 +56,7 @@ header{
     padding:10px;
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
     display:flex;
+    justify(content:center);
     justify-content:center;
     flex-wrap:wrap;
     gap:10px;
@@ -273,9 +274,12 @@ header{
 
 .popup-price{
     color:#cc0000;
-    font-size:24px;
+    font-size:20px;
     font-weight:bold;
     margin:10px 0;
+    background: #fdf2e9;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 .popup-desc{
@@ -329,8 +333,7 @@ select{
 
 <div class="products">
 
-<!-- PRODUCT 1 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/SpatikaShivaLingam_One Inch.jpeg" class="active" alt="Spatika Shivlingam View 1">
@@ -352,8 +355,7 @@ select{
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 2 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/MarakathaShivalingam.jpeg" class="active" alt="Marakatha Shivlingam View 1">
@@ -374,8 +376,7 @@ select{
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 3 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/Navagraha Mala.jpeg" class="active" alt="Navagraha Mala View 1">
@@ -396,8 +397,7 @@ select{
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 4 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/spatika_nandi1.jpeg" class="active" alt="Spatika Nandi View 1">
@@ -418,8 +418,7 @@ select{
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 5 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/MarakathaNandi.jpeg" class="active" alt="Marakatha Nandi View 1">
@@ -440,8 +439,7 @@ select{
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 6 -->
-<div class="card">
+<div class="card" data-is-digital="false">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 <img src="Images/products/hanumancha1.jpeg" class="active" alt="Hanuman Chalisa Colouring Book View 1">
@@ -468,8 +466,7 @@ Shipping: ₹100
 <button class="btn" onclick="openCheckout(this)">Buy Now</button>
 </div>
 
-<!-- PRODUCT 7 (DIGITAL PRODUCT - SHIVA PURANAM TELUGU SOFT COPY) -->
-<div class="card">
+<div class="card" data-is-digital="true">
 <div class="slider">
 <button class="slide-btn slide-prev" onclick="moveSlide(this, -1)">&#10094;</button>
 
@@ -490,7 +487,6 @@ Shipping: ₹100
 <button onclick="changeQty(this,1)">+</button>
 </div>
 
-<!-- 🔥 DIGITAL BUY BUTTON -->
 <button class="btn"
 onclick="buyDigital(this, 'Shiva Puranam Telugu Soft Copy', 69, 'downloads/shivapuranam/sri-shiva-maha-puranamu.pdf')">
 Buy Now (Digital)
@@ -500,7 +496,6 @@ Buy Now (Digital)
 </div>
 </div>
 
-<!-- POPUPS -->
 <div class="popup-bg" id="detailsPopup">
 <div class="popup-box">
 <img id="detailsImage" alt="Product Details">
@@ -517,7 +512,7 @@ Buy Now (Digital)
 
 <b>Product:</b> <span id="popup_product_name"></span><br><br>
 <b>Quantity:</b> <span id="popup_qty"></span><br><br>
-<b>Total Amount (incl. ₹100 Shipping):</b> ₹<span id="popup_amount"></span>
+<b>Total Amount:</b> ₹<span id="popup_amount"></span>
 
 <input id="c_name" placeholder="Full Name">
 <input id="c_phone" placeholder="Indian Mobile Number" maxlength="10" inputmode="numeric">
@@ -547,210 +542,4 @@ Buy Now (Digital)
 <option>Punjab</option>
 <option>Rajasthan</option>
 <option>Sikkim</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
-<option>Uttarakhand</option>
-<option>West Bengal</option>
-<option>Delhi</option>
-</select>
-
-<input id="c_pincode" placeholder="6 Digit PIN Code" maxlength="6" inputmode="numeric">
-<input id="c_email" placeholder="Email">
-
-<button class="btn" onclick="submitOrder()">Proceed to Payment</button>
-<button class="btn close-btn" onclick="closeCheckout()">Cancel</button>
-</div>
-</div>
-
-<script>
-/* SLIDER JAVASCRIPT */
-function moveSlide(btn, direction) {
-    let slider = btn.parentElement;
-    let images = slider.querySelectorAll("img");
-    let activeIndex = -1;
-
-    // Find the currently active image index
-    for (let i = 0; i < images.length; i++) {
-        if (images[i].classList.contains("active")) {
-            activeIndex = i;
-            break;
-        }
-    }
-
-    // Remove active status from old image
-    images[activeIndex].classList.remove("active");
-
-    // Calculate new index with loop-around logic
-    let newIndex = activeIndex + direction;
-    if (newIndex >= images.length) {
-        newIndex = 0;
-    } else if (newIndex < 0) {
-        newIndex = images.length - 1;
-    }
-
-    // Display the new active image
-    images[newIndex].classList.add("active");
-}
-
-function changeQty(btn,change){
-    let qtyEl = btn.parentElement.querySelector(".qty");
-    let qty = parseInt(qtyEl.innerText);
-    qty = Math.max(1, qty + change);
-    qtyEl.innerText = qty;
-}
-
-/* MODIFIED TO EXTRACT CURRENT ACTIVE SLIDER IMAGE PATH */
-function openDetails(btn, title, price, desc) {
-    let card = btn.closest(".card");
-    let activeImg = card.querySelector(".slider img.active");
-    
-    document.getElementById("detailsTitle").innerText = title;
-    document.getElementById("detailsPrice").innerText = price;
-    document.getElementById("detailsImage").src = activeImg ? activeImg.src : "";
-    document.getElementById("detailsDesc").innerText = desc;
-    document.getElementById("detailsPopup").style.display = "flex";
-}
-
-function closeDetails(){
-    document.getElementById("detailsPopup").style.display = "none";
-}
-
-let selectedProduct="";
-let selectedQty=0;
-let selectedPrice=0;
-
-function openCheckout(btn){
-    let card = btn.closest(".card");
-
-    selectedProduct = card.querySelector("h3").innerText;
-    selectedQty = parseInt(card.querySelector(".qty").innerText);
-    let priceEl = card.querySelector(".price");
-
-    // SPECIAL SHIPPING PRODUCT
-    if(priceEl.dataset.bookPrice){
-        let bookPrice = parseInt(priceEl.dataset.bookPrice);
-        // quantity * bookPrice + flat 100 shipping fee
-        selectedPrice = (bookPrice * selectedQty) + 100;
-    }
-    // NORMAL PRODUCTS
-    else{
-        let basePrice = parseInt(priceEl.innerText.replace("₹",""));
-        // quantity * basePrice + flat 100 shipping fee
-        selectedPrice = (basePrice * selectedQty) + 100;
-    }
-
-    document.getElementById("popup_product_name").innerText = selectedProduct;
-    document.getElementById("popup_qty").innerText = selectedQty;
-    document.getElementById("popup_amount").innerText = selectedPrice;
-    document.getElementById("checkoutPopup").style.display = "flex";
-}
-
-function closeCheckout(){
-    document.getElementById("checkoutPopup").style.display = "none";
-}
-
-function submitOrder(){
-    let name = document.getElementById("c_name").value.trim();
-    let phone = document.getElementById("c_phone").value.trim();
-    let address = document.getElementById("c_address").value.trim();
-    let state = document.getElementById("c_state").value.trim();
-    let pincode = document.getElementById("c_pincode").value.trim();
-    let email = document.getElementById("c_email").value.trim();
-
-    // REQUIRED CHECK
-    if(!name || !phone || !address || !state || !pincode || !email){
-        alert("Please fill all details");
-        return;
-    }
-
-    // INDIAN MOBILE VALIDATION
-    if(!/^[6-9]\d{9}$/.test(phone)){
-        alert("Enter valid Indian mobile number");
-        return;
-    }
-
-    // INDIAN PINCODE VALIDATION
-    if(!/^[1-9][0-9]{5}$/.test(pincode)){
-        alert("Enter valid Indian PIN code");
-        return;
-    }
-
-    // EXTRA INDIA CHECK
-    const firstDigit = parseInt(pincode[0]);
-    if(firstDigit < 1 || firstDigit > 8){
-        alert("Enter valid Indian PIN code");
-        return;
-    }
-
-    // ADDRESS CHECK
-    if(address.length < 10){
-        alert("Please enter complete address");
-        return;
-    }
-
-    // STATE VALIDATION
-    const indianStates = [
-        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-        "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-        "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi"
-    ];
-
-    if(!indianStates.some(s => s.toLowerCase() === state.toLowerCase())){
-        alert("Enter valid Indian state");
-        return;
-    }
-
-    // IMPORTANT FIX
-    localStorage.setItem("temp_type", "product");
-
-    // STORE DATA
-    localStorage.setItem("temp_product", selectedProduct);
-    localStorage.setItem("temp_price", selectedPrice);
-    localStorage.setItem("temp_qty", selectedQty);
-    localStorage.setItem("temp_name", name);
-    localStorage.setItem("temp_phone", phone);
-    localStorage.setItem("temp_email", email);
-    localStorage.setItem("temp_address", address);
-    localStorage.setItem("temp_state", state);
-    localStorage.setItem("temp_pincode", pincode);
-
-    // REDIRECT
-    window.location.href = "payment.html";
-}
-
-document.getElementById("searchBox").addEventListener("keyup", function(){
-    let filter = this.value.toLowerCase().trim();
-    document.querySelectorAll(".card").forEach(card=>{
-        card.style.display = card.innerText.toLowerCase().includes(filter) ? "block" : "none";
-    });
-});
-
-/* 🔥 DIGITAL PRODUCT HANDLER */
-function buyDigital(btn,name,price,file){
-    let card = btn.closest(".card");
-    let qty = parseInt(card.querySelector(".qty").innerText);
-    
-    // For digital soft copies, adding +100 shipping fee if requested, 
-    // or you can choose to bypass it. This line applies it consistently.
-    let finalDigitalPrice = (price * qty) + 100;
-
-    localStorage.setItem("temp_type","product");
-    localStorage.setItem("temp_product",name);
-    localStorage.setItem("temp_price",finalDigitalPrice);
-    localStorage.setItem("temp_qty",qty);
-
-    // DIGITAL FLAGS
-    localStorage.setItem("temp_digital","true");
-    localStorage.setItem("temp_file",file);
-
-    window.location.href="payment.html";
-}
-    
-</script>
-
-</body>
-</html>
+<option
