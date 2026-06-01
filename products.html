@@ -56,6 +56,7 @@ header{
     padding:10px;
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
     display:flex;
+    justify(content:center);
     justify-content:center;
     flex-wrap:wrap;
     gap:10px;
@@ -565,6 +566,7 @@ function moveSlide(btn, direction) {
     let images = slider.querySelectorAll("img");
     let activeIndex = -1;
 
+    // Find the currently active image index
     for (let i = 0; i < images.length; i++) {
         if (images[i].classList.contains("active")) {
             activeIndex = i;
@@ -572,8 +574,10 @@ function moveSlide(btn, direction) {
         }
     }
 
+    // Remove active status from old image
     images[activeIndex].classList.remove("active");
 
+    // Calculate new index with loop-around logic
     let newIndex = activeIndex + direction;
     if (newIndex >= images.length) {
         newIndex = 0;
@@ -581,6 +585,7 @@ function moveSlide(btn, direction) {
         newIndex = images.length - 1;
     }
 
+    // Display the new active image
     images[newIndex].classList.add("active");
 }
 
@@ -591,7 +596,7 @@ function changeQty(btn,change){
     qtyEl.innerText = qty;
 }
 
-/* VIEW DETAILS POPUP */
+/* MODIFIED TO SHOW SHIPPING DETAILS EXPLICITLY IN VIEW DETAILS POPUP */
 function openDetails(btn, title, price, desc) {
     let card = btn.closest(".card");
     let activeImg = card.querySelector(".slider img.active");
@@ -618,7 +623,6 @@ let selectedProduct="";
 let selectedQty=0;
 let selectedPrice=0;
 
-/* FIXED: CHKOUT OVERHAUL TO PREVENT NAVIGATION CRASHES */
 function openCheckout(btn){
     let card = btn.closest(".card");
 
@@ -628,21 +632,14 @@ function openCheckout(btn){
     let isDigital = card.getAttribute("data-is-digital") === "true";
     let shippingFee = isDigital ? 0 : 100;
 
-    // Evaluate book exception structure explicitly 
+    // SPECIAL SHIPPING PRODUCT
     if(priceEl.dataset.bookPrice){
         let bookPrice = parseInt(priceEl.dataset.bookPrice);
         selectedPrice = (bookPrice * selectedQty) + shippingFee;
     }
+    // NORMAL PRODUCTS
     else{
-        // Extract plain integers even across layout nodes with sub-element spaces
-        let rawPriceText = priceEl.innerText.replace(/[^\d]/g, "");
-        let basePrice = parseInt(rawPriceText) || 0;
-        
-        // Handle explicit overrides if original element text matches combined total labels
-        if(basePrice === 450 && priceEl.dataset.bookPrice === undefined) {
-            basePrice = 350; 
-        }
-        
+        let basePrice = parseInt(priceEl.innerText.replace("₹",""));
         selectedPrice = (basePrice * selectedQty) + shippingFee;
     }
 
@@ -670,32 +667,38 @@ function submitOrder(){
     let pincode = document.getElementById("c_pincode").value.trim();
     let email = document.getElementById("c_email").value.trim();
 
+    // REQUIRED CHECK
     if(!name || !phone || !address || !state || !pincode || !email){
         alert("Please fill all details");
         return;
     }
 
+    // INDIAN MOBILE VALIDATION
     if(!/^[6-9]\d{9}$/.test(phone)){
         alert("Enter valid Indian mobile number");
         return;
     }
 
+    // INDIAN PINCODE VALIDATION
     if(!/^[1-9][0-9]{5}$/.test(pincode)){
         alert("Enter valid Indian PIN code");
         return;
     }
 
+    // EXTRA INDIA CHECK
     const firstDigit = parseInt(pincode[0]);
     if(firstDigit < 1 || firstDigit > 8){
         alert("Enter valid Indian PIN code");
         return;
     }
 
+    // ADDRESS CHECK
     if(address.length < 10){
         alert("Please enter complete address");
         return;
     }
 
+    // STATE VALIDATION
     const indianStates = [
         "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
         "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
@@ -709,7 +712,10 @@ function submitOrder(){
         return;
     }
 
+    // IMPORTANT FIX
     localStorage.setItem("temp_type", "product");
+
+    // STORE DATA
     localStorage.setItem("temp_product", selectedProduct);
     localStorage.setItem("temp_price", selectedPrice);
     localStorage.setItem("temp_qty", selectedQty);
@@ -720,6 +726,7 @@ function submitOrder(){
     localStorage.setItem("temp_state", state);
     localStorage.setItem("temp_pincode", pincode);
 
+    // REDIRECT
     window.location.href = "payment.html";
 }
 
@@ -730,25 +737,24 @@ document.getElementById("searchBox").addEventListener("keyup", function(){
     });
 });
 
-/* DIGITAL BUY HANDLER (NO SHIPPING) */
+/* 🔥 DIGITAL PRODUCT HANDLER (NO SHIPPING CHARGES ADDED) */
 function buyDigital(btn,name,price,file){
     let card = btn.closest(".card");
-    selectedQty = parseInt(card.querySelector(".qty").innerText);
-    selectedProduct = name;
-    selectedPrice = price * selectedQty;
+    let qty = parseInt(card.querySelector(".qty").innerText);
+    
+    // Digital assets skip shipping: Base Price * Quantity only
+    let finalDigitalPrice = price * qty;
 
     localStorage.setItem("temp_type","product");
-    localStorage.setItem("temp_product",selectedProduct);
-    localStorage.setItem("temp_price",selectedPrice);
-    localStorage.setItem("temp_qty",selectedQty);
+    localStorage.setItem("temp_product",name);
+    localStorage.setItem("temp_price",finalDigitalPrice);
+    localStorage.setItem("temp_qty",qty);
+
+    // DIGITAL FLAGS
     localStorage.setItem("temp_digital","true");
     localStorage.setItem("temp_file",file);
 
-    // Prompt user verification values before redirecting
-    document.getElementById("popup_product_name").innerText = selectedProduct;
-    document.getElementById("popup_qty").innerText = selectedQty;
-    document.getElementById("popup_amount").innerHTML = selectedPrice + " <span style='color:green; font-size:12px;'>(₹0 Shipping Applied)</span>";
-    document.getElementById("checkoutPopup").style.display = "flex";
+    window.location.href="payment.html";
 }
     
 </script>
