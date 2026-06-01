@@ -61,7 +61,7 @@ header{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;   /* 👈 IMPORTANT */
-    gap:10px;         /* spacing between items */
+    gap:10px;          /* spacing between items */
 }
 
 .menu a{
@@ -184,7 +184,7 @@ header{
     margin:8px 0;
 }
 
-/* QR */
+/* QR / Images */
 .service-card img{
     width:100%;
     max-width:170px;
@@ -220,11 +220,33 @@ header{
     background:#e65c00;
 }
 
+/* DROPDOWN SELECT STYLING */
+.package-select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 2px solid #ff6600;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background: white;
+    cursor: pointer;
+    outline: none;
+}
+
 /* MOBILE */
 @media (max-width:600px){
     .service-card{
         min-width:220px;
         max-width:220px;
+    }
+}
+
+/* CENTER CARDS ON DESKTOP */
+@media (min-width: 601px) {
+    .slider {
+        justify-content: center;
     }
 }
 </style>
@@ -241,12 +263,6 @@ header{
 </div>
 </div>
 </header>
-
-<!-- <div class="menu">
-<a href="#poojas">Poojas</a>
-<a href="#astrology">Astrology</a>
-<a href="#muhurthas">Muhurthas</a>
-</div> -->
 
 <div class="menu">
 <a href="#poojas">Poojas</a>
@@ -270,177 +286,59 @@ header{
 
 <div class="slider">
 
-<!-- <div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam (Single)</h3>
-<p class="desc">27 Nakshatralanu and 9 grahalanu 27 Mandapalalo aavahana chesi homam nirvahinchabadutundi ”</p>
-<p class="desc"><b>Location:</b> Bhimeswara Swamy Aalaya Pranganam, Draksharamam</p>
-<p class="desc"><b>Benefits:</b> Navagrahala yokka negative effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity, labhsithai.</p>
-<p class="desc"><b>Date:</b> 29/05/2026</p>
-<div class="price">₹1116</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/pooja_homa.png">
-<button class="btn"
-onclick="openPoojaPopup(this,'Single','Maha Nakshatra Homam')">
-Book
-</button>
-</div>
-</div>
+  <!-- CARD 1: STANDARD YAMUNA PUSHKARA POOJA (MILK OFFERING ONLY) -->
+  <div class="service-card" data-base-name="Yamuna Pushkara Pooja">
+    <div class="card-content">
+      <h3>Yamuna Pushkara Pooja</h3>
+      <p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering milk </p>
+      <p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
+      <p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
+      <p class="desc"><b>Date:</b> 03/06/2026</p>
+      
+      <label for="pkg-standard" style="font-size:12px; font-weight:bold; color:#777; display:block; text-align:left; margin-top:10px;">Select Type:</label>
+      <select id="pkg-standard" class="package-select" onchange="updateCardPrice(this)">
+        <option value="701" data-type="Single">Single — ₹701</option>
+        <option value="1000" data-type="Couple">Couple — ₹1000</option>
+        <option value="1401" data-type="Family">Family — ₹1401</option>
+      </select>
 
-<div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam (Couple)</h3>
-<p class="desc">27 Nakshatralanu and 9 grahalanu 27 Mandapalalo aavahana chesi homam nirvahinchabadutundi ”</p>
-<p class="desc"><b>Location:</b> Bhimeswara Swamy Aalaya Pranganam, Draksharamam</p>
-<p class="desc"><b>Benefits:</b> Navagrahala yokka negative effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity, labhsithai.</p>
-<p class="desc"><b>Date:</b> 29/05/2026</p>
-<div class="price">₹1501</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/pooja_homa.png">
-<button class="btn"
-onclick="openPoojaPopup(this,'Couple','Maha Nakshatra Homam')">
-Book
-</button>
-</div>
-</div>
+      <div class="price">₹701</div>
+    </div>
+    <div class="card-footer">
+      <img src="Images/poojas/yamuna.jpeg">
+      <button class="btn" onclick="openDynamicPoojaPopup(this)">Book</button>
+    </div>
+  </div>
 
-<div class="service-card">
-<div class="card-content">
-<h3>Maha Nakshatra Homam (Family)</h3>
-<p class="desc">27 Nakshatralanu and 9 grahalanu 27 Mandapalalo aavahana chesi homam nirvahinchabadutundi ”</p>
-<p class="desc"><b>Location:</b> Bhimeswara Swamy Aalaya Pranganam, Draksharamam</p>
-<p class="desc"><b>Benefits:</b> Navagrahala yokka negative effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 29/05/2026</p>
-<div class="price">₹1801</div>    
-</div>
-<div class="card-footer">
-<img src="Images/poojas/pooja_homa.png">
-<button class="btn"
-onclick="openPoojaPopup(this,'Family','Maha Nakshatra Homam')">
-Book
-</button>
-</div>
-</div> -->
+  <!-- CARD 2: PREMIUM YAMUNA PUSHKARA POOJA (MORE POOJA SAMAGRI OFFERING) -->
+  <div class="service-card" data-base-name="Yamuna Pushkara Pooja (Premium)">
+    <div class="card-content">
+      <h3>Yamuna Pushkara Pooja (Premium)</h3>
+      <p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering pasupu kunkuma vastram puvvulu palu ..</p>
+      <p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
+      <p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
+      <p class="desc"><b>Date:</b> 03/06/2026</p>
+      
+      <label for="pkg-premium" style="font-size:12px; font-weight:bold; color:#777; display:block; text-align:left; margin-top:10px;">Select Type:</label>
+      <select id="pkg-premium" class="package-select" onchange="updateCardPrice(this)">
+        <option value="1201" data-type="Single">Single — ₹1201</option>
+        <option value="1501" data-type="Couple">Couple — ₹1501</option>
+        <option value="1801" data-type="Family">Family — ₹1801</option>
+      </select>
 
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Single)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering milk </p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹701</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Single','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Couple)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering milk</p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹1000</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Couple','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Family)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering milk ..</p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹1401</div>    
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Family','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Single)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering pasupu kunkuma vastram puvvulu palu .. </p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹1201</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Single','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Couple)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering pasupu kunkuma vastram puvvulu palu ..</p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹1501</div>
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Couple','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-
-<div class="service-card">
-<div class="card-content">
-<h3>Yamuna Pushkara Pooja (Family)</h3>
-<p class="desc">Yamuna nadi pooja with Sankalpam, Yamunashtakam and offering pasupu kunkuma vastram puvvulu palu ..</p>
-<p class="desc"><b>Location:</b> Yamuna Nadi, Vrindavan</p>
-<p class="desc"><b>Benefits:</b> Navagraha and Pitru doshala effects ni tagginchi Career growth, Financial stability, mental strength, protection from negativity labhsithai.</p>
-<p class="desc"><b>Date:</b> 03/06/2026</p>
-<div class="price">₹1801</div>    
-</div>
-<div class="card-footer">
-<img src="Images/poojas/yamuna.jpeg">
-<button class="btn"
-onclick="openPoojaPopup(this,'Family','Yamuna Pushkara Pooja')">
-Book
-</button>
-</div>
-</div>
-    
+      <div class="price">₹1201</div>
+    </div>
+    <div class="card-footer">
+      <img src="Images/poojas/yamuna.jpeg">
+      <button class="btn" onclick="openDynamicPoojaPopup(this)">Book</button>
+    </div>
+  </div>
     
 </div>
 </div>
 </div>
 
 <!-- POOJA POPUP -->
-
 <div id="poojaPopup"
 style="display:none;position:fixed;top:0;left:0;
 width:100%;height:100%;background:rgba(0,0,0,0.6);
@@ -497,11 +395,8 @@ Cancel
 <script>
 
 function scrollSlider(btn, dir){
-
     const wrapper = btn.parentElement;
-
     const slider = wrapper.querySelector('.slider');
-
     slider.scrollBy({
         left: dir * 300,
         behavior: 'smooth'
@@ -515,31 +410,31 @@ let selectedPrice = "";
 // 🔒 CONTROL SWITCH
 let BOOKING_ENABLED = true;
 
-// OPEN POPUP
-function openPoojaPopup(btn, type, poojaName){
+// DYNAMICALLY UPDATE CARD PRICE
+function updateCardPrice(selectElement) {
+    const card = selectElement.closest('.service-card');
+    const priceDiv = card.querySelector('.price');
+    priceDiv.innerText = "₹" + selectElement.value;
+}
 
+// OPEN DYNAMIC POPUP RESILIENT TO DROPDOWNS
+function openDynamicPoojaPopup(btn){
     // 🚫 BLOCK IF DISABLED
     if(!BOOKING_ENABLED){
-
         showBookingClosedMessage();
-
         return;
     }
 
-    selectedPoojaType = type;
+    const card = btn.closest('.service-card');
+    const dropdown = card.querySelector('.package-select');
+    const selectedOption = dropdown.options[dropdown.selectedIndex];
+    
+    // Auto-fetch data values based on option selected
+    selectedPoojaType = selectedOption.getAttribute('data-type');
+    selectedPoojaName = card.getAttribute('data-base-name');
+    selectedPrice = dropdown.value; 
 
-    selectedPoojaName = poojaName;
-
-    // AUTO GET PRICE FROM CARD
-    selectedPrice = btn
-        .closest('.service-card')
-        .querySelector('.price')
-        .innerText
-        .replace('₹','')
-        .trim();
-
-    document.getElementById("popupTitle").innerText =
-        poojaName + " - " + type;
+    document.getElementById("popupTitle").innerText = selectedPoojaName + " - " + selectedPoojaType;
 
     // HIDE OPTIONAL FIELDS
     document.getElementById("name2").style.display = "none";
@@ -548,14 +443,12 @@ function openPoojaPopup(btn, type, poojaName){
     document.getElementById("name5").style.display = "none";
 
     // COUPLE
-    if(type == "Couple"){
-
+    if(selectedPoojaType == "Couple"){
         document.getElementById("name2").style.display = "block";
     }
 
     // FAMILY
-    if(type == "Family"){
-
+    if(selectedPoojaType == "Family"){
         document.getElementById("name2").style.display = "block";
         document.getElementById("name3").style.display = "block";
         document.getElementById("name4").style.display = "block";
@@ -567,7 +460,6 @@ function openPoojaPopup(btn, type, poojaName){
 
 // CLOSE POPUP
 function closePoojaPopup(){
-
     document.getElementById("poojaPopup").style.display = "none";
 }
 
@@ -575,193 +467,105 @@ function closePoojaPopup(){
 function submitPoojaBooking(){
 
     let data = {
-
         type: "pooja",
-
         poojaType: selectedPoojaType,
-
         product: selectedPoojaName,
-
         gothram: document.getElementById("gothram").value.trim(),
-
         name1: document.getElementById("name1").value.trim(),
-
         name2: document.getElementById("name2").value.trim(),
-
         name3: document.getElementById("name3").value.trim(),
-
         name4: document.getElementById("name4").value.trim(),
-
         name5: document.getElementById("name5").value.trim(),
-
         wish: document.getElementById("wish").value.trim(),
-
         phone: document.getElementById("phone").value.trim(),
-
         email: document.getElementById("email").value.trim()
     };
 
     // VALIDATIONS
-
     const nameRegex = /^[A-Za-z\s]+$/;
-
     const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if(!data.gothram || !data.name1 || !data.phone || !data.email){
-
         alert("Please fill all required details");
-
         return;
     }
 
     if(!nameRegex.test(data.name1)){
-
         alert("Name should contain only letters");
-
         return;
     }
 
     if(data.name2 && !nameRegex.test(data.name2)){
-
         alert("Name 2 invalid");
-
         return;
     }
 
     if(data.name3 && !nameRegex.test(data.name3)){
-
         alert("Name 3 invalid");
-
         return;
     }
 
     if(data.name4 && !nameRegex.test(data.name4)){
-
         alert("Name 4 invalid");
-
         return;
     }
 
     if(data.name5 && !nameRegex.test(data.name5)){
-
         alert("Name 5 invalid");
-
         return;
     }
 
     if(!nameRegex.test(data.gothram)){
-
         alert("Gothram invalid");
-
         return;
     }
 
     if(!phoneRegex.test(data.phone)){
-
         alert("Please enter valid phone number");
-
         return;
     }
 
     if(!emailRegex.test(data.email)){
-
         alert("Please enter valid email");
-
         return;
     }
 
     // SAVE TEMP DATA
-
     localStorage.setItem("temp_type", "pooja");
-
-    localStorage.setItem(
-        "temp_pooja",
-        selectedPoojaName
-    );
-
-    localStorage.setItem(
-        "temp_price",
-        selectedPrice
-    );
-
-    localStorage.setItem(
-        "temp_gothram",
-        data.gothram
-    );
-
-    localStorage.setItem(
-        "temp_name1",
-        data.name1
-    );
-
-    localStorage.setItem(
-        "temp_name2",
-        data.name2
-    );
-
-    localStorage.setItem(
-        "temp_name3",
-        data.name3
-    );
-
-    localStorage.setItem(
-        "temp_name4",
-        data.name4
-    );
-
-    localStorage.setItem(
-        "temp_name5",
-        data.name5
-    );
-
-    localStorage.setItem(
-        "temp_wish",
-        data.wish
-    );
-
-    localStorage.setItem(
-        "temp_phone",
-        data.phone
-    );
-
-    localStorage.setItem(
-        "temp_email",
-        data.email
-    );
+    localStorage.setItem("temp_pooja", selectedPoojaName);
+    localStorage.setItem("temp_price", selectedPrice);
+    localStorage.setItem("temp_gothram", data.gothram);
+    localStorage.setItem("temp_name1", data.name1);
+    localStorage.setItem("temp_name2", data.name2);
+    localStorage.setItem("temp_name3", data.name3);
+    localStorage.setItem("temp_name4", data.name4);
+    localStorage.setItem("temp_name5", data.name5);
+    localStorage.setItem("temp_wish", data.wish);
+    localStorage.setItem("temp_phone", data.phone);
+    localStorage.setItem("temp_email", data.email);
 
     // REDIRECT
-
     window.location.href = "payment.html";
 }
 
 // 🔔 MESSAGE
 function showBookingClosedMessage(){
-
     alert("🙏 Booking is closed for this Pooja.");
 }
 
 // 🔒 DISABLE BUTTONS UI
 function disableBookingButtons(){
-
-    const buttons = document.querySelectorAll(
-        ".service-card .card-footer .btn"
-    );
-
+    const buttons = document.querySelectorAll(".service-card .card-footer .btn");
     buttons.forEach(btn => {
-
         btn.innerText = "Booking Closed";
-
         btn.style.background = "#999";
-
         btn.style.cursor = "not-allowed";
     });
 }
 
-// APPLY
+// APPLY GLOBAL LOCK SWITCH
 if(!BOOKING_ENABLED){
-
     disableBookingButtons();
 }
 
