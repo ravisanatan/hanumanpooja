@@ -517,7 +517,7 @@ Buy Now (Digital)
 
 <b>Product:</b> <span id="popup_product_name"></span><br><br>
 <b>Quantity:</b> <span id="popup_qty"></span><br><br>
-<b>Total Amount:</b> ₹<span id="popup_amount"></span>
+<b>Total Amount (incl. ₹100 Shipping):</b> ₹<span id="popup_amount"></span>
 
 <input id="c_name" placeholder="Full Name">
 <input id="c_phone" placeholder="Indian Mobile Number" maxlength="10" inputmode="numeric">
@@ -631,14 +631,14 @@ function openCheckout(btn){
     // SPECIAL SHIPPING PRODUCT
     if(priceEl.dataset.bookPrice){
         let bookPrice = parseInt(priceEl.dataset.bookPrice);
-        let shipping = parseInt(priceEl.dataset.shipping);
-        // SHIPPING ONLY ONCE
-        selectedPrice = (bookPrice * selectedQty) + shipping;
+        // quantity * bookPrice + flat 100 shipping fee
+        selectedPrice = (bookPrice * selectedQty) + 100;
     }
     // NORMAL PRODUCTS
     else{
         let basePrice = parseInt(priceEl.innerText.replace("₹",""));
-        selectedPrice = basePrice * selectedQty;
+        // quantity * basePrice + flat 100 shipping fee
+        selectedPrice = (basePrice * selectedQty) + 100;
     }
 
     document.getElementById("popup_product_name").innerText = selectedProduct;
@@ -729,15 +729,19 @@ document.getElementById("searchBox").addEventListener("keyup", function(){
     });
 });
 
-    /* 🔥 DIGITAL PRODUCT HANDLER (NEW) */
+/* 🔥 DIGITAL PRODUCT HANDLER */
 function buyDigital(btn,name,price,file){
-
     let card = btn.closest(".card");
+    let qty = parseInt(card.querySelector(".qty").innerText);
+    
+    // For digital soft copies, adding +100 shipping fee if requested, 
+    // or you can choose to bypass it. This line applies it consistently.
+    let finalDigitalPrice = (price * qty) + 100;
 
     localStorage.setItem("temp_type","product");
     localStorage.setItem("temp_product",name);
-    localStorage.setItem("temp_price",price);
-    localStorage.setItem("temp_qty",card.querySelector(".qty").innerText);
+    localStorage.setItem("temp_price",finalDigitalPrice);
+    localStorage.setItem("temp_qty",qty);
 
     // DIGITAL FLAGS
     localStorage.setItem("temp_digital","true");
